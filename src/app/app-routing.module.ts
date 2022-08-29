@@ -5,8 +5,19 @@ import { UserComponent } from './layouts/user/user.component';
 import { VisitorComponent } from './layouts/visitor/visitor.component';
 
 const routes: Routes = [
-  {path:'',component:VisitorComponent},
-  {path:'user',component:UserComponent},
+  {path:'',component:VisitorComponent,children:[
+    {path:'',loadChildren:()=>import('./layouts/visitor/visitor-view/home/home.module').then(m=>m.HomeModule)},
+    {path:'register',loadChildren:()=>import('./layouts/visitor/visitor-view/register/register.module').then(m=>m.RegisterModule)},
+    {path:'login',loadChildren:()=>import('./layouts/visitor/visitor-view/login/login.module').then(m=>m.LoginModule)},
+    {path:'home',redirectTo:'',pathMatch:'full'}
+  ]},
+  {path:'user',component:UserComponent,children:[
+    {path:'commentedSections',loadChildren:()=>import('./layouts/user/user-view/commented-sections/commented-sections.module').then(m=>m.CommentedSectionsModule)},
+    {path:'likedSections',loadChildren:()=>import('./layouts/user/user-view/liked-sections/liked-sections.module').then(m=>m.LikedSectionsModule)},
+    {path:'profile',loadChildren:()=>import('./layouts/user/user-view/profile/profile.module').then(m=>m.ProfileModule)},
+    {path:'savedSections',loadChildren:()=>import('./layouts/user/user-view/saved-sections/saved-sections.module').then(m=>m.SavedSectionsModule)},
+    {path:'sections',loadChildren:()=>import('./layouts/user/user-view/sections/sections.module').then(m=>m.SectionsModule)}
+  ]},
   {path:'admin',component:AdminComponent,children:[
     {path:'dashboard',loadChildren:()=>import('./layouts/admin/admin-view/dashboard/dashboard.module').then(m=>m.DashboardModule)},
     {path:'sections',loadChildren:()=>import('./layouts/admin/admin-view/sections/sections.module').then(m=>m.SectionsModule)},

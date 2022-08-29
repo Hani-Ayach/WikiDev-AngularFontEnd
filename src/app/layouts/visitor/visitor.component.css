@@ -1,0 +1,27 @@
+
+.nav-home{
+  background-color:#87abe3;
+}
+.search-input{
+  background-color: #FCF7F4;
+
+}
+.search-btn:hover{
+  border-color: #FCF7F4;
+}
+.nav-item{
+  border-bottom: 2px solid transparent;
+  border-radius:4%;
+  transition-duration: .5s ;
+  transition-timing-function: ease-out;
+}
+.nav-item:hover{
+  border-bottom-color: #FCF7F4;
+}
+.nav-item a{
+  color: #FCF7F4;
+}
+.navbar-brand{
+  color: #FCF7F4;
+  font-weight: bold;
+}

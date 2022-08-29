@@ -1,0 +1,20 @@
+:root{
+  --main-color1:#87aae3;
+  --main-color2: #FCF7F4;
+}
+.about{
+  width:100%;
+  height: 300px;
+background-image: linear-gradient(135deg,#87aae3 30%,#FCF7F4 30% 50%,#87aae3 );
+  background-attachment:fixed;
+}
+.about h2{
+text-align: center;
+padding-top: 100px;
+}
+.about h2 h1{
+  display: inline;
+color: #FCF7F4;
+text-shadow: 2px 2px 1px #87aae3;
+}
+
