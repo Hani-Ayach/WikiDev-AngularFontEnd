@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Register } from '../Model/Register';
 import { Section } from '../Model/Section';
+import { User } from '../Model/User';
 
 //sections
 export const FETCH_SECTIONS = '[Sections] Fetch Sections';
@@ -14,7 +15,7 @@ export const LOGOUT = '[Auth] Logout';
 
 //register
 export const SEND_APPLY = '[Register] Send Apply';
-
+export const APPLY_SENT = '[Register] Apply Sent';
 
 //
 export class FetchSections implements Action {
@@ -22,34 +23,39 @@ export class FetchSections implements Action {
 }
 export class SetSections implements Action {
   readonly type = SET_SECTIONS;
-  constructor(payload:Section[]){}
+  constructor(public payload: Section[]) {}
 }
 //
-export class LoginStart implements Action{
-  readonly type=LOGIN_START;
-  constructor(payload:{email:string,password:string}){}
+export class LoginStart implements Action {
+  readonly type = LOGIN_START;
+  constructor(public payload: { email: string, password: string }) {}
 }
-export class AuthenticationFail implements Action{
-  readonly type=AUTHENTICATION_Fail;
-  constructor(payload:string){}
+export class AuthenticationFail implements Action {
+  readonly type = AUTHENTICATION_Fail;
+  constructor(public payload: string) {}
 }
-export class AuthenticationSuccess implements Action{
-  readonly type=AUTHENTICATION_SUCCESS;
+export class AuthenticationSuccess implements Action {
+  readonly type = AUTHENTICATION_SUCCESS;
+  constructor(public payload: User) {}
 }
-export class Logout implements Action{
-  readonly type=LOGOUT;
+export class Logout implements Action {
+  readonly type = LOGOUT;
 }
 //
-export class SendApply implements Action{
-  readonly type=SEND_APPLY;
-  constructor(payload:Register){}
+export class SendApply implements Action {
+  readonly type = SEND_APPLY;
+  constructor(public payload: Register) {}
 }
-
-export type VisitorAction=
-                LoginStart
-                |AuthenticationSuccess
-                |AuthenticationFail
-                |Logout
-                |FetchSections
-                |SetSections
-                |SendApply;
+export class ApplySent implements Action {
+  readonly type = APPLY_SENT;
+  constructor(public payload: { isSent: boolean, message: string }) {}
+}
+export type VisitorActions =
+  | LoginStart
+  | AuthenticationSuccess
+  | AuthenticationFail
+  | Logout
+  | FetchSections
+  | SetSections
+  | SendApply
+  | ApplySent;

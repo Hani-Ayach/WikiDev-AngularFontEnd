@@ -16,8 +16,9 @@ import { SectionsModule } from './user/user-view/sections/sections.module';
 import { ProfileModule } from './user/user-view/profile/profile.module';
 
 import { VisitorComponent } from './visitor/visitor.component';
+import { StoreModule } from '@ngrx/store';
 
-
+import * as fromApp from './store/app.reducer';
 
 @NgModule({
   declarations: [
@@ -35,10 +36,11 @@ import { VisitorComponent } from './visitor/visitor.component';
     AdminsModule,
     SectionsModuleAdmin,
     ProfileModuleAdmin,
-    
+
     SectionsModule,
     ProfileModule,
 
+    StoreModule.forRoot(fromApp.appReducer)
   ]
 })
 export class LayoutsModule { }

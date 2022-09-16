@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Category } from 'src/app/layouts/visitor/Model/Category';
+import { Section } from 'src/app/layouts/visitor/Model/Section';
+import { SectionComment } from 'src/app/layouts/visitor/Model/SectionComment';
 
 @Component({
   selector: 'app-section',
@@ -9,15 +12,14 @@ export class SectionComponent implements OnInit {
 
   constructor() { }
 
+@Input() section:Section ={} as any;
+comments:SectionComment[]=[];
+category:Category={} as any;
+
   ngOnInit(): void {
+    this.comments=this.section.Comments;
+    this.category=this.section.Category;
   }
 
-  sections=[{
-    writer:"",
-    dateOfPost:"",
-    title:"Test One",
-    description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit deleniti numquam quaerat unde, eligendi modi sint nisi itaque inventore earum,illo natus, cupiditate neque voluptatem adipisci maxime nam cumque fugiat.",
-    codeBlock:"",
-    images:[]
-  }]
+
 }

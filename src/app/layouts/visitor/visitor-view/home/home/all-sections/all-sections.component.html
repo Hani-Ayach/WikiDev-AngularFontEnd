@@ -1,8 +1,41 @@
-sections works!
-<div class=" about" >
-  <h2> <h1> WikiDev </h1> is a Website Specialist in Publishing Programming Articles</h2>
+<div class="about">
+  <h2 class="m-2 mt-0">
+    <h1>WikiDev</h1>
+    is a Website Specialist in Publishing Programming Articles
+  </h2>
 </div>
-<div class="container">
-  <app-section></app-section>
-</div>
+<form >
+<div class="row search m-5">
+  <div class="col col-lg-2  col-sm-4 col-4 one">
+    <select name="category" id="category" class="form-control form-select " formControlName="category">
+      <option value="" disabled selected>Category</option>
+      <option value="">one</option>
+      <option value="">two</option>
+    </select>
 
+  </div>
+  <div class="col col-lg-5 col-sm-7 col-7 two">
+    <input
+      type="text"
+      name="search"
+      id="search"
+      placeholder="Enter Keywords?"
+      class="form-control"
+      formControlName="search"
+    />
+  </div>
+  <button class="col col-lg-1  col-sm-11 col-11 btn three " type="submit">
+    <i class="bi bi-search form-control"></i>
+  </button>
+</div>
+</form>
+
+<button (click)="TopFunction()" id="myBtn" title="Go to top">Top</button>
+
+
+<div class="container">
+  <app-section
+    *ngFor="let section of sections; let i = index"
+    [section]="section"
+  ></app-section>
+</div>

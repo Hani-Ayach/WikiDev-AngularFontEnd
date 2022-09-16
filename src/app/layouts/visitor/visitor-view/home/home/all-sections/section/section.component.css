@@ -1,0 +1,13 @@
+.card
+{
+  background-color: transparent;
+    border-radius: 0;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+}
+.title
+{
+  background-color: #87aae390;
+  color: #fcf7f4;
+}
