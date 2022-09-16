@@ -19,6 +19,9 @@ import { VisitorComponent } from './visitor/visitor.component';
 import { StoreModule } from '@ngrx/store';
 
 import * as fromApp from './store/app.reducer';
+import { VisitorEffects } from './visitor/store/visitor.effect';
+import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,9 @@ import * as fromApp from './store/app.reducer';
     SectionsModule,
     ProfileModule,
 
-    StoreModule.forRoot(fromApp.appReducer)
+    HttpClientModule,
+    StoreModule.forRoot(fromApp.appReducer),
+    EffectsModule.forRoot([VisitorEffects])
   ]
 })
 export class LayoutsModule { }

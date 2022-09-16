@@ -1,3 +1,4 @@
+import { Category } from '../Model/Category';
 import { Section } from '../Model/Section';
 import { User } from '../Model/User';
 import * as VisitorAction from './visitor.action';
@@ -5,6 +6,7 @@ import * as VisitorAction from './visitor.action';
 export interface State {
   sections: Section[];
 
+  categories:Category[],
 
   user: User;
   isLoading: boolean;
@@ -15,23 +17,9 @@ export interface State {
 }
 
 const initialState: State = {
-  sections: [
-    {
-       SectionTitle: 'string',
-     SectionDescription: 'string',
-     CodeBlock: 'string',
-     Category: {} as any,
-     UserName: 'string',
-     userProfileBase64: 'string',
-     UserId: 'string',
-     DateOfPost: {} as any,
-     CountOfLikes: 4,
-     IdOfUsersLikeThisSection: ['string'],
-     CountOfSave: 4,
-     Comments:[],
-     SectionBase64Photos: ['string']
-    }
-  ],
+  sections: [],
+
+  categories:[],
 
   user: {} as any,
   isLoading: false,
@@ -49,20 +37,32 @@ export function visitorReducer(
     case VisitorAction.FETCH_SECTIONS:
       return {
         ...state,
-        isLoading: true,
+        isLoading: true
       };
 
     case VisitorAction.SET_SECTIONS:
       return {
         ...state,
-        sections: [...state.sections,...action.payload],
-        isLoading: false,
+        sections: [...action.payload],
+        isLoading: false
+      };
+      case VisitorAction.FETCH_CATEGORIES:
+      return {
+        ...state,
+        isLoading: true
+      };
+
+    case VisitorAction.SET_CATEGORIES:
+      return {
+        ...state,
+        categories: [...action.payload],
+        isLoading: false
       };
 
     case VisitorAction.LOGIN_START:
       return {
         ...state,
-        isLoading: true,
+        isLoading: true
       };
 
     case VisitorAction.AUTHENTICATION_SUCCESS:
@@ -77,7 +77,7 @@ export function visitorReducer(
         ...state,
         isLoading: false,
         user:{} as any,
-        error: action.payload,
+        error: action.payload
       };
 
     case VisitorAction.LOGOUT:

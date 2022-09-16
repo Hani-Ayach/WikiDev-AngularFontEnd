@@ -1,16 +1,16 @@
 export class Register {
   constructor(
-    public Id: number,
+    public id: number,
 
-    public FirstName: number,
+    public firstName: number,
 
-    public LastName: string,
+    public lastName: string,
 
-    public Email: string,
+    public email: string,
 
-    public Career: string,
+    public career: string,
 
-    public Age: number,
+    public age: number,
 
     public sex: string
   ) {}

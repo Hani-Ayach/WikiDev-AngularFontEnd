@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { Category } from '../Model/Category';
 import { Register } from '../Model/Register';
 import { Section } from '../Model/Section';
 import { User } from '../Model/User';
@@ -6,6 +7,10 @@ import { User } from '../Model/User';
 //sections
 export const FETCH_SECTIONS = '[Sections] Fetch Sections';
 export const SET_SECTIONS = '[Sections] Set Sections';
+
+//categories
+export const FETCH_CATEGORIES = '[Categories] Fetch Categories';
+export const SET_CATEGORIES = '[Categories] Set Categories';
 
 //login
 export const LOGIN_START = '[Auth] Login Start';
@@ -26,9 +31,17 @@ export class SetSections implements Action {
   constructor(public payload: Section[]) {}
 }
 //
+export class FetchCategories implements Action {
+  readonly type = FETCH_CATEGORIES;
+}
+export class SetCategories implements Action {
+  readonly type = SET_CATEGORIES;
+  constructor(public payload: Category[]) {}
+}
+//
 export class LoginStart implements Action {
   readonly type = LOGIN_START;
-  constructor(public payload: { email: string, password: string }) {}
+  constructor(public payload: { email: string; password: string }) {}
 }
 export class AuthenticationFail implements Action {
   readonly type = AUTHENTICATION_Fail;
@@ -48,7 +61,7 @@ export class SendApply implements Action {
 }
 export class ApplySent implements Action {
   readonly type = APPLY_SENT;
-  constructor(public payload: { isSent: boolean, message: string }) {}
+  constructor(public payload: { isSent: boolean; message: string }) {}
 }
 export type VisitorActions =
   | LoginStart
@@ -57,5 +70,7 @@ export type VisitorActions =
   | Logout
   | FetchSections
   | SetSections
+  | FetchCategories
+  | SetCategories
   | SendApply
   | ApplySent;

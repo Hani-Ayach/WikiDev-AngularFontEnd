@@ -3,20 +3,20 @@
   class="card d-flex card"
 >
   <h5 class="card-header title">
-    Angular
+    {{section.category.name}}
   </h5>
   <div class="card-body">
 
     <!-- Writer Name And Date of Post -->
-    <h6 class="card-title">{{ section.UserName }}</h6>
+    <h6 class="card-title">{{ section.userName }}</h6>
     <p class="card-subtitle mb-2 text-muted">
-      <small class="text-muted">{{ section.DateOfPost }}</small>
+      <small class="text-muted">{{ section.dateOfPost }}</small>
     </p>
 
     <!-- Blog Title and Description -->
-    <h4 class="card-title mt-3">{{ section.SectionTitle }}</h4>
+    <h4 class="card-title mt-3">{{ section.sectionTitle }}</h4>
     <p class="card-text">
-      {{ section.SectionDescription }}
+      {{ section.sectionDescription }}
     </p>
 
   </div>
@@ -26,7 +26,7 @@
     <div class="card-body col-lg-6 col-md-6">
       <pre>
         <code>
-   {{section.CodeBlock}}
+   {{section.codeBlock}}
         </code>
       </pre>
     </div>
@@ -39,6 +39,6 @@
 
 
   <div class="card-footer" style="background-color: #87aae390; color: #fcf7f4">
-    {{ section.CountOfLikes }} likes
+    {{ section.countOfLikes }} likes
   </div>
 </div>

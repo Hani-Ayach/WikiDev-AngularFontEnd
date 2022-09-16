@@ -17,8 +17,9 @@ comments:SectionComment[]=[];
 category:Category={} as any;
 
   ngOnInit(): void {
-    this.comments=this.section.Comments;
-    this.category=this.section.Category;
+    this.comments=this.section.comments;
+    this.category=this.section.category;
+    console.log(this.category);
   }
 
 
