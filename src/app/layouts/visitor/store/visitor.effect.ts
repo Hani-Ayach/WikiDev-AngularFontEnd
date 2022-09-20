@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, Effect,ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 import * as fromAction from '../../store/app.reducer';
 import * as VisitorActions from '../store/visitor.action';
@@ -28,6 +28,9 @@ export class VisitorEffects {
       console.log('hani');
       console.log(sections);
       return new VisitorActions.SetSections(sections);
+    }),
+    catchError(async (err, caught) => {
+      return await new VisitorActions.StopLoading();;
     })
   );
 

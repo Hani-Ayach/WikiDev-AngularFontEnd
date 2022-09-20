@@ -6,7 +6,7 @@ import * as VisitorAction from './visitor.action';
 export interface State {
   sections: Section[];
 
-  categories:Category[],
+  categories: Category[];
 
   user: User;
   isLoading: boolean;
@@ -19,7 +19,7 @@ export interface State {
 const initialState: State = {
   sections: [],
 
-  categories:[],
+  categories: [],
 
   user: {} as any,
   isLoading: false,
@@ -30,74 +30,76 @@ const initialState: State = {
 };
 
 export function visitorReducer(
-  state:State = initialState,
+  state: State = initialState,
   action: VisitorAction.VisitorActions
-):State {
+): State {
   switch (action.type) {
     case VisitorAction.FETCH_SECTIONS:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
 
     case VisitorAction.SET_SECTIONS:
       return {
         ...state,
-        sections: [...action.payload],
-        isLoading: false
+        sections: [...state.sections, ...action.payload],
+        isLoading: false,
       };
-      case VisitorAction.FETCH_CATEGORIES:
+    case VisitorAction.FETCH_CATEGORIES:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
-
+    case VisitorAction.STOP_LOADING:
+      return {
+        ...state,
+        isLoading: false,
+      };
     case VisitorAction.SET_CATEGORIES:
       return {
         ...state,
-        categories: [...action.payload],
-        isLoading: false
+        categories: [...state.categories, ...action.payload],
+        isLoading: false,
       };
 
     case VisitorAction.LOGIN_START:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
 
     case VisitorAction.AUTHENTICATION_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        user:action.payload
+        user: action.payload,
       };
 
     case VisitorAction.AUTHENTICATION_Fail:
       return {
         ...state,
         isLoading: false,
-        user:{} as any,
-        error: action.payload
+        user: {} as any,
+        error: action.payload,
       };
 
     case VisitorAction.LOGOUT:
-      return{
+      return {
         ...state,
-        user:{} as any
-      }
-
+        user: {} as any,
+      };
 
     case VisitorAction.APPLY_SENT:
-      return{
+      return {
         ...state,
-        isApplySent:action.payload.isSent,
-        messageIfSent:action.payload.message
+        isApplySent: action.payload.isSent,
+        messageIfSent: action.payload.message,
       };
 
     default:
       return {
-        ...state
+        ...state,
       };
-
   }
 }

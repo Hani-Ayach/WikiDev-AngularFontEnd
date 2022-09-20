@@ -1,17 +1,17 @@
-<div class="about">
-  <h2 class="m-2 mt-0">
-    <h1>WikiDev</h1>
-    is a Website Specialist in Publishing Programming Articles
-  </h2>
-</div>
-<form >
-<div class="row search m-5">
-  <div class="col col-lg-2  col-sm-4 col-4 one">
-    <select name="category" id="category" class="form-control form-select " formControlName="category">
+<form class="row search m-5" [formGroup]="searchForm" (ngSubmit)="OnSubmit()">
+  <div class="col col-lg-2 col-sm-4 col-4 one">
+    <select
+      name="category"
+      id="category"
+      class="form-control form-select"
+      formControlName="category"
+    >
       <option value="" disabled selected>Category</option>
-      <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+      <option value="">All Category</option>
+      <option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </option>
     </select>
-
   </div>
   <div class="col col-lg-5 col-sm-7 col-7 two">
     <input
@@ -23,18 +23,15 @@
       formControlName="search"
     />
   </div>
-  <button class="col col-lg-1  col-sm-11 col-11 btn three " type="submit">
+  <button class="col col-lg-1 col-sm-11 col-11 btn three" type="submit">
     <i class="bi bi-search form-control"></i>
   </button>
-</div>
 </form>
-
-<button (click)="TopFunction()" id="myBtn" title="Go to top">Top</button>
-
 
 <div class="container">
   <app-section
-    *ngFor="let section of sections; let i = index"
+    *ngFor="let section of sections | myFilter: searchCategory|myFilter:search; let i = index"
     [section]="section"
   ></app-section>
+  <h1 *ngIf="displayNotify" class="noResult">There is No Result Found</h1>
 </div>

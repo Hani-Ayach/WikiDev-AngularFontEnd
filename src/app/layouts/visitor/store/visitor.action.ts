@@ -22,6 +22,8 @@ export const LOGOUT = '[Auth] Logout';
 export const SEND_APPLY = '[Register] Send Apply';
 export const APPLY_SENT = '[Register] Apply Sent';
 
+//loading
+export const STOP_LOADING='[Loading] Stop Loading';
 //
 export class FetchSections implements Action {
   readonly type = FETCH_SECTIONS;
@@ -63,6 +65,10 @@ export class ApplySent implements Action {
   readonly type = APPLY_SENT;
   constructor(public payload: { isSent: boolean; message: string }) {}
 }
+//
+export class StopLoading implements Action{
+  readonly type=STOP_LOADING;
+}
 export type VisitorActions =
   | LoginStart
   | AuthenticationSuccess
@@ -70,6 +76,7 @@ export type VisitorActions =
   | Logout
   | FetchSections
   | SetSections
+  | StopLoading
   | FetchCategories
   | SetCategories
   | SendApply

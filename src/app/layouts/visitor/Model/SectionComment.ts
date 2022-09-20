@@ -1,13 +1,13 @@
 export class SectionComment {
   constructor(
-    public Id: number,
+    public id: number,
 
-    public UserId: string,
+    public userId: string,
 
-    public SectionId: number,
+    public sectionId: number,
 
-    public Content: string,
-    
-    public DateOfPost: Date
+    public content: string,
+
+    public dateOfPost: Date
   ){}
 }
