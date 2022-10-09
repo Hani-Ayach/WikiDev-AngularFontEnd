@@ -1,6 +1,6 @@
-import { Category } from '../Model/Category';
-import { Section } from '../Model/Section';
-import { User } from '../Model/User';
+import { Category } from '../../Model/Category';
+import { Section } from '../../Model/Section';
+import { User } from '../../Model/User';
 import * as VisitorAction from './visitor.action';
 
 export interface State {
@@ -89,7 +89,12 @@ export function visitorReducer(
         ...state,
         user: {} as any,
       };
-
+    case VisitorAction.SEND_APPLY:
+      return {
+        ...state,
+        isApplySent: false,
+        messageIfSent: '',
+      };
     case VisitorAction.APPLY_SENT:
       return {
         ...state,

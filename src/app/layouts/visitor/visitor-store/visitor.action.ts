@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store';
-import { Category } from '../Model/Category';
-import { Register } from '../Model/Register';
-import { Section } from '../Model/Section';
-import { User } from '../Model/User';
+import { Category } from '../../Model/Category';
+import { Register } from '../../Model/Register';
+import { Section } from '../../Model/Section';
+import { User } from '../../Model/User';
 
 //sections
 export const FETCH_SECTIONS = '[Sections] Fetch Sections';

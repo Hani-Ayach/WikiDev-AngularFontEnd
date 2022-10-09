@@ -12,6 +12,7 @@ const routes: Routes = [
     {path:'home',redirectTo:'',pathMatch:'full'}
   ]},
   {path:'user',component:UserComponent,children:[
+    {path:'',loadChildren:()=>import('./layouts/user/user-view/sections/sections.module').then(m=>m.SectionsModule)},
     {path:'commentedSections',loadChildren:()=>import('./layouts/user/user-view/commented-sections/commented-sections.module').then(m=>m.CommentedSectionsModule)},
     {path:'likedSections',loadChildren:()=>import('./layouts/user/user-view/liked-sections/liked-sections.module').then(m=>m.LikedSectionsModule)},
     {path:'profile',loadChildren:()=>import('./layouts/user/user-view/profile/profile.module').then(m=>m.ProfileModule)},

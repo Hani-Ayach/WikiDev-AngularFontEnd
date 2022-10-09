@@ -3,11 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { SectionsRoutingModule } from './sections-routing.module';
 import { SectionsComponent } from './sections/sections.component';
+import { SectionComponent } from './sections/section/section.component';
+import { SectionEditComponent } from './section-edit/section-edit.component';
 
 
 @NgModule({
   declarations: [
-    SectionsComponent
+    SectionsComponent,
+    SectionComponent,
+    SectionEditComponent
   ],
   imports: [
     CommonModule,

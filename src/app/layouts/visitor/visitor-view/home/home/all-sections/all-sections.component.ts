@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Category } from 'src/app/layouts/visitor/Model/Category';
-import { Section } from 'src/app/layouts/visitor/Model/Section';
+import { Category } from 'src/app/layouts/Model/Category';
+import { Section } from 'src/app/layouts/Model/Section';
 import * as fromApp from '../../../../../store/app.reducer';
 @Component({
   selector: 'app-all-sections',

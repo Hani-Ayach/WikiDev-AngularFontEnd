@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducer';
-import * as VisitorAction from './store/visitor.action';
+import * as VisitorAction from './visitor-store/visitor.action';
 @Component({
   selector: 'app-visitor',
   templateUrl: './visitor.component.html',

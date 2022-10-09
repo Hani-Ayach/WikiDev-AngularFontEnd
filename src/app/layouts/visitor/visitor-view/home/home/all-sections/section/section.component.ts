@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Category } from 'src/app/layouts/visitor/Model/Category';
-import { Section } from 'src/app/layouts/visitor/Model/Section';
-import { SectionComment } from 'src/app/layouts/visitor/Model/SectionComment';
+import { Category } from 'src/app/layouts/Model/Category';
+import { Section } from 'src/app/layouts/Model/Section';
+import { SectionComment } from 'src/app/layouts/Model/SectionComment';
 
 @Component({
   selector: 'app-section',

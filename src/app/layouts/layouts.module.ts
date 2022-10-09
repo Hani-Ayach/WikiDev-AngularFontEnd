@@ -19,15 +19,17 @@ import { VisitorComponent } from './visitor/visitor.component';
 import { StoreModule } from '@ngrx/store';
 
 import * as fromApp from './store/app.reducer';
-import { VisitorEffects } from './visitor/store/visitor.effect';
+import { VisitorEffects } from './visitor/visitor-store/visitor.effect';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
+import { SectionDisplayComponent } from './user/user-view/common/section-display/section-display.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
     UserComponent,
-    VisitorComponent
+    VisitorComponent,
+    SectionDisplayComponent
   ],
   imports: [
     CommonModule,
