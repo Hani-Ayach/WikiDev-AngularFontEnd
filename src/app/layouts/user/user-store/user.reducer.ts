@@ -1,25 +1,30 @@
 import { Section } from '../../Model/Section';
+import { SectionComment } from '../../Model/SectionComment';
 import { User } from '../../Model/User';
 import * as UserAction from './user.action';
 export interface State {
   user: User;
+  sections: Section[] | any;
   userSections: Section[];
   savedSections: Section[];
   CommentedSections: Section[];
   LikedSections: Section[];
   isLoading: boolean;
+  errorMessage: string;
 }
 
 const initialState: State = {
   user: {} as any,
+  sections: [],
   userSections: [],
   savedSections: [],
   CommentedSections: [],
   LikedSections: [],
   isLoading: false,
+  errorMessage: '',
 };
 
-export function UserReducer(
+export function userReducer(
   state: State = initialState,
   action: UserAction.UserActions
 ): State {
@@ -28,6 +33,7 @@ export function UserReducer(
       return {
         ...state,
         isLoading: true,
+        errorMessage: '',
       };
     case UserAction.SET_USER:
       return {
@@ -35,11 +41,23 @@ export function UserReducer(
         user: action.payload,
         isLoading: false,
       };
+    case UserAction.FETCH_SECTIONS:
+      return {
+        ...state,
+        isLoading: true,
+      };
 
+    case UserAction.SET_SECTIONS:
+      return {
+        ...state,
+        sections: [...state.sections, ...action.payload],
+        isLoading: false,
+      };
     case UserAction.FETCH_SECTIONS_BY_USER_ID:
       return {
         ...state,
         isLoading: true,
+        errorMessage: '',
       };
     case UserAction.SET_SECTIONS_BY_USER_ID:
       return {
@@ -52,6 +70,7 @@ export function UserReducer(
       return {
         ...state,
         isLoading: true,
+        errorMessage: '',
       };
     case UserAction.SET_SAVED_SECTIONS:
       return {
@@ -64,6 +83,7 @@ export function UserReducer(
       return {
         ...state,
         isLoading: true,
+        errorMessage: '',
       };
     case UserAction.SET_LIKED_SECTIONS:
       return {
@@ -76,6 +96,7 @@ export function UserReducer(
       return {
         ...state,
         isLoading: true,
+        errorMessage: '',
       };
     case UserAction.SET_COMMENTED_SECTIONS:
       return {
@@ -84,6 +105,136 @@ export function UserReducer(
         isLoading: false,
       };
 
+    case UserAction.ADD_LIKE:
+      var sectionForEdit = state.sections.find(
+        (section: Section) => section.id == action.payload.sectionId
+      );
+
+      var sectionsEdited = state.sections.map((section: Section) => {
+        if (section.id == sectionForEdit?.id) {
+          console.log('sectionForEdit1');
+          return {
+            ...section,
+            idOfUsersLikeThisSection: [
+              ...section.idOfUsersLikeThisSection,
+              action.payload.userId,
+            ],
+          };
+        }
+        return section;
+      });
+      console.log('sectionForEdit2');
+      return {
+        ...state,
+        sections: sectionsEdited,
+      };
+
+    case UserAction.REMOVE_LIKE:
+      var sectionForEdit = state.sections.find(
+        (section: Section) => section.id == action.payload.sectionId
+      );
+
+      var sectionsEdited = state.sections.map((section: Section) => {
+        console.log('hhhh');
+        return {
+          ...section,
+          idOfUsersLikeThisSection: [
+            section.idOfUsersLikeThisSection.filter(
+              (id) => id != action.payload.userId
+            ),
+          ],
+        };
+      });
+
+      return {
+        ...state,
+        sections: sectionsEdited,
+      };
+    case UserAction.ADD_TO_SAVE:
+      var sectionForEdit = state.sections.find(
+        (section: Section) => section.id == action.payload.sectionId
+      );
+
+      var sectionsEdited = state.sections.map((section: Section) => {
+        if (section.id == sectionForEdit?.id) {
+          return {
+            ...section,
+            idOfUsersSaveThisSection: [
+              ...section.idOfUsersSaveThisSection,
+              action.payload.userId,
+            ],
+          };
+        }
+        return section;
+      });
+
+      return {
+        ...state,
+        sections: sectionsEdited,
+      };
+
+    case UserAction.REMOVE_FROM_SAVE:
+      var sectionForEdit = state.sections.find(
+        (section: Section) => section.id == action.payload.sectionId
+      );
+
+      var sectionsEdited = state.sections.map((section: Section) => {
+        if (section.id == sectionForEdit?.id) {
+          return {
+            ...section,
+            idOfUsersSaveThisSection: [
+              section.idOfUsersSaveThisSection.filter(
+                (id) => id != action.payload.userId
+              ),
+            ],
+          };
+        }
+        return section;
+      });
+      return {
+        ...state,
+        sections: sectionsEdited,
+      };
+
+    case UserAction.ADD_COMMENT:
+      var sectionForEdit = state.sections.find(
+        (section: Section) => section.id == action.payload.sectionId
+      );
+
+      var sectionsEdited = state.sections.map((section: Section) => {
+        if (section.id == sectionForEdit?.id) {
+          return {
+            ...section,
+            comments: [
+              section.comments.push(
+                new SectionComment(
+                  0,
+                  action.payload.userId,
+                  action.payload.sectionId,
+                  action.payload.content,
+                  new Date()
+                )
+              ),
+            ],
+          };
+        }
+        return section;
+      });
+      return {
+        ...state,
+        sections: sectionForEdit,
+      };
+    case UserAction.REMOVE_COMMENT:
+      return {
+        ...state,
+      };
+      
+    case UserAction.STOP_LOADING:
+      return {
+        ...state,
+        isLoading: false,
+        errorMessage: action.payload,
+      };
     default:
       return {
         ...state,

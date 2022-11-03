@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { Category } from '../../Model/Category';
 import { Register } from '../../Model/Register';
 import { Section } from '../../Model/Section';
-import { User } from '../../Model/User';
+import { UserAuthenticationResponse } from '../../Model/UserAuthenticationResponse';
 
 //sections
 export const FETCH_SECTIONS = '[Sections] Fetch Sections';
@@ -51,7 +51,7 @@ export class AuthenticationFail implements Action {
 }
 export class AuthenticationSuccess implements Action {
   readonly type = AUTHENTICATION_SUCCESS;
-  constructor(public payload: User) {}
+  constructor(public payload:UserAuthenticationResponse ) {}
 }
 export class Logout implements Action {
   readonly type = LOGOUT;

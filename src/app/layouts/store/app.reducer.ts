@@ -8,5 +8,5 @@ export interface AppState {
 
 export const appReducer: ActionReducerMap<AppState,any> = {
   visitor: fromVisitor.visitorReducer,
-  user:fromUser.UserReducer
+  user:fromUser.userReducer
 }

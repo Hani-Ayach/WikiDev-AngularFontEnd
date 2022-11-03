@@ -1,6 +1,51 @@
-.action{
-  font-size: small;
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.card
+{
+  background-color: transparent;
+    border-radius: 15px;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    padding-bottom: 100px;
 }
-.date{
-  font-size: large;
+.userInfo{
+  color: #000000ab;
+  margin-left: 15px;
+  margin-top: 5px;
+}
+.userPhotoAndName{
+  display: inline-flex;
+}
+.bi-person-circle{
+  font-size: 1.5em;
+}
+.userAvatar{
+height: 40px;
+width: 40px;
+border-radius: 50%;
+}
+
+.title
+{
+  background-color: #87aae3cc;
+  color: #fcf7f4;
+}
+
+.image img {
+  width:360px;
+  height: 300px;
+}
+.footer{
+  background-color: #87aae3cc; color: #fcf7f4;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+
+}
+
+.btn-primary
+{
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: transparent
+ 
 }

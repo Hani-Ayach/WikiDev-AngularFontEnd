@@ -4,7 +4,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
-import * as fromAction from '../../store/app.reducer';
+import * as fromApp from '../../store/app.reducer';
 import * as VisitorActions from './visitor.action';
 import { environment } from 'src/environments/environment';
 import { Section } from '../../Model/Section';
@@ -17,7 +17,7 @@ export class VisitorEffects {
   constructor(
     private actions$: Actions,
     private http: HttpClient,
-    private store: Store<fromAction.AppState>
+    private store: Store<fromApp.AppState>
   ) {}
   @Effect()
   fetchSections = this.actions$.pipe(
@@ -82,7 +82,7 @@ export class VisitorEffects {
       return new VisitorActions.ApplySent({
         isSent: false,
         message:
-          err,
+          err.error,
       });
     })
   );

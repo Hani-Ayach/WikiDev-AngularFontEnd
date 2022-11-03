@@ -12,7 +12,6 @@ import { SectionsModule as SectionsModuleAdmin} from './admin/admin-view/section
 import { ProfileModule as ProfileModuleAdmin} from './admin/admin-view/profile/profile.module';
 
 import { UserComponent } from './user/user.component';
-import { SectionsModule } from './user/user-view/sections/sections.module';
 import { ProfileModule } from './user/user-view/profile/profile.module';
 
 import { VisitorComponent } from './visitor/visitor.component';
@@ -23,6 +22,8 @@ import { VisitorEffects } from './visitor/visitor-store/visitor.effect';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { SectionDisplayComponent } from './user/user-view/common/section-display/section-display.component';
+import { UserEffect } from './user/user-store/user.effect';
+import { MySectionsModule } from './user/user-view/my-sections/my-sections.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { SectionDisplayComponent } from './user/user-view/common/section-display
     UserComponent,
     VisitorComponent,
     SectionDisplayComponent
-  ],
+    ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -42,12 +43,12 @@ import { SectionDisplayComponent } from './user/user-view/common/section-display
     SectionsModuleAdmin,
     ProfileModuleAdmin,
 
-    SectionsModule,
+    MySectionsModule,
     ProfileModule,
 
     HttpClientModule,
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([VisitorEffects])
+    EffectsModule.forRoot([VisitorEffects,UserEffect])
   ]
 })
 export class LayoutsModule { }

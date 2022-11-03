@@ -1,18 +1,15 @@
 export class User{
   constructor(
-    public  Message:string,
-
-    public  IsAuthenticated :boolean,
-
-    public  UserName :string,
-
-    public  Email :string,
-
-    public  Roles :string[],
-
-    public  Token :string,
-
-    public  ExpirationDate :Date
+  public id:string,
+  public firstName:string,
+  public lastName:string,
+  public userName:string,
+  public email:string,
+  public career:string,
+  public age:number,
+  public sex:string,
+  public dateOfRegister:Date,
+  public role:string,
+  public profilePhotoBase64:string
   ){}
-
 }

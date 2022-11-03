@@ -1,6 +1,6 @@
 import { Category } from '../../Model/Category';
 import { Section } from '../../Model/Section';
-import { User } from '../../Model/User';
+import { UserAuthenticationResponse } from '../../Model/UserAuthenticationResponse';
 import * as VisitorAction from './visitor.action';
 
 export interface State {
@@ -8,7 +8,7 @@ export interface State {
 
   categories: Category[];
 
-  user: User;
+  user: UserAuthenticationResponse;
   isLoading: boolean;
   error: string;
 

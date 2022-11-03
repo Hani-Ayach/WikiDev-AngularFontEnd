@@ -14,6 +14,7 @@ export class Section {
     public dateOfPost: Date,
     public countOfLikes: number,
     public idOfUsersLikeThisSection: string[],
+    public idOfUsersSaveThisSection:string[],
     public countOfSave: number,
     public comments: SectionComment[],
     public sectionBase64Photos: string[]

@@ -1,15 +1,68 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { Category } from 'src/app/layouts/Model/Category';
+import { Like } from 'src/app/layouts/Model/Like';
+import { Save } from 'src/app/layouts/Model/Save';
+import { Section } from 'src/app/layouts/Model/Section';
+import { SectionComment } from 'src/app/layouts/Model/SectionComment';
+import * as fromApp from '../../../../../store/app.reducer';
+import * as UserActions from '../../../../user-store/user.action'
 @Component({
   selector: 'app-section',
   templateUrl: './section.component.html',
-  styleUrls: ['./section.component.css']
+  styleUrls: ['./section.component.css'],
 })
-export class SectionComponent implements OnInit {
+export class SectionComponent implements OnInit,OnDestroy {
+  constructor(private store: Store<fromApp.AppState>) {}
 
-  constructor() { }
+  @Input() section: Section = {} as any;
+  comments: SectionComment[] = [];
+  category: Category = {} as any;
+  sup!: Subscription;
+  isLike=false;
+  isSave=false;
+
+  opinionForm=new FormGroup({
+    opinion:new FormControl('')
+  });
 
   ngOnInit(): void {
+    this.comments = this.section.comments;
+    this.category = this.section.category;
+
+   this.sup=this.store.select('user').subscribe(
+      (state)=>{
+        console.log(state.sections)
+       let section= state.sections.find((section:Section)=>section.id==this.section.id);
+       this.isLike=!!section?.idOfUsersLikeThisSection.find((id:string)=>id=='54d12ab5-35e6-44ac-bcd3-b09ea3600829');
+       this.isSave=!!section?.idOfUsersSaveThisSection.find((id:string)=>id=='54d12ab5-35e6-44ac-bcd3-b09ea3600829');
+      }
+    );
   }
 
+OnLike(){
+  if(this.isLike)
+  this.store.dispatch(new UserActions.RemoveLike(new Like(0,'54d12ab5-35e6-44ac-bcd3-b09ea3600829',this.section.id)))
+  else
+  this.store.dispatch(new UserActions.AddLike(new Like(0,'54d12ab5-35e6-44ac-bcd3-b09ea3600829',this.section.id)))
+}
+OnSave(){
+  if(this.isSave)
+  this.store.dispatch(new UserActions.RemoveFromSave(new Save(0,'54d12ab5-35e6-44ac-bcd3-b09ea3600829',this.section.id)))
+  else
+  this.store.dispatch(new UserActions.AddToSave(new Save(0,'54d12ab5-35e6-44ac-bcd3-b09ea3600829',this.section.id)))
+
+}
+
+OnSubmit(){
+  console.log(this.opinionForm.value);
+  this.opinionForm.reset();
+
+}
+  ngOnDestroy(): void {
+    if(this.sup)
+    this.sup.unsubscribe();
+  }
 }

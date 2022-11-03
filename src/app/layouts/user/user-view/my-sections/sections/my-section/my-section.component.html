@@ -1,0 +1,16 @@
+<div class="card border-secondary  mb-3 p-0" style="max-width: 18rem;">
+  <div class="card-header">{{section.category.name}}</div>
+  <div class="card-body ">
+    <h5 class="card-title d-flex justify-content-around">{{section.sectionTitle}}</h5>
+    <p class="card-text text-muted date">Date of post : {{section.dateOfPost | date}}</p>
+    <div class="row mb-4 ">
+      <div class="col col-lg-4  col-md-4 col-12  d-flex justify-content-around ">{{section.countOfLikes}}<span class="action">Like</span> </div>
+      <div class="col col-lg-4  col-md-4 col-12  d-flex justify-content-around ">{{section.comments.length}} <span class="action">Comment</span></div>
+      <div class="col col-lg-4  col-md-4 col-12  d-flex justify-content-around ">{{section.countOfSave}} <span class="action">Save</span> </div>
+    </div>
+    <div class="row mb-2"><button (click)="OnDisplay()" class="btn btn-info text-white">Display</button></div>
+    <div class="row  mb-2"><button class="btn btn-primary">Edit</button></div>
+    <div class="row "><button class="btn btn-danger">Delete</button></div>
+  </div>
+</div>
+

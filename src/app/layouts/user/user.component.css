@@ -538,8 +538,11 @@ h6 {
 .mainSection {
   height: 100vh;
   margin-left: 20%;
+  padding-left: 0%;
   width: 80%;
   transition: 0.3s;
+  margin-top: 35px;
+  justify-content: center;
 }
 /*--------------------------------------------------------------
 # Sidebar

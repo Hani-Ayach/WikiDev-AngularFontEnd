@@ -11,7 +11,11 @@ import * as VisitorAction from '../../../visitor-store/visitor.action';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  constructor(private store: Store<fromApp.AppState>,private router:Router,private route:ActivatedRoute) {}
+  constructor(
+    private store: Store<fromApp.AppState>,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
   registerForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
@@ -37,15 +41,14 @@ export class RegisterComponent implements OnInit {
         )
       )
     );
-   await this.store.select('visitor').subscribe(data=>{
-      if(data.isApplySent)
-      alert(data.messageIfSent)
-      if(!data.isApplySent && data.messageIfSent!='')
-      {
-        alert("There is an error occure")
+    await this.store.select('visitor').subscribe((data) => {
+      if (data.isApplySent) alert(data.messageIfSent);
+      if (!data.isApplySent && data.messageIfSent != '') {
+        alert('There is an error occure');
       }
+      //else alert(data.message)
     });
-this.registerForm.reset();
-this.router.navigate(['../'],{relativeTo:this.route})
+    this.registerForm.reset();
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 }

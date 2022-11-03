@@ -17,6 +17,7 @@ const routes: Routes = [
     {path:'likedSections',loadChildren:()=>import('./layouts/user/user-view/liked-sections/liked-sections.module').then(m=>m.LikedSectionsModule)},
     {path:'profile',loadChildren:()=>import('./layouts/user/user-view/profile/profile.module').then(m=>m.ProfileModule)},
     {path:'savedSections',loadChildren:()=>import('./layouts/user/user-view/saved-sections/saved-sections.module').then(m=>m.SavedSectionsModule)},
+    {path:'mySections',loadChildren:()=>import('./layouts/user/user-view/my-sections/my-sections.module').then(m=>m.MySectionsModule)},
     {path:'sections',loadChildren:()=>import('./layouts/user/user-view/sections/sections.module').then(m=>m.SectionsModule)}
   ]},
   {path:'admin',component:AdminComponent,children:[
