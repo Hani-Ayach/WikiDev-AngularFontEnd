@@ -1,7 +1,7 @@
-<p>my-sections works!</p>
 <div class="container">
 <div class="row d-flex justify-content-around">
   <app-my-section *ngFor="let section of sections" [section]="section"></app-my-section>
-
 </div>
+<button class="btn btn-success addBtn" (click)="OnAddSection()">Add Section <i class="bi bi-plus-lg"></i>
+</button>
 </div>

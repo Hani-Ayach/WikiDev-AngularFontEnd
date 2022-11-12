@@ -1,3 +1,4 @@
+<p>liked-section works!</p>
 <div class="card border-secondary  mb-3 p-0" style="max-width: 18rem;">
   <div class="card-header">{{section.category.name}}</div>
   <div class="card-body ">
@@ -9,8 +10,7 @@
       <div class="col col-lg-4  col-md-4 col-12  d-flex justify-content-around ">{{section.countOfSave}} <span class="action">Save</span> </div>
     </div>
     <div class="row mb-2"><button (click)="OnDisplay()" class="btn btn-info text-white">Display</button></div>
-    <div class="row  mb-2"><button (click)="OnEdit()" class="btn btn-primary">Edit</button></div>
-    <div class="row "><button (click)="OnDelete()" class="btn btn-danger">Delete</button></div>
+    <div class="row "><button (click)="OnDeleteLike()" class="btn btn-danger">Delete This Like</button></div>
   </div>
 </div>
 

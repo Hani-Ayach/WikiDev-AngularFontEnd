@@ -1,8 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/layouts/Model/Category';
+import { Comment } from 'src/app/layouts/Model/Comment';
 import { Like } from 'src/app/layouts/Model/Like';
 import { Save } from 'src/app/layouts/Model/Save';
 import { Section } from 'src/app/layouts/Model/Section';
@@ -25,7 +26,7 @@ export class SectionComponent implements OnInit,OnDestroy {
   isSave=false;
 
   opinionForm=new FormGroup({
-    opinion:new FormControl('')
+    opinion:new FormControl('',[Validators.required])
   });
 
   ngOnInit(): void {
@@ -58,6 +59,7 @@ OnSave(){
 
 OnSubmit(){
   console.log(this.opinionForm.value);
+  this.store.dispatch(new UserActions.AddComment(new Comment('54d12ab5-35e6-44ac-bcd3-b09ea3600829',this.section.id,this.opinionForm.get("opinion")?.value)))
   this.opinionForm.reset();
 
 }

@@ -1,1 +1,54 @@
-<p>section-edit works!</p>
+<div class="container-fluid">
+  <div class="editForm  m-5 ">
+    <h2 class="text-secondary">Please write this section with all your experience :</h2>
+    <br>
+  <form (submit)="OnSubmit()" [formGroup]="sectionForm">
+    <!-- 2 column grid layout with text inputs for the title and the category -->
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline">
+          <input type="text" id="title" class="form-control" placeholder="Title" formControlName="title"/>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-outline">
+          <select
+          name="category"
+          id="category"
+          class="form-control form-select"
+          formControlName="category"
+          >
+          <option value="" disabled selected>Category</option>
+          <option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </option>
+        </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text input -->
+    <div class="form-outline mb-4">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" id="description" rows="5" columns="10" formControlName="description"></textarea>
+    </div>
+
+      <!-- Text input -->
+      <div class="form-outline mb-4">
+        <label for="codeBlock" class="form-label">Code Block</label>
+        <textarea class="form-control" id="codeBlock" rows="5" columns="10" formControlName="codeBlock"></textarea>
+      </div>
+
+    <!-- Images input -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="images">Enter Images</label>
+      <input class="form-control" type="file" id="images" formControlName="images" (change)="OnFileChange($event)" multiple>
+    </div>
+
+
+    <!-- Submit button -->
+    <button class="btn btn-primary btn-block mb-4" (click)="OnEdit()" *ngIf="isEdit">Edit</button>
+    <button class="btn btn-primary btn-block mb-4" (click)="OnAdd()" *ngIf="!isEdit">Add</button>
+  </form>
+</div>
+</div>

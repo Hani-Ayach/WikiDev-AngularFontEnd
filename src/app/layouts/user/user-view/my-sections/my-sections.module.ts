@@ -5,6 +5,7 @@ import { MySectionsRoutingModule } from './my-sections-routing.module';
 import { MySectionsComponent } from './sections/my-sections.component';
 import { MySectionComponent } from './sections/my-section/my-section.component';
 import { MySectionEditComponent } from './my-section-edit/my-section-edit.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { MySectionEditComponent } from './my-section-edit/my-section-edit.compon
   ],
   imports: [
     CommonModule,
-    MySectionsRoutingModule
-  ]
+    MySectionsRoutingModule,
+    ReactiveFormsModule
+      ]
 })
 export class MySectionsModule { }

@@ -135,7 +135,6 @@ export function userReducer(
       );
 
       var sectionsEdited = state.sections.map((section: Section) => {
-        console.log('hhhh');
         return {
           ...section,
           idOfUsersLikeThisSection: [
@@ -146,9 +145,14 @@ export function userReducer(
         };
       });
 
+      var likedSectionEdited = state.LikedSections.filter((section) => {
+        return section.id != action.payload.sectionId;
+      });
+
       return {
         ...state,
         sections: sectionsEdited,
+        LikedSections:likedSectionEdited
       };
     case UserAction.ADD_TO_SAVE:
       var sectionForEdit = state.sections.find(
@@ -191,9 +195,14 @@ export function userReducer(
         }
         return section;
       });
+
+      var savedSectionEdited = state.savedSections.filter((section) => {
+        return section.id != action.payload.sectionId;
+      });
       return {
         ...state,
         sections: sectionsEdited,
+        savedSections:savedSectionEdited
       };
 
     case UserAction.ADD_COMMENT:
@@ -203,32 +212,53 @@ export function userReducer(
 
       var sectionsEdited = state.sections.map((section: Section) => {
         if (section.id == sectionForEdit?.id) {
+          console.log('11');
           return {
             ...section,
             comments: [
-              section.comments.push(
-                new SectionComment(
-                  0,
-                  action.payload.userId,
-                  action.payload.sectionId,
-                  action.payload.content,
-                  new Date()
-                )
+              ...section.comments,
+              new SectionComment(
+                0,
+                action.payload.userId,
+                action.payload.sectionId,
+                action.payload.content,
+                new Date()
               ),
             ],
           };
         }
         return section;
       });
+
       return {
         ...state,
-        sections: sectionForEdit,
+        sections: sectionsEdited,
       };
     case UserAction.REMOVE_COMMENT:
       return {
         ...state,
       };
-      
+
+    case UserAction.ADD_SECTION:
+      return {
+        ...state,
+      };
+    case UserAction.EDIT_SECTION:
+      return {
+        ...state,
+      };
+    case UserAction.REMOVE_SECTION:
+      var sectionForEdit = state.sections.find(
+        (section: Section) => section.id == action.payload
+      );
+
+      var sectionUserEd = state.userSections.filter((section: Section) => {
+        return section.id != action.payload;
+      });
+      return {
+        ...state,
+        userSections: sectionUserEd,
+      };
     case UserAction.STOP_LOADING:
       return {
         ...state,

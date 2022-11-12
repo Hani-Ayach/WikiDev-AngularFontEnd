@@ -4,6 +4,7 @@ import { Save } from '../../Model/Save';
 import { Section } from '../../Model/Section';
 import { User } from '../../Model/User';
 import { Comment } from '../../Model/Comment';
+import { SectionRequest } from '../../Model/SectionRequest';
 
 export const FETCH_USER = '[User] Fetch User';
 export const SET_USER = '[User] Set User';
@@ -31,6 +32,10 @@ export const REMOVE_FROM_SAVE='[User] Remove From Save'
 
 export const ADD_COMMENT='[User] Add Comment'
 export const REMOVE_COMMENT='[User] Remove Comment'
+
+export const ADD_SECTION='[User] Add Section'
+export const EDIT_SECTION='[User] Edit Section'
+export const REMOVE_SECTION='[User] Remove Section'
 
 export const STOP_LOADING='[Loading] Stop Loading';
 
@@ -114,6 +119,18 @@ export class RemoveComment implements Action{
   constructor(public payload:number){}
 }
 
+export class AddSection implements Action{
+  readonly type=ADD_SECTION;
+  constructor(public payload:SectionRequest){}
+}
+export class EditSection implements Action{
+  readonly type=EDIT_SECTION;
+  constructor(public payload:{id:number,section:SectionRequest}){}
+}
+export class RemoveSection implements Action{
+  readonly type=REMOVE_SECTION;
+  constructor(public payload:number){}
+}
 export class StopLoading implements Action{
   readonly type=STOP_LOADING;
   constructor(public payload: string) {}
@@ -137,4 +154,7 @@ export type UserActions=FetchUser
                         |RemoveLike
                         |AddComment
                         |RemoveComment
+                        |AddSection
+                        |EditSection
+                        |RemoveSection
                         |StopLoading;
