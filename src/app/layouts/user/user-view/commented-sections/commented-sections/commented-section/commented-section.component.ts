@@ -5,28 +5,39 @@ import { Comment } from 'src/app/layouts/Model/Comment';
 import { Like } from 'src/app/layouts/Model/Like';
 import { Section } from 'src/app/layouts/Model/Section';
 
-import *as fromApp from '../../../../../store/app.reducer';
-import *as UserActions from '../../../../user-store/user.action';
+import * as fromApp from '../../../../../store/app.reducer';
+import * as UserActions from '../../../../user-store/user.action';
 
 @Component({
   selector: 'app-commented-section',
   templateUrl: './commented-section.component.html',
-  styleUrls: ['./commented-section.component.css']
+  styleUrls: ['./commented-section.component.css'],
 })
 export class CommentedSectionComponent implements OnInit {
   @Input() section: Section = {} as any;
-  constructor(private router: Router, private route: ActivatedRoute,private store:Store<fromApp.AppState>) {}
-  
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private store: Store<fromApp.AppState>
+  ) {}
+
   ngOnInit(): void {}
 
   OnDisplay() {
-    this.router.navigate(['section', this.section.id],{relativeTo:this.route});
+    this.router.navigate(['section', this.section.id], {
+      relativeTo: this.route,
+    });
   }
-  OnDeleteComments(){
-    let comments=this.section.comments.filter(comment=>comment.userId=="54d12ab5-35e6-44ac-bcd3-b09ea3600829");
+  OnDeleteComments() {
+    let comments = this.section.comments;
 
-    comments.forEach(comment => {
-      this.store.dispatch(new UserActions.RemoveComment(comment.id))
+    comments.forEach((comment) => {
+      this.store.dispatch(
+        new UserActions.RemoveComment({
+          commentId: comment.id,
+          sectionId: comment.sectionId,
+        })
+      );
     });
   }
 }

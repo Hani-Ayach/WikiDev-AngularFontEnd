@@ -192,6 +192,22 @@ export class UserEffect {
       return await new UserActions.StopLoading(err.error);
     })
   );
+  @Effect()
+  removeComment = this.actions$.pipe(
+    ofType(UserActions.REMOVE_COMMENT),
+    switchMap((userData: UserActions.RemoveComment) => {
+      return this.http.delete(
+        this.apiPath + '/Comment/removeComment/' + userData.payload.commentId
+      );
+    }),
+    map(() => {
+      return new UserActions.StopLoading('done');
+    }),
+    catchError(async (err, caught) => {
+      console.log(err);
+      return await new UserActions.StopLoading(err.error);
+    })
+  );
 
   @Effect()
   addSection = this.actions$.pipe(
@@ -241,7 +257,7 @@ export class UserEffect {
       );
     }),
     map((res) => {
-      console.log(res)
+      console.log(res);
       return new UserActions.StopLoading('done');
     }),
     catchError(async (err, caught) => {

@@ -116,7 +116,7 @@ export class AddComment implements Action{
 }
 export class RemoveComment implements Action{
   readonly type=REMOVE_COMMENT;
-  constructor(public payload:number){}
+  constructor(public payload:{commentId:number,sectionId:number}){}
 }
 
 export class AddSection implements Action{

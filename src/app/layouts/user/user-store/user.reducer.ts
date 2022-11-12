@@ -7,7 +7,7 @@ export interface State {
   sections: Section[] | any;
   userSections: Section[];
   savedSections: Section[];
-  CommentedSections: Section[];
+  CommentedSections: Section[] | any;
   LikedSections: Section[];
   isLoading: boolean;
   errorMessage: string;
@@ -152,7 +152,7 @@ export function userReducer(
       return {
         ...state,
         sections: sectionsEdited,
-        LikedSections:likedSectionEdited
+        LikedSections: likedSectionEdited,
       };
     case UserAction.ADD_TO_SAVE:
       var sectionForEdit = state.sections.find(
@@ -202,7 +202,7 @@ export function userReducer(
       return {
         ...state,
         sections: sectionsEdited,
-        savedSections:savedSectionEdited
+        savedSections: savedSectionEdited,
       };
 
     case UserAction.ADD_COMMENT:
@@ -235,8 +235,28 @@ export function userReducer(
         sections: sectionsEdited,
       };
     case UserAction.REMOVE_COMMENT:
+
+
+      var commentedSectionsEdited = state.CommentedSections.map(
+        (section: Section) => {
+          if (section.id == action.payload.sectionId) {
+            console.log('11');
+            return {
+              ...section,
+              comments: [
+                ...section.comments.filter(
+                  (c) => c.id != action.payload.commentId
+                ),
+              ],
+            };
+          }
+          return section;
+        }
+      );
+console.log(commentedSectionsEdited)
       return {
         ...state,
+        CommentedSections: commentedSectionsEdited,
       };
 
     case UserAction.ADD_SECTION:
