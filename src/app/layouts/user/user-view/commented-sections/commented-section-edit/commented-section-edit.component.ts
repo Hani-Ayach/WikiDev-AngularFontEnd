@@ -9,10 +9,9 @@ import * as UserActions from '../../../user-store/user.action';
 @Component({
   selector: 'app-commented-section-edit',
   templateUrl: './commented-section-edit.component.html',
-  styleUrls: ['./commented-section-edit.component.css']
+  styleUrls: ['./commented-section-edit.component.css'],
 })
 export class CommentedSectionEditComponent implements OnInit {
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -29,28 +28,29 @@ export class CommentedSectionEditComponent implements OnInit {
     });
 
     if (this.id != 0) {
-
-        this.editSubscription = this.store.select('user').pipe().subscribe((state) => {
-
+      this.editSubscription = this.store
+        .select('user')
+        .pipe()
+        .subscribe((state) => {
           if (state.CommentedSections.length == 0)
             this.router.navigate(['../../'], { relativeTo: this.route });
 
           this.section = state.CommentedSections.find((section: Section) => {
             return section.id == this.id;
           });
-
-
-    })
-  }
+        });
+    }
   }
 
-  OnDelete(id:number){
-    this.store.dispatch(new UserActions.RemoveComment({commentId:id,sectionId:this.id}));
+  OnDelete(id: number) {
+    this.store.dispatch(
+      new UserActions.RemoveComment({ commentId: id, sectionId: this.id })
+    );
   }
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-if(this.userSubscription)this.userSubscription.unsubscribe();
-if(this.editSubscription)this.editSubscription.unsubscribe();
+    if (this.userSubscription) this.userSubscription.unsubscribe();
+    if (this.editSubscription) this.editSubscription.unsubscribe();
   }
 }

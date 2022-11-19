@@ -1,7 +1,9 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
 .card
 {
   background-color: transparent;
-    border-radius: 0;
+    border-radius: 15px;
     border-left-color: transparent;
     border-top-color: transparent;
     border-right-color: transparent;
@@ -24,7 +26,6 @@ width: 40px;
 border-radius: 50%;
 }
 
-
 .title
 {
   background-color: #87aae3cc;
@@ -36,5 +37,15 @@ border-radius: 50%;
   height: 300px;
 }
 .footer{
-  background-color: #87aae3cc; color: #fcf7f4
+  background-color: #87aae3cc; color: #fcf7f4;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+
+}
+
+.btn-primary
+{
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: transparent
+
 }

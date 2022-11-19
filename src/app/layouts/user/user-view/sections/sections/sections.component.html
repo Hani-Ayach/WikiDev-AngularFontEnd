@@ -4,5 +4,8 @@
     [section]="section"
     class="d-flex justify-content-center"
   ></app-section>
-  <h1 *ngIf="displayNotify" class="noResult">There is No Result Found</h1>
+  <div *ngIf="displayNotify" class="alert alert-warning alert-dismissible fade show noResult" role="alert">
+    <h3>There is No Connection With The Server</h3>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
 </div>

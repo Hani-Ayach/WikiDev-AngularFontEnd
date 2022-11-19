@@ -6,3 +6,8 @@
 .addBtn{
 margin:0 0 30px 30px;
 }
+.noResult{
+  display: flex;
+  justify-content: center;
+  transform: translateY(200%);
+}

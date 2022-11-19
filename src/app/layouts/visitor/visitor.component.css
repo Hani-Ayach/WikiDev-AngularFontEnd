@@ -1,27 +1,75 @@
-
-.nav-home{
-  background-color:#87abe3;
+.nav-home {
+  background-color: #87abe3;
 }
-.search-input{
-  background-color: #FCF7F4;
-
+.search-input {
+  background-color: #fcf7f4;
 }
-.search-btn:hover{
-  border-color: #FCF7F4;
+.search-btn:hover {
+  border-color: #fcf7f4;
 }
-.nav-item{
+.nav-item {
   border-bottom: 2px solid transparent;
-  border-radius:4%;
-  transition-duration: .5s ;
+  border-radius: 4%;
+  transition-duration: 0.5s;
   transition-timing-function: ease-out;
 }
-.nav-item:hover{
-  border-bottom-color: #FCF7F4;
+.nav-item:hover {
+  border-bottom-color: #fcf7f4;
 }
-.nav-item a{
-  color: #FCF7F4;
+.nav-item a {
+  color: #fcf7f4;
 }
-.navbar-brand{
-  color: #FCF7F4;
+.navbar-brand {
+  color: #fcf7f4;
   font-weight: bold;
+}
+/*--------------------------------------------------------------
+# spinner
+--------------------------------------------------------------*/
+
+.load {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.555);
+  z-index: 100;
+  width: 100%;
+  height: 100vh;
+}
+.load div {
+  color: #87abe3;
+  font-weight: bold;
+  font-size: xx-large;
+  margin-right: 10px;
+  animation-name: up-and-down;
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.load .two {
+  animation-delay: 0.2s;
+}
+.load .three {
+  animation-delay: 0.4s;
+}
+.load .four {
+  animation-delay: 0.6s;
+}
+.load .five {
+  animation-delay: 0.8s;
+}
+.load .six {
+  animation-delay: 1s;
+}
+.load .seven {
+  animation-delay: 1.2s;
+}
+
+@keyframes up-and-down {
+  to {
+    opacity: 0.2;
+    transform: translateY(-20px);
+  }
 }

@@ -20,6 +20,7 @@ export class MySectionEditComponent implements OnInit, OnDestroy {
   sup2?: Subscription;
   sup3?: Subscription;
 
+  userID = '54d12ab5-35e6-44ac-bcd3-b09ea3600829';
   isEdit = false;
   sectionId: number = 0;
   section?: Section;
@@ -88,7 +89,7 @@ export class MySectionEditComponent implements OnInit, OnDestroy {
           this.sectionForm.value.description,
           this.sectionForm.value.codeBlock,
           this.sectionForm.value.category,
-          '54d12ab5-35e6-44ac-bcd3-b09ea3600829',
+          this.userID,
           this.myFiles
         )
       )
@@ -104,7 +105,7 @@ export class MySectionEditComponent implements OnInit, OnDestroy {
           this.sectionForm.value.description,
           this.sectionForm.value.codeBlock,
           this.sectionForm.value.category,
-          '54d12ab5-35e6-44ac-bcd3-b09ea3600829',
+          this.userID,
           this.myFiles
         ),
       })
@@ -120,7 +121,7 @@ export class MySectionEditComponent implements OnInit, OnDestroy {
           this.sectionForm.value.description,
           this.sectionForm.value.codeBlock,
           this.sectionForm.value.category,
-          '54d12ab5-35e6-44ac-bcd3-b09ea3600829',
+          this.userID,
           this.myFiles
         )
       )

@@ -5,6 +5,9 @@ import { Section } from '../../Model/Section';
 import { User } from '../../Model/User';
 import { Comment } from '../../Model/Comment';
 import { SectionRequest } from '../../Model/SectionRequest';
+import { EditeUser } from '../../Model/EditeUser';
+import * as ChangePasswordModel from '../../Model/ChangePassword';
+
 
 export const FETCH_USER = '[User] Fetch User';
 export const SET_USER = '[User] Set User';
@@ -36,6 +39,10 @@ export const REMOVE_COMMENT='[User] Remove Comment'
 export const ADD_SECTION='[User] Add Section'
 export const EDIT_SECTION='[User] Edit Section'
 export const REMOVE_SECTION='[User] Remove Section'
+
+export const EDIT_USER='[User] Edit User';
+
+export const CHANGE_PASSWORD='[User] Change Password';
 
 export const STOP_LOADING='[Loading] Stop Loading';
 
@@ -131,6 +138,17 @@ export class RemoveSection implements Action{
   readonly type=REMOVE_SECTION;
   constructor(public payload:number){}
 }
+
+export class EditUser implements Action{
+  readonly type=EDIT_USER;
+  constructor(public payload:{id:string,editeUser:EditeUser}){}
+}
+
+export class ChangePassword implements Action{
+  readonly type=CHANGE_PASSWORD;
+  constructor(public payload:ChangePasswordModel.ChangePassword){}
+}
+
 export class StopLoading implements Action{
   readonly type=STOP_LOADING;
   constructor(public payload: string) {}
@@ -157,4 +175,6 @@ export type UserActions=FetchUser
                         |AddSection
                         |EditSection
                         |RemoveSection
+                        |EditUser
+                        |ChangePassword
                         |StopLoading;

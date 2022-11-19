@@ -9,9 +9,16 @@ import * as VisitorAction from './visitor-store/visitor.action';
   styleUrls: ['./visitor.component.css'],
 })
 export class VisitorComponent implements OnInit {
+
+  isLoading=false;
+
   constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
+    this.store.select('visitor').subscribe(data=>{
+      this.isLoading=data.isLoading;
+    })
+    
     this.store.dispatch(new VisitorAction.FetchSections());
     this.store.dispatch(new VisitorAction.FetchCategories());
   }

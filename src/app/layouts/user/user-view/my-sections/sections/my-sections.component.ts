@@ -8,26 +8,37 @@ import * as UserActions from '../../../user-store/user.action';
 @Component({
   selector: 'app-sections',
   templateUrl: './my-sections.component.html',
-  styleUrls: ['./my-sections.component.css']
+  styleUrls: ['./my-sections.component.css'],
 })
-export class MySectionsComponent implements OnInit , OnDestroy {
+export class MySectionsComponent implements OnInit, OnDestroy {
+  sections: Section[] = [];
+  userSubscribtion?: Subscription;
+  userID = '54d12ab5-35e6-44ac-bcd3-b09ea3600829';
+  displayNotify = false;
 
-  constructor(private store:Store<fromApp.AppState>,private router:Router,private route:ActivatedRoute) { }
-sections:Section[]=[];
-userSubscribtion?:Subscription;
-
+  constructor(
+    private store: Store<fromApp.AppState>,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+  
   ngOnInit(): void {
-    this.store.dispatch(
-      new UserActions.FetchSectionsByUserId('54d12ab5-35e6-44ac-bcd3-b09ea3600829'),
-    );
+    this.store.dispatch(new UserActions.FetchSectionsByUserId(this.userID));
     this.userSubscribtion = this.store.select('user').subscribe((state) => {
-      console.log(state.userSections)
       this.sections = state.userSections;
+
+      if (state.userSections.length == 0 && !state.isLoading) {
+        console.log('one');
+        this.displayNotify = true;
+      } else {
+        console.log('one');
+        this.displayNotify = false;
+      }
     });
   }
 
-  OnAddSection(){
-    this.router.navigate(['add'],{relativeTo:this.route})
+  OnAddSection() {
+    this.router.navigate(['add'], { relativeTo: this.route });
   }
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.

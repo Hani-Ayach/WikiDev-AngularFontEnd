@@ -235,8 +235,6 @@ export function userReducer(
         sections: sectionsEdited,
       };
     case UserAction.REMOVE_COMMENT:
-
-
       var commentedSectionsEdited = state.CommentedSections.map(
         (section: Section) => {
           if (section.id == action.payload.sectionId) {
@@ -253,7 +251,7 @@ export function userReducer(
           return section;
         }
       );
-console.log(commentedSectionsEdited)
+      console.log(commentedSectionsEdited);
       return {
         ...state,
         CommentedSections: commentedSectionsEdited,
@@ -278,6 +276,24 @@ console.log(commentedSectionsEdited)
       return {
         ...state,
         userSections: sectionUserEd,
+      };
+
+    case UserAction.EDIT_USER:
+      var editedUser = state.user;
+
+      console.log(editedUser);
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          firstName: action.payload.editeUser.FirstName,
+          lastName: action.payload.editeUser.LastName,
+          userName: action.payload.editeUser.UserName,
+          email: action.payload.editeUser.Email,
+          career: action.payload.editeUser.Career,
+          age: action.payload.editeUser.Age,
+          sex: action.payload.editeUser.Sex
+        },
       };
     case UserAction.STOP_LOADING:
       return {

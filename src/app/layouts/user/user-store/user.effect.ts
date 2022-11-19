@@ -284,4 +284,56 @@ export class UserEffect {
       return await new UserActions.StopLoading(err.error);
     })
   );
+
+
+  @Effect()
+  editUser = this.actions$.pipe(
+    ofType(UserActions.EDIT_USER),
+    switchMap((userData: UserActions.EditUser) => {
+      let data = new FormData();
+      data.append('Id', userData.payload.editeUser.Id);
+      data.append('FirstName', userData.payload.editeUser.FirstName);
+      data.append('LastName', userData.payload.editeUser.LastName);
+      data.append('UserName', userData.payload.editeUser.UserName);
+      data.append('Email', userData.payload.editeUser.Email);
+      data.append('Career', userData.payload.editeUser.Career);
+      data.append('Age', userData.payload.editeUser.Age);
+      data.append('Sex', userData.payload.editeUser.Sex);
+      data.append('file', userData.payload.editeUser.file);
+
+
+      return this.http.put(
+        this.apiPath + '/User/update/' + userData.payload.id,
+        data
+      );
+    }),
+    map((res) => {
+      console.log(res);
+      return new UserActions.StopLoading('done');
+    }),
+    catchError(async (err, caught) => {
+      console.log(caught);
+
+      console.log(err);
+      return await new UserActions.StopLoading(err.error);
+    })
+  );
+
+  @Effect()
+  changePassword = this.actions$.pipe(
+    ofType(UserActions.CHANGE_PASSWORD),
+    switchMap((userData: UserActions.ChangePassword) => {
+      return this.http.post(
+        this.apiPath + '/Authentication/changePassword',
+        userData.payload
+      );
+    }),
+    map(() => {
+      return new UserActions.StopLoading('done');
+    }),
+    catchError(async (err, caught) => {
+      console.log(err);
+      return await new UserActions.StopLoading(err.error);
+    })
+  );
 }

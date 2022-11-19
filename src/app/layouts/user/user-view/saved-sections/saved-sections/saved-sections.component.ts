@@ -13,21 +13,30 @@ import * as UserActions from '../../../user-store/user.action';
   styleUrls: ['./saved-sections.component.css'],
 })
 export class SavedSectionsComponent implements OnInit {
+  sections: Section[] = [];
+  userSubscribtion?: Subscription;
+  displayNotify = false;
+  userID='54d12ab5-35e6-44ac-bcd3-b09ea3600829';
   constructor(
     private store: Store<fromApp.AppState>,
     private router: Router,
     private route: ActivatedRoute
   ) {}
-  sections: Section[] = [];
-  userSubscribtion?: Subscription;
 
   ngOnInit(): void {
     this.store.dispatch(
-      new UserActions.FetchSavedSections('54d12ab5-35e6-44ac-bcd3-b09ea3600829')
+      new UserActions.FetchSavedSections(this.userID)
     );
+
     this.userSubscribtion = this.store.select('user').subscribe((state) => {
-      console.log(state.userSections);
       this.sections = state.savedSections;
+      if (state.savedSections.length == 0 && !state.isLoading) {
+        console.log('one');
+        this.displayNotify = true;
+      } else {
+        console.log('one');
+        this.displayNotify = false;
+      }
     });
   }
 

@@ -11,21 +11,28 @@ import * as UserActions from '../../../user-store/user.action';
   styleUrls: ['./liked-sections.component.css'],
 })
 export class LikedSectionsComponent implements OnInit {
+  sections: Section[] = [];
+  userSubscribtion?: Subscription;
+  userID = '54d12ab5-35e6-44ac-bcd3-b09ea3600829';
+  displayNotify = false;
+
   constructor(
     private store: Store<fromApp.AppState>,
     private router: Router,
     private route: ActivatedRoute
   ) {}
-  sections: Section[] = [];
-  userSubscribtion?: Subscription;
-
   ngOnInit(): void {
-    this.store.dispatch(
-      new UserActions.FetchLikedSections('54d12ab5-35e6-44ac-bcd3-b09ea3600829')
-    );
+    this.store.dispatch(new UserActions.FetchLikedSections(this.userID));
     this.userSubscribtion = this.store.select('user').subscribe((state) => {
-      console.log(state.userSections);
       this.sections = state.LikedSections;
+
+      if (state.sections.length == 0 && !state.isLoading) {
+        console.log('one');
+        this.displayNotify = true;
+      } else {
+        console.log('one');
+        this.displayNotify = false;
+      }
     });
   }
 

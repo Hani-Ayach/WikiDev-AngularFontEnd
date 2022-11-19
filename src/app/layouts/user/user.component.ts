@@ -1,38 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import *as fromApp from '../store/app.reducer'
-import *as UserActions from './user-store/user.action'
+import { User } from '../Model/User';
+import * as fromApp from '../store/app.reducer';
+import * as UserActions from './user-store/user.action';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
-  constructor(private store: Store<fromApp.AppState>) {}
+  isLoading = false;
+  user: User = {} as any;
+  userID = '54d12ab5-35e6-44ac-bcd3-b09ea3600829';
 
+  constructor(private store: Store<fromApp.AppState>) {}
   ngOnInit(): void {
-    this.store.dispatch(new UserActions.FetchSections())
+    this.store.dispatch(new UserActions.FetchUser(this.userID));
+    this.store.select('user').subscribe((data) => {
+      this.isLoading = data.isLoading;
+      this.user = data.user;
+    });
+    this.store.dispatch(new UserActions.FetchSections());
+    this.OnOpen();
   }
   OnOpen() {
-    if (document.getElementById('sidebar')!.style.marginLeft == '0px') {
-      if (document.getElementById('sidebar')!.style.width <= '842px')
-        document.getElementById('sidebar')!.style.marginLeft = '-100%';
-      else document.getElementById('sidebar')!.style.marginLeft = '-20%';
-
-      document.getElementById('mainSection')!.style.marginLeft = 'auto';
-      document.getElementById('mainSection')!.style.width = '100%';
-
-
-      console.log('1');
+    let sidebar = document.getElementById('sidebar')!.style;
+    let mainSection = document.getElementById('mainSection')!.style;
+    if (sidebar.marginLeft == '0px') {
+      if (mainSection.width <= '842px') {
+        sidebar.marginLeft = '-100%';
+      } else sidebar.marginLeft = '-20%';
+      mainSection.marginLeft = 'auto';
+      mainSection.width = '100%';
     } else {
-      document.getElementById('sidebar')!.style.marginLeft = '0px';
+      sidebar.marginLeft = '0px';
 
-      document.getElementById('mainSection')!.style.marginLeft = '20%';
-      document.getElementById('mainSection')!.style.width = '80%';
+      mainSection.marginLeft = '20%';
+      mainSection.width = '80%';
 
-      document.getElementById('mainSection')!.style.paddingLeft='0%'
-
-      console.log('0');
+      mainSection.paddingLeft = '0%';
     }
   }
 }

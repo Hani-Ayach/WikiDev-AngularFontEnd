@@ -12,6 +12,8 @@ import *as UserActions from '../../../../user-store/user.action';
 })
 export class LikedSectionComponent implements OnInit {
   @Input() section: Section = {} as any;
+  userID = '54d12ab5-35e6-44ac-bcd3-b09ea3600829';
+
   constructor(private router: Router, private route: ActivatedRoute,private store:Store<fromApp.AppState>) {}
 
   ngOnInit(): void {}
@@ -20,6 +22,6 @@ export class LikedSectionComponent implements OnInit {
     this.router.navigate(['section', this.section.id],{relativeTo:this.route});
   }
   OnDeleteLike(){
-    this.store.dispatch(new UserActions.RemoveLike(new Like(0,'54d12ab5-35e6-44ac-bcd3-b09ea3600829',this.section.id)))
+    this.store.dispatch(new UserActions.RemoveLike(new Like(0,this.userID,this.section.id)))
   }
 }

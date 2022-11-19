@@ -1,3 +1,8 @@
 .row>*{
   width:fit-content;
 }
+.noResult{
+  display: flex;
+  justify-content: center;
+  transform: translateY(200%);
+}
