@@ -44,7 +44,7 @@ export const EDIT_USER='[User] Edit User';
 
 export const CHANGE_PASSWORD='[User] Change Password';
 
-export const STOP_LOADING='[Loading] Stop Loading';
+export const STOP_LOADING='[user] Stop Loading';
 
 export class FetchUser implements Action {
   readonly type = FETCH_USER;

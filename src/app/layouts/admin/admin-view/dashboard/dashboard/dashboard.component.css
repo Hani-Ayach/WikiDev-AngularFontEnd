@@ -1,0 +1,25 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+.app-page-title
+{
+color:black;
+}
+
+
+.state-card
+{
+  background-color:#88b04b;
+}
+.state-card.shadow-sm
+{
+  box-shadow: 0 .125rem .25rem #88b04b!important;
+}
+.titleState
+{
+  color: white;
+  text-shadow: 1px 1px 10px #6b5b95;}
+.action{
+  font-size: small;
+}
+.date{
+  font-size: large;
+}

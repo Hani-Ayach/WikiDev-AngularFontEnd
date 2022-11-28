@@ -5,8 +5,8 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
 import { AllSectionsComponent } from './home/all-sections/all-sections.component';
 import { SectionComponent } from './home/all-sections/section/section.component';
-import { MyFilterPipe } from './pipe/MyFilterPipe';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MyFilterPipe } from 'src/app/layouts/pipe/MyFilterPipe';
 
 
 @NgModule({
