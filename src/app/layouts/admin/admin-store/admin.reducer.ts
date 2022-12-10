@@ -13,6 +13,7 @@ export interface State {
   countOfSectionsPerCategory: CountSectionByCategory[];
   countOfSections: number;
   countOfComments: number;
+  countOfSaves: number;
   countOfLikes: number;
   countOfUsers: number;
   mostLikedSection: Section;
@@ -31,6 +32,7 @@ const initialState: State = {
   countOfComments: 0,
   countOfLikes: 0,
   countOfUsers: 0,
+  countOfSaves: 0,
   mostLikedSection: {} as any,
   isLoading: false,
   errorMessage: '',
@@ -39,7 +41,7 @@ const initialState: State = {
 export function AdminReducer(
   state: State = initialState,
   action: AdminAction.AdminActions
-) {
+): State {
   switch (action.type) {
     case AdminAction.FETCH_SECTIONS:
       return {
@@ -48,15 +50,36 @@ export function AdminReducer(
         errorMessage: '',
       };
     case AdminAction.SET_SECTIONS:
+      var countOfSection = action.payload.length;
+      let countOfSectionByCategory = [...state.countOfSectionsPerCategory];
+      state.categories.forEach((category) => {
+        var sectionByCategory = action.payload.filter(
+          (section) => section.category.id == category.id
+        );
+        countOfSectionByCategory = [
+          ...countOfSectionByCategory,
+          new CountSectionByCategory(sectionByCategory.length, category),
+        ];
+      });
+      let max = 0;
+      var mostLikedSection = state.sections[0];
+      state.sections.forEach((section) => {
+        if (section.countOfLikes > max) {
+          max = section.countOfLikes;
+          mostLikedSection = section;
+        }
+      });
       return {
         ...state,
         sections: action.payload,
+        countOfSections: countOfSection,
+        countOfSectionsPerCategory: countOfSectionByCategory,
+        mostLikedSection: mostLikedSection,
         isLoading: false,
       };
     case AdminAction.ADD_SECTION:
       return {
         ...state,
-        sections: [...state.sections, action.payload],
       };
     case AdminAction.REMOVE_SECTION:
       return {
@@ -65,6 +88,28 @@ export function AdminReducer(
     case AdminAction.EDIT_SECTION:
       return {
         ...state,
+      };
+    //
+    case AdminAction.FETCH_CATEGORIES:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case AdminAction.SET_CATEGORIES:
+      return {
+        ...state,
+        categories: [...state.categories, ...action.payload],
+        isLoading: false,
+      };
+    case AdminAction.ADD_CATEGORY:
+      return {
+        ...state,
+        categories: [...state.categories, action.payload],
+      };
+    case AdminAction.REMOVE_CATEGORY:
+      return {
+        ...state,
+        categories: [...state.categories.filter((c) => c.id != action.payload)],
       };
     //
     case AdminAction.FETCH_USERS:
@@ -121,17 +166,53 @@ export function AdminReducer(
       return {
         ...state,
       };
-
-      //
-      case AdminAction.STOP_LOADING:
-        return{
-          ...state,
-          isLoading:false,
-          errorMessage: action.payload,
-        };
-      default:
-        return {
-          ...state,
-        };
+    //
+    case AdminAction.FETCH_COUNT_OF_LIKES:
+      return {
+        ...state,
+        isLoading: true,
+        errorMessage: '',
+      };
+    case AdminAction.SET_COUNT_OF_LIKES:
+      return {
+        ...state,
+        countOfLikes: action.payload,
+        isLoading: false,
+      };
+    case AdminAction.FETCH_COUNT_OF_COMMENTS:
+      return {
+        ...state,
+        isLoading: true,
+        errorMessage: '',
+      };
+    case AdminAction.SET_COUNT_OF_COMMENTS:
+      return {
+        ...state,
+        countOfComments: action.payload,
+        isLoading: false,
+      };
+    case AdminAction.FETCH_COUNT_OF_SAVES:
+      return {
+        ...state,
+        isLoading: true,
+        errorMessage: '',
+      };
+    case AdminAction.SET_COUNT_OF_SAVES:
+      return {
+        ...state,
+        countOfSaves: action.payload,
+        isLoading: false,
+      };
+    //
+    case AdminAction.STOP_LOADING:
+      return {
+        ...state,
+        isLoading: false,
+        errorMessage: action.payload,
+      };
+    default:
+      return {
+        ...state,
+      };
   }
 }

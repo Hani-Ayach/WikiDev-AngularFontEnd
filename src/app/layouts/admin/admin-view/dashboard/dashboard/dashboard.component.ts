@@ -16,7 +16,6 @@ countOfComments=0;
 countOfSaves=0;
 countOfLikes=10;
 countOfUsers=0;
-countOfAdmin=0;
 mostLikedSection:Section={}as any;
 countSectionByCategory:CountSectionByCategory[]=[new CountSectionByCategory(42,new Category(1,'Angular')),new CountSectionByCategory(20,new Category(2,'Asp.net'))];
 countSection:number=62;
@@ -24,7 +23,15 @@ sup?:Subscription;
 
 constructor(private store:Store<fromApp.AppState>) { }
   ngOnInit(): void {
-
+    this.sup=this.store.select('admin').subscribe(state=>{
+      this.countOfLikes=state.countOfLikes;
+      this.countOfComments=state.countOfComments;
+      this.countOfSaves=state.countOfSaves;
+      this.countSection=state.countOfSections;
+      this.countOfUsers=state.countOfUsers;
+      this.countSectionByCategory=state.countOfSectionsPerCategory;
+      this.mostLikedSection=state.mostLikedSection
+    })
 
   }
 }

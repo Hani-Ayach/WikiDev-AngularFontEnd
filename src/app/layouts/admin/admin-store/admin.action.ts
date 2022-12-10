@@ -1,4 +1,5 @@
 import { Action } from "@ngrx/store";
+import { Category } from "../../Model/Category";
 import { Section } from "../../Model/Section";
 import { SectionRequest } from "../../Model/SectionRequest";
 import { User } from "../../Model/User";
@@ -10,6 +11,12 @@ export const SET_SECTIONS="[admin] Set Sections";
 export const ADD_SECTION="[admin] Add Section";
 export const REMOVE_SECTION="[admin] Remove Section";
 export const EDIT_SECTION="[admin] Edit Section";
+
+//Category Action Type
+export const FETCH_CATEGORIES="[admin] Fetch Categories";
+export const SET_CATEGORIES="[admin] Set Categories";
+export const ADD_CATEGORY="[admin] Add Category";
+export const REMOVE_CATEGORY="[admin] Remove Category";
 
 //User Action Type
 export const FETCH_USERS="[admin] Fetch Users";
@@ -26,6 +33,22 @@ export const SET_REQUESTS="[admin] Set Requests";
 export const ACCEPT_REQUEST="[admin] Accept Request";
 export const REJECT_REQUEST="[admin] Reject Request";
 export const REJECT_ALL_REQUESTS="[admin] Reject All Requests"
+
+//Dashboard Action Type
+export const FETCH_COUNT_OF_LIKES="[dashboard] Fetch Count of Likes";
+export const SET_COUNT_OF_LIKES="[dashboard] Set Count of Likes";
+
+export const FETCH_COUNT_OF_COMMENTS="[dashboard] Fetch Count of Comments";
+export const SET_COUNT_OF_COMMENTS="[dashboard] Set Count of Comments";
+
+export const FETCH_COUNT_OF_USERS="[dashboard] Fetch Count of Users";
+export const SET_COUNT_OF_USERS="[dashboard] Set Count of Users";
+
+export const FETCH_COUNT_OF_SAVES="[dashboard] Fetch Count of Saves";
+export const SET_COUNT_OF_SAVES="[dashboard] Set Count of Saves";
+
+export const SET_MOST_LIKED_SECTION="[dashboard] Set Most Liked Section";
+
 
 export const STOP_LOADING='[admin] Stop Loading';
 
@@ -96,7 +119,48 @@ export class RejectRequest implements Action{
 export class RejectAllRequest implements Action{
  readonly type=REJECT_ALL_REQUESTS;
 }
-
+//Category Action
+export class FetchCategories implements Action{
+  readonly type=FETCH_CATEGORIES;
+}
+export class SetCategories implements Action{
+  readonly  type=SET_CATEGORIES;
+  constructor(public payload:Category[]){}
+}
+export class AddCategory implements Action{
+  readonly type=ADD_CATEGORY;
+  constructor(public payload:Category){}
+}
+export class RemoveCategory implements Action{
+  readonly type=REMOVE_CATEGORY;
+  constructor(public payload:number){}
+}
+//Dashboard Action
+export class FetchCountOfLikes implements Action{
+  readonly type=FETCH_COUNT_OF_LIKES;
+}
+export class SetCountOfLikes implements Action{
+  readonly type=SET_COUNT_OF_LIKES;
+  constructor(public payload:number){}
+}
+export class FetchCountOfComments implements Action{
+  readonly type=FETCH_COUNT_OF_COMMENTS;
+}
+export class SetCountOfComments implements Action{
+  readonly type=SET_COUNT_OF_COMMENTS;
+  constructor(public payload:number){}
+}
+export class FetchCountOfSaves implements Action{
+  readonly type=FETCH_COUNT_OF_SAVES;
+}
+export class SetCountOfSaves implements Action{
+  readonly type=SET_COUNT_OF_SAVES;
+  constructor(public payload:number){}
+}
+export class SetMostLikedSection implements Action{
+  readonly type=SET_MOST_LIKED_SECTION;
+  constructor(public payload:Section){}
+}
 export class StopLoading implements Action{
   readonly type=STOP_LOADING;
   constructor(public payload: string) {}
@@ -117,4 +181,15 @@ export type AdminActions=FetchSections
                         |RejectRequest
                         |RejectAllRequest
                         |AcceptRequest
+                        |FetchCategories
+                        |SetCategories
+                        |AddCategory
+                        |RemoveCategory
+                        |FetchCountOfLikes
+                        |SetCountOfLikes
+                        |FetchCountOfComments
+                        |SetCountOfComments
+                        |FetchCountOfSaves
+                        |SetCountOfSaves
+                        |SetMostLikedSection
                         |StopLoading;
