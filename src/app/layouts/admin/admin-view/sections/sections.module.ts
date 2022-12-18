@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { SectionsRoutingModule } from './sections-routing.module';
 import { SectionsComponent } from './sections/sections.component';
+import { SectionComponent } from './sections/section/section.component';
 
 
 @NgModule({
   declarations: [
-    SectionsComponent
+    SectionsComponent,
+    SectionComponent
   ],
   imports: [
     CommonModule,

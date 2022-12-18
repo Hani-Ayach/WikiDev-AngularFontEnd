@@ -26,6 +26,8 @@ import { UserEffect } from './user/user-store/user.effect';
 import { MySectionsModule } from './user/user-view/my-sections/my-sections.module';
 import { MyFilterPipe } from './pipe/MyFilterPipe';
 import { CountUpDirective } from './directive/count-up.directive';
+import { AdminEffect } from './admin/admin-store/admin.effect';
+import { FullDisplaySectionComponent } from './admin/admin-view/common/full-display-section/full-display-section.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { CountUpDirective } from './directive/count-up.directive';
     UserComponent,
     VisitorComponent,
     SectionDisplayComponent,
-    
+    FullDisplaySectionComponent,
+
     ],
   imports: [
     CommonModule,
@@ -51,7 +54,7 @@ import { CountUpDirective } from './directive/count-up.directive';
 
     HttpClientModule,
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([VisitorEffects,UserEffect])
+    EffectsModule.forRoot([VisitorEffects,UserEffect,AdminEffect])
   ]
 })
 export class LayoutsModule { }

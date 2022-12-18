@@ -5,6 +5,7 @@ import { Category } from 'src/app/layouts/Model/Category';
 import { CountSectionByCategory } from 'src/app/layouts/Model/CountSectionByCategory';
 import { Section } from 'src/app/layouts/Model/Section';
 import *as fromApp from '../../../../store/app.reducer';
+import *as AdminActions from '../../../admin-store/admin.action';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,16 +15,19 @@ import *as fromApp from '../../../../store/app.reducer';
 export class DashboardComponent implements OnInit {
 countOfComments=0;
 countOfSaves=0;
-countOfLikes=10;
+countOfLikes=0;
 countOfUsers=0;
 mostLikedSection:Section={}as any;
-countSectionByCategory:CountSectionByCategory[]=[new CountSectionByCategory(42,new Category(1,'Angular')),new CountSectionByCategory(20,new Category(2,'Asp.net'))];
-countSection:number=62;
+countSectionByCategory:CountSectionByCategory[]=[new CountSectionByCategory(0,new Category(0,'...')),new CountSectionByCategory(0,new Category(0,'...'))];
+countSection:number=0;
 sup?:Subscription;
 
 constructor(private store:Store<fromApp.AppState>) { }
   ngOnInit(): void {
+    this.store.dispatch(new AdminActions.FetchCategories());
+    this.store.dispatch(new AdminActions.FetchSections());
     this.sup=this.store.select('admin').subscribe(state=>{
+      console.log(state)
       this.countOfLikes=state.countOfLikes;
       this.countOfComments=state.countOfComments;
       this.countOfSaves=state.countOfSaves;
@@ -34,4 +38,7 @@ constructor(private store:Store<fromApp.AppState>) { }
     })
 
   }
+
+  OnDisplaySection(){}
+  OnDisplayOwner(){}
 }

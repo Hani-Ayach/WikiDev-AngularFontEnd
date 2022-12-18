@@ -1,0 +1,70 @@
+<div class="col-12 col-md-4 col-lg-3" >
+  <div class="card mb-3 p-0 app-card app-card-doc shadow-sm h-100" style="max-width: 18rem;width:max-content ;">
+    <div class="app-card-body has-card-actions">
+      <div class="card-header d-flex justify-content-between">
+        {{ section.category.name }}
+        <div class="app-card-actions d-flex justify-content-md-end">
+          <div class="dropdown">
+            <div
+              class="dropdown-toggle no-toggle-arrow"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="bi bi-three-dots-vertical"></i>
+            </div>
+            <!--//dropdown-toggle-->
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-eye"></i> View</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-pencil"></i> Edit</a
+                >
+              </li>
+
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-trash"></i> Delete</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!--//dropdown-->
+        </div>
+        <!--//app-card-actions-->
+      </div>
+      <div class="card-body">
+        <h5 class="card-title d-flex justify-content-around" style="word-wrap:break-word;">
+          {{ section.sectionTitle }}
+        </h5>
+        <p class="card-text text-muted date">
+          Date of post : {{ section.dateOfPost | date }}
+        </p>
+        <div class="row mb-22">
+          <div
+            class="col col-lg-4 col-md-4 col-12 d-flex justify-content-around"
+          >
+            {{ section.countOfLikes }}<span class="action"> Like</span>
+          </div>
+          <div
+            class="col col-lg-4 col-md-4 col-12 d-flex justify-content-around"
+          >
+            {{ section.comments.length }}<span class="action"> Comment</span>
+          </div>
+          <div
+            class="col col-lg-4 col-md-4 col-12 d-flex justify-content-around"
+          >
+            {{ section.countOfSave }}<span class="action"> Save</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--//app-card-body-->
+  </div>
+  <!--//app-card-->
+</div>
+<!--//col-->

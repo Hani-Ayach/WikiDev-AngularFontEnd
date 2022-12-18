@@ -1,0 +1,8 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.action{
+  font-size: small;
+}
+.date{
+  font-size: large;
+}

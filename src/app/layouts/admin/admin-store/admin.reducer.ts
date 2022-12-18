@@ -61,14 +61,17 @@ export function AdminReducer(
           new CountSectionByCategory(sectionByCategory.length, category),
         ];
       });
+      
       let max = 0;
       var mostLikedSection = state.sections[0];
-      state.sections.forEach((section) => {
+      action.payload.forEach((section) => {
         if (section.countOfLikes > max) {
           max = section.countOfLikes;
           mostLikedSection = section;
         }
+        console.log(section)
       });
+
       return {
         ...state,
         sections: action.payload,

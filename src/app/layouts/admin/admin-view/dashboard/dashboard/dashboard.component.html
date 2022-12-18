@@ -200,34 +200,35 @@
                 class="card border-secondary mb-3 p-0"
                 style="max-width: 18rem"
               >
-                <div class="card-header">categoryName</div>
+                <div class="card-header">{{mostLikedSection.category.name}}</div>
                 <div class="card-body">
                   <h5 class="card-title d-flex justify-content-around">
-                    section title
+                    {{mostLikedSection.sectionTitle}}
                   </h5>
-                  <p class="card-text text-muted date">Date of post : date</p>
+                  <p class="card-text text-muted date">Date of post : {{mostLikedSection.dateOfPost|date}}
+                  </p>
                   <div class="row mb-4">
                     <div
                       class="col col-lg-4 col-md-4 col-12 d-flex justify-content-around"
                     >
-                      5 <span class="action">Like</span>
+                    {{mostLikedSection.countOfLikes}}<span class="action">Like</span>
                     </div>
                     <div
                       class="col col-lg-4 col-md-4 col-12 d-flex justify-content-around"
                     >
-                      10 <span class="action">Comment</span>
+                    {{mostLikedSection.comments.length}}<span class="action">Comment</span>
                     </div>
                     <div
                       class="col col-lg-4 col-md-4 col-12 d-flex justify-content-around"
                     >
-                      10 <span class="action">Save</span>
+                    {{mostLikedSection.countOfSave}}<span class="action">Save</span>
                     </div>
                   </div>
                   <div class="row mb-2">
-                    <button class="btn btn-info text-white">Display</button>
+                    <button class="btn btn-info text-white"(click)="OnDisplaySection()">Display</button>
                   </div>
                   <div class="row">
-                    <button class="btn btn-danger">Delete This Like</button>
+                    <button class="btn btn-warning text-white" (click)="OnDisplayOwner()">Display Owner</button>
                   </div>
                 </div>
               </div>
