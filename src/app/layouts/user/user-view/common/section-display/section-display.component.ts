@@ -84,5 +84,5 @@ export class SectionDisplayComponent implements OnInit {
     if (this.userSubscription) this.userSubscription.unsubscribe();
     if (this.editSubscription) this.editSubscription.unsubscribe();
   }
-  
+
 }

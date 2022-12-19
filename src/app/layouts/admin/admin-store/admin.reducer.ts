@@ -61,7 +61,7 @@ export function AdminReducer(
           new CountSectionByCategory(sectionByCategory.length, category),
         ];
       });
-      
+
       let max = 0;
       var mostLikedSection = state.sections[0];
       action.payload.forEach((section) => {
@@ -69,7 +69,7 @@ export function AdminReducer(
           max = section.countOfLikes;
           mostLikedSection = section;
         }
-        console.log(section)
+        console.log(section);
       });
 
       return {
@@ -81,16 +81,66 @@ export function AdminReducer(
         isLoading: false,
       };
     case AdminAction.ADD_SECTION:
+      let category = state.categories.find(
+        (categ) => categ.id == action.payload.CategoryId
+      );
       return {
         ...state,
+        sections: [
+          ...state.sections,
+          new Section(
+            0,
+            action.payload.Title,
+            action.payload.Description,
+            action.payload.CodeBlock,
+            category ? category : ({} as any),
+            '',
+            '',
+            '',
+            new Date(),
+            0,
+            [''],
+            [''],
+            0,
+            [],
+            ['']
+          ),
+        ],
       };
     case AdminAction.REMOVE_SECTION:
+      let sections = state.sections.filter(
+        (section) => section.id != action.payload
+      );
       return {
         ...state,
+        sections: sections,
       };
     case AdminAction.EDIT_SECTION:
       return {
         ...state,
+      };
+    //
+    case AdminAction.REMOVE_COMMENT:
+      let modifiedSection = state.sections.find((section) => {
+        return section.comments.find((comm: any) => comm.id == action.payload);
+      });
+      let sectionAfterRemoveComment = modifiedSection?.comments.filter(
+        (comment: any) => {
+          return comment.id != action.payload;
+        }
+      );
+      console.log(sectionAfterRemoveComment);
+
+      var sectionsAfterModify = state.sections.map((section) => {
+        if (section.id == modifiedSection?.id) {
+          return { ...section, comments: sectionAfterRemoveComment };
+        }
+        return section;
+      });
+
+      return {
+        ...state,
+        sections: sectionsAfterModify,
       };
     //
     case AdminAction.FETCH_CATEGORIES:
@@ -101,7 +151,7 @@ export function AdminReducer(
     case AdminAction.SET_CATEGORIES:
       return {
         ...state,
-        categories: [...state.categories, ...action.payload],
+        categories: action.payload,
         isLoading: false,
       };
     case AdminAction.ADD_CATEGORY:

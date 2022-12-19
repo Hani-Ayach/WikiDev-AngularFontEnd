@@ -6,7 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { AllSectionsComponent } from './home/all-sections/all-sections.component';
 import { SectionComponent } from './home/all-sections/section/section.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MyFilterPipe } from 'src/app/layouts/pipe/MyFilterPipe';
+import { MyFilterPipe1 } from 'src/app/layouts/pipe/MyFilterPipe1';
 
 
 @NgModule({
@@ -14,12 +14,12 @@ import { MyFilterPipe } from 'src/app/layouts/pipe/MyFilterPipe';
     HomeComponent,
     AllSectionsComponent,
     SectionComponent,
-    MyFilterPipe
+    MyFilterPipe1
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     ReactiveFormsModule
-  ]
+    ]
 })
 export class HomeModule { }

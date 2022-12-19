@@ -16,7 +16,7 @@ export class Section {
     public idOfUsersLikeThisSection: string[],
     public idOfUsersSaveThisSection:string[],
     public countOfSave: number,
-    public comments: SectionComment[],
+    public comments: SectionComment[]|any,
     public sectionBase64Photos: string[]
   ) {}
 }

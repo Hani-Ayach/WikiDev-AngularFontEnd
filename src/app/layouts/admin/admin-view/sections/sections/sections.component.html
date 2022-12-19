@@ -7,7 +7,11 @@
         </div>
         <div class="col-auto m-0">
           <div class="row">
-            <form class="docs-search-form row gx-1">
+            <form
+              (ngSubmit)="OnSearch()"
+              [formGroup]="searchForm"
+              class="docs-search-form row gx-1"
+            >
               <div class="col-6 col-sm-4 mb-3">
                 <input
                   type="text"
@@ -35,6 +39,7 @@
                   </option>
                 </select>
               </div>
+
               <div class="col-12 col-sm-4">
                 <button type="submit" class="btn btn-secondary">Search</button>
               </div>
@@ -43,14 +48,112 @@
         </div>
       </div>
 
-      <div class="row g-4 justify-content-around app-displayer" >
-        <app-section *ngFor="let section of sections" [section]="section"></app-section>
-
-        <app-section *ngFor="let section of sections" [section]="section"></app-section>
+      <div class="row g-4 justify-content-around app-displayer">
+        <app-section
+          *ngFor="
+            let section of sections
+              | myFilter : searchCategory
+              | myFilter : search
+          "
+          [section]="section"
+        ></app-section>
       </div>
+      <button
+        type="button"
+        class="btn btn-warning text-white m-3 mb-0"
+        data-bs-toggle="modal"
+        data-bs-target="#addCategory"
+      >
+        Category <i class="bi bi-gear"></i>
+      </button>
 
+      <button class="btn btn-success mt-3 addBtn" (click)="OnAddSection()">
+        Add Section <i class="bi bi-plus-lg"></i>
+      </button>
 
+      <h1 *ngIf="searchNotify" class="noResult">There is No Result For That</h1>
     </div>
   </div>
 </div>
 
+<!--Settings Category Modal -->
+<div
+  class="modal fade"
+  id="addCategory"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Category Settings</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col m-3">
+            <h3 class="text-secondary">All Category</h3>
+            <h5 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h5>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Category</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let category of categories; let i = index">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ category.name }}</td>
+                  <td><button class="btn btn-danger" (click)="OnDeleteCategory()">Delete</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col m-3">
+            <h3 class="text-secondary">Add Category</h3>
+            <h5 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h5>
+            <form
+              class="px-md-2"
+              [formGroup]="addCategoryForm"
+              (ngSubmit)="OnAddCategory()"
+            >
+              <div class="row">
+                <div class="form-outline mb-3">
+                  <label for="formZero" class="form-label muted f-w-600"
+                    >Category Name</label
+                  >
+                  <input
+                    type="text"
+                    id="formZero"
+                    class="form-control"
+                    formControlName="category"
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn-success btn-md btn-lg mb-1"
+                [disabled]="!addCategoryForm.valid"
+              >
+                Add
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+</div>

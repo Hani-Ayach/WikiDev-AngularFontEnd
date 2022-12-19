@@ -21,17 +21,15 @@ export class MySectionsComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute
   ) {}
-  
+
   ngOnInit(): void {
     this.store.dispatch(new UserActions.FetchSectionsByUserId(this.userID));
     this.userSubscribtion = this.store.select('user').subscribe((state) => {
       this.sections = state.userSections;
 
       if (state.userSections.length == 0 && !state.isLoading) {
-        console.log('one');
         this.displayNotify = true;
       } else {
-        console.log('one');
         this.displayNotify = false;
       }
     });

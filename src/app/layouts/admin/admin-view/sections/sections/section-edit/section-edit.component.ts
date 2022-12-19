@@ -1,20 +1,20 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/layouts/Model/Category';
 import { Section } from 'src/app/layouts/Model/Section';
 import { SectionRequest } from 'src/app/layouts/Model/SectionRequest';
-import * as fromApp from '../../../../store/app.reducer';
-import * as VisitorActions from '../../../../visitor/visitor-store/visitor.action';
-import * as UserActions from '../../../user-store/user.action';
+import *as fromApp from '../../../../../store/app.reducer';
+import *as AdminActions  from '../../../../admin-store/admin.action';
 @Component({
-  selector: 'app-my-section-edit',
-  templateUrl: './my-section-edit.component.html',
-  styleUrls: ['./my-section-edit.component.css'],
+  selector: 'app-section-edit',
+  templateUrl: './section-edit.component.html',
+  styleUrls: ['./section-edit.component.css']
 })
-export class MySectionEditComponent implements OnInit, OnDestroy {
+export class SectionEditComponent implements OnInit {
+
   categories: Category[] = [];
   sup?: Subscription;
   sup2?: Subscription;
@@ -41,8 +41,8 @@ export class MySectionEditComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(new VisitorActions.FetchCategories());
-    this.sup = this.store.select('visitor').subscribe((state) => {
+    this.store.dispatch(new AdminActions.FetchCategories());
+    this.sup = this.store.select('admin').subscribe((state) => {
       this.categories = state.categories;
     });
 
@@ -53,9 +53,9 @@ export class MySectionEditComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.sup3 = this.store.select('user').subscribe((state) => {
+    this.sup3 = this.store.select('admin').subscribe((state) => {
       if (this.sectionId)
-        this.section = state.userSections.find(
+        this.section = state.sections.find(
           (section) => section.id == this.sectionId
         );
     });
@@ -80,10 +80,9 @@ export class MySectionEditComponent implements OnInit, OnDestroy {
       console.log(this.myFiles);
     }
   }
-
   OnEdit() {
     this.store.dispatch(
-      new UserActions.EditSection({
+      new AdminActions.EditSection({
         id: this.sectionId,
         section: new SectionRequest(
           0,
@@ -100,7 +99,7 @@ export class MySectionEditComponent implements OnInit, OnDestroy {
   }
   OnAdd() {
     this.store.dispatch(
-      new UserActions.AddSection(
+      new AdminActions.AddSection(
         new SectionRequest(
           0,
           this.sectionForm.value.title,

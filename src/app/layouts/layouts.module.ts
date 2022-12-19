@@ -24,7 +24,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { SectionDisplayComponent } from './user/user-view/common/section-display/section-display.component';
 import { UserEffect } from './user/user-store/user.effect';
 import { MySectionsModule } from './user/user-view/my-sections/my-sections.module';
-import { MyFilterPipe } from './pipe/MyFilterPipe';
 import { CountUpDirective } from './directive/count-up.directive';
 import { AdminEffect } from './admin/admin-store/admin.effect';
 import { FullDisplaySectionComponent } from './admin/admin-view/common/full-display-section/full-display-section.component';
@@ -35,8 +34,7 @@ import { FullDisplaySectionComponent } from './admin/admin-view/common/full-disp
     UserComponent,
     VisitorComponent,
     SectionDisplayComponent,
-    FullDisplaySectionComponent,
-
+    FullDisplaySectionComponent
     ],
   imports: [
     CommonModule,

@@ -5,40 +5,28 @@
   <div class="card-body">
     <!-- Writer Name , photo And Date of Post -->
     <div class="userPhotoAndName">
-    <img
-      class="userAvatar"
-      [src]="'data:image/jpeg;base64,' + section.userProfileBase64"
-      alt="User Photo"
-    />
-
-    <svg
-      *ngIf="!section.userProfileBase64"
-      xmlns="http://www.w3.org/2000/svg"
-      width="35"
-      height="35"
-      fill="currentColor"
-      class="bi bi-person-circle mb-1"
-      viewBox="0 0 16 16"
-    >
-      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-      <path
-        fill-rule="evenodd"
-        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+      <img
+        class="userAvatar"
+        [src]="'data:image/jpeg;base64,' + section.userProfileBase64"
+        alt="User Photo"
       />
-    </svg>
-    <h5 class="card-title userInfo">
-      {{ section.userName }}
-    </h5>
-  </div>
+
+      <i *ngIf="!section.userProfileBase64" class="bi bi-person-circle mb-1">
+      </i>
+      <h5 class="card-title userInfo">
+        {{ section.userName }}
+      </h5>
+    </div>
     <p class="card-subtitle mb-4 text-muted">
       <small class="text-muted">{{ section.dateOfPost | date }}</small>
     </p>
 
     <!-- Blog Title and Description -->
-    <h4 class="card-title mt-3">{{ section.sectionTitle }}</h4>
-    <p class="card-text">
+    <h4 class="card-title mt-4 mb-4">{{ section.sectionTitle }}</h4>
+    <pre class="card-text">
       {{ section.sectionDescription }}
-    </p>
+      </pre
+    >
   </div>
 
   <!--CodeBlock and Images -->
@@ -65,35 +53,34 @@
   <!-- footer contain like / comment / save -->
   <div class="card-footer row footer">
     <div class="col-lg-4 col-md-4 col-sm-4 d-flex justify-content-center">
-     <button class="btn btn-lg btn-primary" (click)="OnLike()">
-      <i class="bi bi-hand-thumbs-up-fill" *ngIf="isLike"></i>
-      <i class="bi bi-hand-thumbs-up" *ngIf="!isLike"></i>
-      <h6>{{ section.countOfLikes }} Like</h6>
-    </button>
+      <button class="btn btn-lg btn-primary" (click)="OnLike()">
+        <i class="bi bi-hand-thumbs-up-fill" *ngIf="isLike"></i>
+        <i class="bi bi-hand-thumbs-up" *ngIf="!isLike"></i>
+        <h6>{{ section.countOfLikes }} Like</h6>
+      </button>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 d-flex justify-content-center">
       <button
         class="btn btn-lg btn-primary"
-
         data-bs-toggle="collapse"
         data-bs-target="#collapseComment"
         aria-expanded="false"
         aria-controls="collapseComment"
       >
-      <i class="bi bi-chat-square-text-fill"></i>
+        <i class="bi bi-chat-square-text-fill"></i>
         <h6>{{ section.comments.length }} Comment</h6>
       </button>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 d-flex justify-content-center">
-      <button class="btn btn-lg btn-primary" (click)="OnSave()" >
-      <i class="bi bi-save-fill" *ngIf="isSave"></i>
-      <i class="bi bi-save" *ngIf="!isSave"></i>
-      <h6>{{ section.countOfSave }} Save</h6>
-    </button>
+      <button class="btn btn-lg btn-primary" (click)="OnSave()">
+        <i class="bi bi-save-fill" *ngIf="isSave"></i>
+        <i class="bi bi-save" *ngIf="!isSave"></i>
+        <h6>{{ section.countOfSave }} Save</h6>
+      </button>
     </div>
   </div>
 
-<!-- collapse for comment -->
+  <!-- collapse for comment -->
   <div class="collapse mt-1" id="collapseComment">
     <div class="card card-body p-0">
       <ul class="list-group">
@@ -104,13 +91,26 @@
       </ul>
     </div>
     <div class="card card-footer">
-      <form [formGroup]="opinionForm"  (ngSubmit)="OnSubmit()">
+      <form [formGroup]="opinionForm" (ngSubmit)="OnSubmit()">
         <div class="row m-2 display-flex justify-content-center">
-        <input type="text" name="" id="" class="form-control m-3 ml-0 mt-0 mb-0 col-9" style="width:75%;" placeholder="Enter your opinion" formControlName="opinion">
-        <button class="btn btn-sm btn-success col-2" type="submit" value="Send"><i class="bi bi-send-fill"></i></button>
-      </div>
+          <input
+            type="text"
+            name=""
+            id=""
+            class="form-control m-3 ml-0 mt-0 mb-0 col-9"
+            style="width: 75%"
+            placeholder="Enter your opinion"
+            formControlName="opinion"
+          />
+          <button
+            class="btn btn-sm btn-success col-2"
+            type="submit"
+            value="Send"
+          >
+            <i class="bi bi-send-fill"></i>
+          </button>
+        </div>
       </form>
     </div>
   </div>
-
 </div>

@@ -19,7 +19,7 @@ export class AllSectionsComponent implements OnInit {
   search: any;
 
   displayNotify = false;
-
+  searchNotify=false;
   ngOnInit(): void {
     this.store.select('visitor').subscribe((data) => {
       console.log(data.isLoading);
@@ -48,9 +48,14 @@ export class AllSectionsComponent implements OnInit {
     console.log(this.sections.length);
     if (
       this.sections.filter((item) => item.category.id == this.searchCategory)
-        .length != 0
-    )
-      this.displayNotify = false;
-    else this.displayNotify = true;
+        .length != 0 &&
+      this.sections.filter(
+        (item) => item.sectionTitle.indexOf(this.search) !== -1
+      ).length != 0
+    ) {
+      this.searchNotify = false;
+    }
+    else if (!this.search && !this.searchCategory) this.searchNotify=false;
+    else this.searchNotify = true;
   }
 }

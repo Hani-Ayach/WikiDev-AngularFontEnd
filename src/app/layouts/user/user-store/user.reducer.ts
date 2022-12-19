@@ -243,7 +243,7 @@ export function userReducer(
               ...section,
               comments: [
                 ...section.comments.filter(
-                  (c) => c.id != action.payload.commentId
+                  (c:any) => c.id != action.payload.commentId
                 ),
               ],
             };

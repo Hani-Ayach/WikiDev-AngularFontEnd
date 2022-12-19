@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'myFilter',
   pure: false,
 })
-export class MyFilterPipe implements PipeTransform {
+export class MyFilterPipe1 implements PipeTransform {
   transform(items: any[], filter: any) {
     if (!items || !filter) {
       return items;

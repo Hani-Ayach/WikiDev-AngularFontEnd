@@ -12,6 +12,9 @@ export const ADD_SECTION="[admin] Add Section";
 export const REMOVE_SECTION="[admin] Remove Section";
 export const EDIT_SECTION="[admin] Edit Section";
 
+//Comment
+export const REMOVE_COMMENT="[admin] Remove Comment"
+
 //Category Action Type
 export const FETCH_CATEGORIES="[admin] Fetch Categories";
 export const SET_CATEGORIES="[admin] Set Categories";
@@ -77,7 +80,11 @@ export class EditSection implements Action{
   readonly type=EDIT_SECTION;
   constructor(public payload:{id:number,section:SectionRequest}){}
 }
-
+//comment
+export class RemoveComment implements Action{
+  readonly type=REMOVE_COMMENT;
+  constructor(public payload:number){}
+}
 //User Actions
 export class FetchUsers implements Action{
   readonly type=FETCH_USERS;
@@ -171,6 +178,7 @@ export type AdminActions=FetchSections
                         |AddSection
                         |RemoveSection
                         |EditSection
+                        |RemoveComment
                         |FetchUsers
                         |SetUsers
                         |RemoveUser

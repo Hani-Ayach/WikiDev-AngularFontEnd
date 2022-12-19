@@ -285,7 +285,6 @@ export class UserEffect {
     })
   );
 
-
   @Effect()
   editUser = this.actions$.pipe(
     ofType(UserActions.EDIT_USER),
@@ -300,7 +299,6 @@ export class UserEffect {
       data.append('Age', userData.payload.editeUser.Age);
       data.append('Sex', userData.payload.editeUser.Sex);
       data.append('file', userData.payload.editeUser.file);
-
 
       return this.http.put(
         this.apiPath + '/User/update/' + userData.payload.id,

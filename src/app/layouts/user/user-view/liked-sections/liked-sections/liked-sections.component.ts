@@ -27,10 +27,8 @@ export class LikedSectionsComponent implements OnInit {
       this.sections = state.LikedSections;
 
       if (state.sections.length == 0 && !state.isLoading) {
-        console.log('one');
         this.displayNotify = true;
       } else {
-        console.log('one');
         this.displayNotify = false;
       }
     });

@@ -1,1 +1,100 @@
-<p>full-display-section works!</p>
+<div class="container pb-4">
+  <div class="card d-flex card">
+    <h5 class="card-header title">
+      {{ section?.category?.name }}
+    </h5>
+    <div class="card-body">
+      <!-- Writer Name , photo And Date of Post -->
+      <div class="userPhotoAndName">
+        <img
+          class="userAvatar"
+          [src]="'data:image/jpeg;base64,' + section?.userProfileBase64"
+          alt="User Photo"
+        />
+
+        <i *ngIf="!section?.userProfileBase64" class="bi bi-person-circle mb-1">
+        </i>
+        <h5 class="card-title userInfo">
+          {{ section?.userName }}
+        </h5>
+      </div>
+      <p class="card-subtitle mb-4 text-muted">
+        <small class="text-muted">{{ section?.dateOfPost | date }}</small>
+      </p>
+
+      <!-- Blog Title and Description -->
+      <h4 class="card-title mt-3">{{ section?.sectionTitle }}</h4>
+      <p class="card-text">
+        {{ section?.sectionDescription }}
+      </p>
+    </div>
+
+    <!--CodeBlock and Images -->
+    <div class="row">
+      <div class="card-body col-lg-6 col-md-6">
+        <pre>
+        <code>
+   {{section?.codeBlock}}
+        </code>
+      </pre>
+      </div>
+      <div class="card-body col-lg-6 col-md-6">
+        <ul class="list-group list-group-flush">
+          <li
+            *ngFor="let image of section?.sectionBase64Photos"
+            class="list-group-item d-flex justify-content-center image"
+          >
+            <img [src]="'data:image/jpeg;base64,' + image" alt="" />
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- footer contain like / comment / save -->
+    <div class="card-footer row footer">
+      <div class="col-lg-4 col-md-4 col-sm-4 d-flex justify-content-center">
+        {{ section?.countOfLikes }} Like
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 d-flex justify-content-center">
+        <button
+          class="btn btn-primary"
+          type="button"
+          style="width: 100%; height: 100%"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseComment"
+          aria-expanded="false"
+          aria-controls="collapseComment"
+        >
+          {{ section?.comments?.length }} Comment
+        </button>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 d-flex justify-content-center">
+        {{ section?.countOfSave }} Save
+      </div>
+    </div>
+
+    <!-- collapse for comment -->
+    <div class="collapse" id="collapseComment">
+      <div class="card card-body">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let comment of section?.comments">
+            <div class="row">
+              <div class="col-6">
+                <h6 class="text-muted">{{ comment.dateOfPost | date }}</h6>
+                <h5>{{ comment.content }}</h5>
+              </div>
+              <div class="col-6">
+                <button
+                  (click)="OnDeleteComment(comment.id)"
+                  class="btn btn-danger mt-3"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
