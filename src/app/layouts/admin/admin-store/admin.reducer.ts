@@ -1,5 +1,6 @@
 import { Category } from '../../Model/Category';
 import { CountSectionByCategory } from '../../Model/CountSectionByCategory';
+import { Register } from '../../Model/Register';
 import { Section } from '../../Model/Section';
 import { User } from '../../Model/User';
 import * as AdminAction from './admin.action';
@@ -8,7 +9,7 @@ export interface State {
   sections: Section[];
   users: User[];
   adminUser: User;
-  requests: Request[];
+  requests: Register[];
   categories: Category[];
   countOfSectionsPerCategory: CountSectionByCategory[];
   countOfSections: number;
@@ -52,6 +53,7 @@ export function AdminReducer(
     case AdminAction.SET_SECTIONS:
       var countOfSection = action.payload.length;
       let countOfSectionByCategory = [...state.countOfSectionsPerCategory];
+      countOfSectionByCategory = [];
       state.categories.forEach((category) => {
         var sectionByCategory = action.payload.filter(
           (section) => section.category.id == category.id
@@ -210,14 +212,21 @@ export function AdminReducer(
     case AdminAction.ACCEPT_REQUEST:
       return {
         ...state,
+        requests: [
+          ...state.requests.filter((reque) => reque.id != action.payload),
+        ],
       };
     case AdminAction.REJECT_REQUEST:
       return {
         ...state,
+        requests: [
+          ...state.requests.filter((reque) => reque.id != action.payload),
+        ],
       };
     case AdminAction.REJECT_ALL_REQUESTS:
       return {
         ...state,
+        requests: [],
       };
     //
     case AdminAction.FETCH_COUNT_OF_LIKES:
@@ -255,6 +264,27 @@ export function AdminReducer(
         ...state,
         countOfSaves: action.payload,
         isLoading: false,
+      };
+    case AdminAction.FETCH_COUNT_OF_USERS:
+      console.log('how');
+
+      return {
+        ...state,
+        isLoading: true,
+        errorMessage: '',
+      };
+    case AdminAction.SET_COUNT_OF_USERS:
+      console.log('how');
+
+      return {
+        ...state,
+        countOfUsers: action.payload,
+        isLoading: false,
+      };
+    //
+    case AdminAction.ASSIGN_TO_ROLE:
+      return {
+        ...state,
       };
     //
     case AdminAction.STOP_LOADING:

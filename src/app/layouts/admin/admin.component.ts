@@ -1,15 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { User } from '../Model/User';
+import * as fromApp from '../store/app.reducer';
+import * as AdminActions from './admin-store/admin.action';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
+  admin: User = {} as any;
+  sub?: Subscription;
+  userID = '54d12ab5-35e6-44ac-bcd3-b09ea3600829';
 
-  constructor() { }
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
+    this.store.dispatch(new AdminActions.FetchUserAdmin(this.userID));
+    this.sub = this.store.select('admin').subscribe((state) => {
+      this.admin = state.adminUser;
+    });
     this.OnOpen();
   }
   OnOpen() {
@@ -30,5 +41,4 @@ export class AdminComponent implements OnInit {
       mainSection.paddingLeft = '0%';
     }
   }
-
 }

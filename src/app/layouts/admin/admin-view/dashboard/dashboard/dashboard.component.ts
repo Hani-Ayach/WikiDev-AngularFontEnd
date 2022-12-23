@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { count, interval, Subscription } from 'rxjs';
+import { count, interval, Subscription, take } from 'rxjs';
 import { Category } from 'src/app/layouts/Model/Category';
 import { CountSectionByCategory } from 'src/app/layouts/Model/CountSectionByCategory';
 import { Section } from 'src/app/layouts/Model/Section';
@@ -22,10 +23,15 @@ countSectionByCategory:CountSectionByCategory[]=[new CountSectionByCategory(0,ne
 countSection:number=0;
 sup?:Subscription;
 
-constructor(private store:Store<fromApp.AppState>) { }
+constructor(private store:Store<fromApp.AppState>,private router :Router,private route:ActivatedRoute) { }
   ngOnInit(): void {
     this.store.dispatch(new AdminActions.FetchCategories());
     this.store.dispatch(new AdminActions.FetchSections());
+    this.store.dispatch(new AdminActions.FetchCountOfLikes());
+    this.store.dispatch(new AdminActions.FetchCountOfComments());
+    this.store.dispatch(new AdminActions.FetchCountOfSaves());
+    this.store.dispatch(new AdminActions.FetchCountOfUsers());
+
     this.sup=this.store.select('admin').subscribe(state=>{
       console.log(state)
       this.countOfLikes=state.countOfLikes;
@@ -35,10 +41,13 @@ constructor(private store:Store<fromApp.AppState>) { }
       this.countOfUsers=state.countOfUsers;
       this.countSectionByCategory=state.countOfSectionsPerCategory;
       this.mostLikedSection=state.mostLikedSection
+      console.log(this.countOfUsers)
     })
 
   }
 
-  OnDisplaySection(){}
+  OnDisplaySection(){
+    this.router.navigate(['section', this.mostLikedSection.id],{relativeTo:this.route});
+  }
   OnDisplayOwner(){}
 }

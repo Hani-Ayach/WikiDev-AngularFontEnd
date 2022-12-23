@@ -1,0 +1,122 @@
+<div class="container" id="page-content">
+  <div class="padding">
+    <div class="card user-card-full">
+      <div class="bg-c-lite-green user-profile">
+        <div class="card-block text-center text-white">
+          <div class="m-b-25">
+            <img
+              *ngIf="user?.profilePhotoBase64; else icon"
+              [src]="'data:image/jpeg;base64,' + user?.profilePhotoBase64"
+              class="avatar"
+              alt="User-Profile-Image"
+            />
+            <ng-template #icon>
+              <i class="bi bi-person-circle avatar" style="font-size: 50px"></i>
+            </ng-template>
+          </div>
+          <h6 class="f-w-600">{{ user.userName }} <span *ngIf="isAdmin">[Admin]</span></h6>
+          <p>{{ user.career }}</p>
+          <i
+            class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"
+          ></i>
+        </div>
+      </div>
+      <div class="row justify-content-around">
+        <div class="col-12 col-sm-9">
+          <div class="card-block">
+            <h6 class="m-b-20 p-b-5 b-b-default f-w-600">
+              Information <i class="bi bi-info-circle"></i>
+            </h6>
+            <div class="row">
+              <div class="col-sm-6 mt-4">
+                <h6 class="text-muted f-w-600">First Name</h6>
+                <p class="f-w-400">{{ user.firstName }}</p>
+              </div>
+              <div class="col-sm-6 mt-4">
+                <h6 class="text-muted f-w-600">Last Name</h6>
+                <p class="f-w-400">{{ user.lastName }}</p>
+              </div>
+            </div>
+            <h5 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h5>
+            <div class="row">
+              <div class="col-sm-6 mt-4">
+                <h6 class="text-muted f-w-600">Age</h6>
+                <p class="f-w-400">{{ user.age }}</p>
+              </div>
+              <div class="col-sm-6 mt-4">
+                <h6 class="text-muted f-w-600">Email</h6>
+                <p class="f-w-400">{{ user.email }}</p>
+              </div>
+            </div>
+            <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>
+            <div class="row">
+              <div class="col-sm-6 mt-4">
+                <h6 class="text-muted f-w-600">Sex</h6>
+                <p class="f-w-400">{{ user.sex }}</p>
+              </div>
+              <div class="col-sm-6 mt-4">
+                <h6 class="text-muted f-w-600">Date of Register</h6>
+                <p class="f-w-400">{{ user.dateOfRegister | date }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div  class="col-12 col-sm-3 align-items-around">
+          <div class="card-block">
+            <h6 class="m-b-20 p-b-5 b-b-default f-w-600">
+              Settings <i class="bi bi-gear"></i>
+            </h6>
+
+            <!-- info -->
+            <div class="mb-4 information">
+              <h6
+                class="btn btn-secondary bg-transparent text-secondary f-w-600"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#userInfo"
+                aria-expanded="false"
+                aria-controls="userInfo"
+              >
+                Role Settings <i class="bi bi-info-lg"></i>
+              </h6>
+              <div *ngIf="!isAdmin" class="row m-0">
+                <div class="collapse multi-collapse" id="userInfo">
+                  <!-- Button trigger Edit Info modal -->
+                  <i class="bi bi-arrow-right"></i>
+                  <button
+                    type="button"
+                    class="btn btn-warning bg-transparent text-secondary m-2"
+                    (click)="OnMakeAdmin()"
+                  >
+                    Make Admin
+                  </button>
+                </div>
+              </div>
+              <div *ngIf="isAdmin" class="row m-0">
+                <div class="collapse multi-collapse" id="userInfo">
+                  <!-- Button trigger Edit Info modal -->
+                  <i class="bi bi-arrow-right"></i>
+                  <button
+                    type="button"
+                    class="btn btn-warning bg-transparent text-secondary m-2"
+                    (click)="OnMakeUser()"
+                  >
+                    Make User
+                  </button>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+

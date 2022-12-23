@@ -273,7 +273,7 @@ export class UserEffect {
     ofType(UserActions.REMOVE_SECTION),
     switchMap((userData: UserActions.RemoveSection) => {
       return this.http.delete(
-        this.apiPath + '/Section/deleteSection/' + userData.payload
+        this.apiPath + '/Section/removeSection/' + userData.payload
       );
     }),
     map(() => {

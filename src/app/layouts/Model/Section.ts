@@ -7,7 +7,7 @@ export class Section {
     public sectionTitle: string,
     public sectionDescription: string,
     public codeBlock: string,
-    public category: Category,
+    public category: Category|any,
     public userName: string,
     public userProfileBase64: string,
     public userId: string,

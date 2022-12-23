@@ -27,6 +27,7 @@ import { MySectionsModule } from './user/user-view/my-sections/my-sections.modul
 import { CountUpDirective } from './directive/count-up.directive';
 import { AdminEffect } from './admin/admin-store/admin.effect';
 import { FullDisplaySectionComponent } from './admin/admin-view/common/full-display-section/full-display-section.component';
+import { UserFullViewComponent } from './admin/admin-view/common/user-full-view/user-full-view.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FullDisplaySectionComponent } from './admin/admin-view/common/full-disp
     UserComponent,
     VisitorComponent,
     SectionDisplayComponent,
-    FullDisplaySectionComponent
+    FullDisplaySectionComponent,
+    UserFullViewComponent
     ],
   imports: [
     CommonModule,

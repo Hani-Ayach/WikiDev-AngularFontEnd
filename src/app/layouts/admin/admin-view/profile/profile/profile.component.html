@@ -1,1 +1,414 @@
-<p>profile works!</p>
+<div class="container" id="page-content">
+  <div class="padding">
+    <div class="card user-card-full">
+      <div class="bg-c-lite-green user-profile">
+        <div class="card-block text-center text-white">
+          <div class="m-b-25">
+            <img
+              *ngIf="user?.profilePhotoBase64; else icon"
+              [src]="'data:image/jpeg;base64,' + user?.profilePhotoBase64"
+              class="avatar"
+              alt="User-Profile-Image"
+            />
+            <ng-template #icon>
+              <i class="bi bi-person-circle avatar" style="font-size: 50px"></i>
+            </ng-template>
+          </div>
+          <h6 class="f-w-600">{{ user.userName }} [Admin]</h6>
+          <p>{{ user.career }}</p>
+          <i
+            class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"
+          ></i>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-8">
+          <div class="card-block">
+            <h6 class="m-b-20 p-b-5 b-b-default f-w-600">
+              Information <i class="bi bi-info-circle"></i>
+            </h6>
+            <div class="row">
+              <div class="col-sm-6 mt-4">
+                <h6 class="text-muted f-w-600">First Name</h6>
+                <p class="f-w-400">{{ user.firstName }}</p>
+              </div>
+              <div class="col-sm-6 mt-4">
+                <h6 class="text-muted f-w-600">Last Name</h6>
+                <p class="f-w-400">{{ user.lastName }}</p>
+              </div>
+            </div>
+            <h5 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h5>
+            <div class="row">
+              <div class="col-sm-6 mt-4">
+                <h6 class="text-muted f-w-600">Age</h6>
+                <p class="f-w-400">{{ user.age }}</p>
+              </div>
+              <div class="col-sm-6 mt-4">
+                <h6 class="text-muted f-w-600">Email</h6>
+                <p class="f-w-400">{{ user.email }}</p>
+              </div>
+            </div>
+            <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>
+            <div class="row">
+              <div class="col-sm-6 mt-4">
+                <h6 class="text-muted f-w-600">Sex</h6>
+                <p class="f-w-400">{{ user.sex }}</p>
+              </div>
+              <div class="col-sm-6 mt-4">
+                <h6 class="text-muted f-w-600">Date of Register</h6>
+                <p class="f-w-400">{{ user.dateOfRegister | date }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4 align-items-around">
+          <div class="card-block">
+            <h6 class="m-b-20 p-b-5 b-b-default f-w-600">
+              Settings <i class="bi bi-gear"></i>
+            </h6>
+
+            <!-- info -->
+            <div class="mb-4 information">
+              <h6
+                class="btn btn-secondary bg-transparent text-secondary f-w-600"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#userInfo"
+                aria-expanded="false"
+                aria-controls="userInfo"
+              >
+                Info Settings <i class="bi bi-info-lg"></i>
+              </h6>
+              <div class="row m-0">
+                <div class="collapse multi-collapse" id="userInfo">
+                  <!-- Button trigger Edit Info modal -->
+                  <i class="bi bi-arrow-right"></i>
+                  <button
+                    type="button"
+                    class="btn btn-secondary bg-transparent text-secondary m-2"
+                    data-bs-toggle="modal"
+                    data-bs-target="#editInfo"
+                  >
+                    Edit Information
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- security -->
+            <div class="security">
+              <h6
+                class="btn btn-danger bg-transparent text-secondary f-w-600"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#userSecurity"
+                aria-expanded="false"
+                aria-controls="userSecurity"
+              >
+                Security Settings <i class="bi bi-shield-lock-fill"></i>
+              </h6>
+              <div class="row">
+                <div class="collapse multi-collapse" id="userSecurity">
+                  <i class="bi bi-arrow-right">
+                    <!-- Button trigger Change Pass modal -->
+                    <button
+                      type="button"
+                      class="btn btn-danger bg-transparent text-secondary m-2"
+                      data-bs-toggle="modal"
+                      data-bs-target="#changePassword"
+                    >
+                      Change Password
+                    </button>
+                  </i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Edit Information Modal -->
+        <div
+          class="modal fade"
+          id="editInfo"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+        >
+          <div
+            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+          >
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">
+                  Modal title
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form
+                  class="px-md-2"
+                  [formGroup]="editInfoForm"
+                  (ngSubmit)="OnSubmit1()"
+                >
+                  <div class="row">
+                    <div class="form-outline mb-3">
+                      <label for="formZero" class="label-form muted f-w-600"
+                        >User Name</label
+                      >
+
+                      <input
+                        type="text"
+                        id="formZero"
+                        class="form-control"
+                        formControlName="userName"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-outline mb-3 col-md-6">
+                      <label for="formOne" class="label-form muted f-w-600"
+                        >First Name</label
+                      >
+
+                      <input
+                        type="text"
+                        id="formOne"
+                        class="form-control"
+                        formControlName="firstName"
+                      />
+                    </div>
+
+                    <div class="form-outline mb-3 col-md-6">
+                      <label class="label-form muted f-w-600" for="formTwo"
+                        >Last Name</label
+                      >
+                      <input
+                        type="text"
+                        id="formTwo"
+                        class="form-control"
+                        formControlName="lastName"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-outline mb-3 col-md-6">
+                      <label class="label-form muted f-w-600" for="formThree"
+                        >Age</label
+                      >
+                      <input
+                        type="number"
+                        id="formThree"
+                        class="form-control"
+                        formControlName="age"
+                      />
+                    </div>
+
+                    <div class="form-outline mb-3 col-md-6">
+                      <label class="label-form muted f-w-600" for="formFour"
+                        >Career</label
+                      >
+                      <input
+                        type="text"
+                        id="formFour"
+                        class="form-control"
+                        formControlName="career"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-outline mb-3">
+                        <label class="label-form muted f-w-600" for="formFive"
+                          >Email</label
+                        >
+                        <input
+                          type="text"
+                          id="formFive"
+                          class="form-control"
+                          formControlName="email"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-outline mb-3">
+                        <label class="label-form muted f-w-600">Gender</label
+                        ><br />
+                        <select class="form-select" formControlName="gender">
+                          <option value="1" disabled>Gender</option>
+                          <option value="female">Female</option>
+                          <option value="male">Male</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-outline mb-3">
+                      <label class="label-form muted f-w-600" for="formSix"
+                        >Profile Photo</label
+                      >
+                      <input
+                        type="file"
+                        id="formSix"
+                        (change)="onChange($event)"
+                        class="form-control"
+                        formControlName="profileImage"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-md btn-lg mb-1"
+                    [disabled]="!editInfoForm.valid"
+                  >
+                    Edit
+                  </button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Change Password modal -->
+      <div
+        class="modal fade"
+        id="changePassword"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form
+                class="px-md-2"
+                [formGroup]="changePasswordForm"
+                (ngSubmit)="OnSubmit2()"
+              >
+                <div class="row">
+                  <div class="form-outline mb-3 col-sm-8">
+                    <label class="label-form muted f-w-600" for="formOne"
+                      >Old Password</label
+                    >
+                    <input
+                      type="password"
+                      id="formOne"
+                      class="form-control"
+                      formControlName="oldPassword"
+                    />
+                    <p
+                      *ngIf="
+                        changePasswordForm.get('oldPassword')?.invalid &&
+                        changePasswordForm.get('oldPassword')?.touched
+                      "
+                      class="text-danger"
+                    >
+                      Invalid Password
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-outline mb-3 col-sm-8">
+                    <label class="label-form muted f-w-600" for="formTwo"
+                      >New Password</label
+                    >
+                    <input
+                      type="password"
+                      id="formTwo"
+                      class="form-control"
+                      formControlName="newPassword"
+                    />
+                    <p
+                      *ngIf="
+                        changePasswordForm.get('newPassword')?.invalid &&
+                        changePasswordForm.get('newPassword')?.touched
+                      "
+                      class="text-danger"
+                    >
+                      8 to 24 characters.
+                      <br />
+                      Must include uppercase and lowercase letters, a number and
+                      a special character.
+                      <br />
+                      Allowed special characters:
+                      <span aria-label="exclamation mark">! </span>
+                      <span aria-label="at symbol">@ </span>
+                      <span aria-label="hashtag"># </span>
+                      <span aria-label="dollar sign">$ </span>
+                      <span aria-label="percent">% </span>
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-outline mb-3 col-sm-8">
+                    <label class="label-form muted f-w-600" for="formThree"
+                      >Confirm The New Password</label
+                    >
+                    <input
+                      type="password"
+                      id="formThree"
+                      class="form-control"
+                      formControlName="confirmNewPassword"
+                    />
+                    <p
+                      *ngIf="
+                        changePasswordForm.get('confirmNewPassword')?.invalid &&
+                        changePasswordForm.get('confirmNewPassword')?.touched
+                      "
+                      class="text-danger"
+                    >
+                      Must match the new password input field.
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg mb-1"
+                  [disabled]="!changePasswordForm.valid"
+                >
+                  Change
+                </button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

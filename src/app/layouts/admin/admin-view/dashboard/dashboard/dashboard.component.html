@@ -1,7 +1,7 @@
 <div class="app-wrapper">
   <div class="app-content pt-3 p-md-3 p-lg-4">
     <div class="container-xl">
-      <h1 class="app-page-title mb-4">Overview</h1>
+      <h2 class="app-page-title mb-4">Overview</h2>
       <!--
       <div class="app-card alert alert-dismissible shadow-sm mb-4 border-left-decoration" role="alert">
         <div class="inner">
@@ -200,7 +200,7 @@
                 class="card border-secondary mb-3 p-0"
                 style="max-width: 18rem"
               >
-                <div class="card-header">{{mostLikedSection.category.name}}</div>
+                <div class="card-header">{{mostLikedSection.category?.name}}</div>
                 <div class="card-body">
                   <h5 class="card-title d-flex justify-content-around">
                     {{mostLikedSection.sectionTitle}}
@@ -216,7 +216,7 @@
                     <div
                       class="col col-lg-4 col-md-4 col-12 d-flex justify-content-around"
                     >
-                    {{mostLikedSection.comments.length}}<span class="action">Comment</span>
+                    {{mostLikedSection.comments?.length}}<span class="action">Comment</span>
                     </div>
                     <div
                       class="col col-lg-4 col-md-4 col-12 d-flex justify-content-around"

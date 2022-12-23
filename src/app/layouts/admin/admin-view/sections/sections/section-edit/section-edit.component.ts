@@ -29,7 +29,7 @@ export class SectionEditComponent implements OnInit {
 
   sectionForm = new FormGroup({
     title: new FormControl([this.section?.sectionTitle]),
-    category: new FormControl([this.section?.category.id]),
+    category: new FormControl([this.section?.category?this.section.category.id:'']),
     description: new FormControl(this.section?.sectionDescription),
     codeBlock: new FormControl(this.section?.codeBlock),
     images: new FormControl(''),
@@ -58,13 +58,14 @@ export class SectionEditComponent implements OnInit {
         this.section = state.sections.find(
           (section) => section.id == this.sectionId
         );
+
     });
 
     console.log(this.section);
     if (this.sectionId)
       this.sectionForm = new FormGroup({
         title: new FormControl([this.section?.sectionTitle]),
-        category: new FormControl([this.section?.category.id]),
+        category: new FormControl([this.section?.category?this.section.category.id:'']),
         description: new FormControl(this.section?.sectionDescription),
         codeBlock: new FormControl(this.section?.codeBlock),
         images: new FormControl(''),

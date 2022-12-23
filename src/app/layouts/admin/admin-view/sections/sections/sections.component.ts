@@ -64,7 +64,15 @@ export class SectionsComponent implements OnInit {
     category: new FormControl('', [Validators.required]),
   });
   OnAddCategory() {
-    console.log(this.addCategoryForm.value);
+    // !--> the value cannot be null of undefined
+    let categoryName:string=this.addCategoryForm.value.category!.toString();
+    this.store.dispatch(
+      new AdminActions.AddCategory(
+        new Category(0,categoryName )
+      )
+    );
   }
-  OnDeleteCategory() {}
+  OnDeleteCategory(id:number) {
+    this.store.dispatch(new AdminActions.RemoveCategory(id));
+  }
 }
