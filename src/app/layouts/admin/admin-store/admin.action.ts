@@ -179,6 +179,7 @@ export class AssignToRole implements Action {
   readonly type = ASSIGN_TO_ROLE;
   constructor(public payload: AssignRole) {}
 }
+
 export class StopLoading implements Action {
   readonly type = STOP_LOADING;
   constructor(public payload: string) {}

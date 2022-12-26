@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { AssignRole } from 'src/app/layouts/Model/AssignRole';
 import { User } from 'src/app/layouts/Model/User';
 import * as fromApp from '../../../../store/app.reducer';
+import * as AdminActions from '../../../admin-store/admin.action';
 @Component({
   selector: 'app-user-full-view',
   templateUrl: './user-full-view.component.html',
@@ -18,8 +20,12 @@ export class UserFullViewComponent implements OnInit {
   user: any = {} as any;
   userId: any = '';
   isAdmin = true;
-  adminRole='Admin';
-  userRole='User';
+  adminRole = 'Admin';
+  userRole = 'User';
+
+  displayValidation = false;
+  displayValidationMessage = '';
+  sureValidate: any = null;
 
   sub1?: Subscription;
   sub2?: Subscription;
@@ -34,18 +40,53 @@ export class UserFullViewComponent implements OnInit {
 
       this.user = state.users.find((user) => user.id == this.userId);
     });
-    if (this.user.role == 'Admin') this.isAdmin == true;
+    if (this.user?.role == 'Admin') this.isAdmin == true;
     else this.isAdmin = false;
-  }
-  OnMakeAdmin(){
-    if(!this.isAdmin){
 
+    console.log(this.sureValidate);
+  }
+  OnMakeAdmin() {
+    this.validate(
+      `Are you sure you want to make [ ${this.user?.userName} ] --> ADMIN`
+    );
+
+    if (!this.isAdmin) {
+      if (this.sureValidate == true) {
+        let assignToAdminRoleModel = new AssignRole(this.userId,this.adminRole);
+        this.store.dispatch(
+          new AdminActions.AssignToRole(assignToAdminRoleModel)
+        );
+        location.reload();
+      }
     }
   }
-  OnMakeUser(){
-    if(this.isAdmin){
+  OnMakeUser() {
+    this.validate(
+      `Are you sure you want to make [ ${this.user?.userName} ] --> USER`
+    );
 
+    if (this.isAdmin) {
+      if (this.sureValidate == true) {
+        let assignToUserRoleModel = new AssignRole(this.userId, this.userRole);
+        this.store.dispatch(
+          new AdminActions.AssignToRole(assignToUserRoleModel)
+        );
+        location.reload();
+      }
     }
+  }
+  validate(message: string) {
+    this.displayValidation = true;
+    this.displayValidationMessage = message;
+  }
+  yesSureValidate() {
+    this.sureValidate = true;
+    if (this.isAdmin) this.OnMakeUser();
+
+    if (!this.isAdmin) this.OnMakeAdmin();
+  }
+  noSureValidate() {
+    this.sureValidate = false;
   }
   ngOnDestroy(): void {
     if (this.sub1) this.sub1.unsubscribe();

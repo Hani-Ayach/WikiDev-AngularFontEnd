@@ -87,6 +87,8 @@
                     type="button"
                     class="btn btn-warning bg-transparent text-secondary m-2"
                     (click)="OnMakeAdmin()"
+                    data-bs-toggle="modal" data-bs-target="#validationModal"
+
                   >
                     Make Admin
                   </button>
@@ -100,6 +102,7 @@
                     type="button"
                     class="btn btn-warning bg-transparent text-secondary m-2"
                     (click)="OnMakeUser()"
+                    data-bs-toggle="modal" data-bs-target="#validationModal"
                   >
                     Make User
                   </button>
@@ -116,7 +119,23 @@
         </div>
       </div>
 
-
+      <div class="modal fade" id="validationModal" tabindex="-1" *ngIf="displayValidation">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-dark">Validation</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>{{displayValidationMessage}}</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="yesSureValidate()" >Yes</button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="noSureValidate()">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
 

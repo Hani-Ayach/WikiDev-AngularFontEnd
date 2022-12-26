@@ -321,4 +321,20 @@ export class AdminEffect {
       return new AdminActions.StopLoading(err.error);
     })
   );
+
+  //assign to role
+  @Effect()
+  assignToRole=this.action$.pipe(
+    ofType(AdminActions.ASSIGN_TO_ROLE),
+    switchMap((adminData:AdminActions.AssignToRole)=>{
+      console.log('here 2')
+      return this.http.post(this.apiPath+'/Authentication/assignRole',adminData.payload)
+    }),
+    map(() => {
+      return new AdminActions.StopLoading('done');
+    }),
+    catchError(async (err, caught) => {
+      return new AdminActions.StopLoading(err.error);
+    })
+  )
 }

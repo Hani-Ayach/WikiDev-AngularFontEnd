@@ -32,6 +32,9 @@ export class UsersComponent implements OnInit {
   OnView(id:string){
     this.router.navigate(['user',id],{relativeTo:this.route});
   }
+  OnDelete(id:string){
+      this.store.dispatch(new AdminActions.RemoveUser(id))
+  }
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.

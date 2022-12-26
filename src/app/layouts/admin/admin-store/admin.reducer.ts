@@ -182,6 +182,7 @@ export function AdminReducer(
     case AdminAction.REMOVE_USER:
       return {
         ...state,
+        users:[...state.users.filter(user=>user.id!=action.payload)]
       };
     //
     case AdminAction.FETCH_USER_ADMIN:
@@ -266,16 +267,12 @@ export function AdminReducer(
         isLoading: false,
       };
     case AdminAction.FETCH_COUNT_OF_USERS:
-      console.log('how');
-
       return {
         ...state,
         isLoading: true,
         errorMessage: '',
       };
     case AdminAction.SET_COUNT_OF_USERS:
-      console.log('how');
-
       return {
         ...state,
         countOfUsers: action.payload,

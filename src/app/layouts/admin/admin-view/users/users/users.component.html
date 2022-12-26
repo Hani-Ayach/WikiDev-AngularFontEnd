@@ -57,6 +57,7 @@
                       <th class="cell">Career</th>
                       <th class="cell">DateOfRegister</th>
                       <th class="cell"></th>
+                      <th class="cell"></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -67,6 +68,9 @@
                       <td class="cell">{{user.dateOfRegister|date}}</td>
                       <td class="cell">
                         <a class="btn btn-secondary" (click)="OnView(user.id)">View</a>
+                      </td>
+                      <td class="cell">
+                        <a class="btn btn-danger" (click)="OnDelete(user.id)">Delete</a>
                       </td>
                     </tr>
                   </tbody>
