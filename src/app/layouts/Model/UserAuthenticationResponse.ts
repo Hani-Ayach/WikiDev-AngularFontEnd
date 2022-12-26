@@ -1,18 +1,20 @@
 export class UserAuthenticationResponse{
   constructor(
-    public  Message:string,
+    public  message:string,
 
-    public  IsAuthenticated :boolean,
+    public  isAuthenticated :boolean,
 
-    public  UserName :string,
+    public  userName :string,
 
-    public  Email :string,
+    public  userId :string,
 
-    public  Roles :string[],
+    public  email :string,
 
-    public  Token :string,
+    public  roles :string[],
 
-    public  ExpirationDate :Date
+    public  token :string,
+
+    public  expirationDate :Date
   ){}
 
 }

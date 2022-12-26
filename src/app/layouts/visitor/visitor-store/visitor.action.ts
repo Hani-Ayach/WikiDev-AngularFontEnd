@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Category } from '../../Model/Category';
+import { Login } from '../../Model/Login';
 import { Register } from '../../Model/Register';
 import { Section } from '../../Model/Section';
 import { UserAuthenticationResponse } from '../../Model/UserAuthenticationResponse';
@@ -43,7 +44,7 @@ export class SetCategories implements Action {
 //
 export class LoginStart implements Action {
   readonly type = LOGIN_START;
-  constructor(public payload: { email: string; password: string }) {}
+  constructor(public payload: Login) {}
 }
 export class AuthenticationFail implements Action {
   readonly type = AUTHENTICATION_Fail;

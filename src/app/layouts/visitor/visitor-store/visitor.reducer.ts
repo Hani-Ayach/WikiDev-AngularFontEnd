@@ -64,12 +64,16 @@ export function visitorReducer(
       };
 
     case VisitorAction.LOGIN_START:
+
       return {
         ...state,
         isLoading: true,
       };
 
     case VisitorAction.AUTHENTICATION_SUCCESS:
+      localStorage.setItem('token',action.payload.token);
+      localStorage.setItem('role',action.payload.roles[0]);
+      localStorage.setItem('userId',action.payload.userId)
       return {
         ...state,
         isLoading: false,
@@ -77,6 +81,7 @@ export function visitorReducer(
       };
 
     case VisitorAction.AUTHENTICATION_Fail:
+      console.log('false')
       return {
         ...state,
         isLoading: false,

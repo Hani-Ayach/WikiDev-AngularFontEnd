@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { UserComponent } from './layouts/user/user.component';
+import { HasRoleGuard } from './layouts/visitor/auth/has-role.guard';
+import { IsAuthenticateGuard } from './layouts/visitor/auth/is-authenticate.guard';
 import { VisitorComponent } from './layouts/visitor/visitor.component';
 
 const routes: Routes = [
@@ -36,6 +38,8 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserComponent,
+    canActivate:[IsAuthenticateGuard,HasRoleGuard],
+    data:{role:'User'},
     children: [
       {
         path: '',
@@ -91,6 +95,8 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate:[IsAuthenticateGuard,HasRoleGuard],
+    data:{role:'Admin'},
     children: [
       {
         path: 'dashboard',

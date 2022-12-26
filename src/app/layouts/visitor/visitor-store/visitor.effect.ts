@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { Section } from '../../Model/Section';
 import { Category } from '../../Model/Category';
 import { Register } from '../../Model/Register';
+import { UserAuthenticationResponse } from '../../Model/UserAuthenticationResponse';
 
 @Injectable()
 export class VisitorEffects {
@@ -86,4 +87,20 @@ export class VisitorEffects {
       });
     })
   );
+
+  @Effect()
+  loginStart=this.actions$.pipe(
+    ofType(VisitorActions.LOGIN_START),
+    switchMap((visitorData:VisitorActions.LoginStart)=>{
+      return this.http.post<UserAuthenticationResponse>(this.apiPath+'/Authentication/login',visitorData.payload)
+    }),
+    map((data)=>{
+      console.log(data)
+      return new VisitorActions.AuthenticationSuccess(data)
+    }),
+    catchError(async(err,caught)=>{
+      console.log(err)
+      return new VisitorActions.AuthenticationFail(err.error)
+    })
+  )
 }
