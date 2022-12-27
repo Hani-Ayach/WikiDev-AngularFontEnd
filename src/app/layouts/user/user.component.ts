@@ -12,11 +12,13 @@ import * as UserActions from './user-store/user.action';
 export class UserComponent implements OnInit {
   isLoading = false;
   user: User = {} as any;
-  userID = '54d12ab5-35e6-44ac-bcd3-b09ea3600829';
+  userID:any = localStorage.getItem("userId");
 
   constructor(private store: Store<fromApp.AppState>,private router:Router) {}
   ngOnInit(): void {
+    if(!!this.userID)
     this.store.dispatch(new UserActions.FetchUser(this.userID));
+    
     this.store.select('user').subscribe((data) => {
       this.isLoading = data.isLoading;
       this.user = data.user;

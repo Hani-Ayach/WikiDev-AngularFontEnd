@@ -43,7 +43,7 @@ export function visitorReducer(
     case VisitorAction.SET_SECTIONS:
       return {
         ...state,
-        sections: [...state.sections, ...action.payload],
+        sections: action.payload,
         isLoading: false,
       };
     case VisitorAction.FETCH_CATEGORIES:
@@ -59,21 +59,23 @@ export function visitorReducer(
     case VisitorAction.SET_CATEGORIES:
       return {
         ...state,
-        categories: [...state.categories, ...action.payload],
+        categories: action.payload,
         isLoading: false,
       };
 
     case VisitorAction.LOGIN_START:
-
       return {
         ...state,
         isLoading: true,
+        error: '',
       };
 
     case VisitorAction.AUTHENTICATION_SUCCESS:
-      localStorage.setItem('token',action.payload.token);
-      localStorage.setItem('role',action.payload.roles[0]);
-      localStorage.setItem('userId',action.payload.userId)
+      if (action.payload.isAuthenticated) {
+        localStorage.setItem('token', action.payload!.token);
+        localStorage.setItem('role', action.payload!.roles[0]);
+        localStorage.setItem('userId', action.payload!.userId);
+      }
       return {
         ...state,
         isLoading: false,
@@ -81,7 +83,7 @@ export function visitorReducer(
       };
 
     case VisitorAction.AUTHENTICATION_Fail:
-      console.log('false')
+      console.log('false');
       return {
         ...state,
         isLoading: false,
@@ -99,12 +101,14 @@ export function visitorReducer(
         ...state,
         isApplySent: false,
         messageIfSent: '',
+        isLoading: true,
       };
     case VisitorAction.APPLY_SENT:
       return {
         ...state,
         isApplySent: action.payload.isSent,
         messageIfSent: action.payload.message,
+        isLoading: false,
       };
 
     default:

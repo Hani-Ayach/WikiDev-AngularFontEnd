@@ -1,106 +1,124 @@
 <div class="login">
   <div class="container py-5 h-100">
-<section class="vh-100 section">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col col-xl-9">
-        <div class="card" style="border-radius: 1rem">
-          <div class="row g-0">
-            <div class="col-md-6 col-lg-5 d-none d-md-block image">
-              <img
-                src="assets/login.jpg"
-                alt="login form"
-                class="img-fluid"
-                style="border-radius: 1rem 0 0 1rem"
-              />
-            </div>
-            <div class="col-md-6 col-lg-7 d-flex align-items-center">
-              <div class="card-body p-4 p-lg-5 text-black">
-                <form [formGroup]="loginForm" (ngSubmit)="OnSubmit()">
-                  <div class="d-flex align-items-center mb-3 pb-1">
-                    <span class="h1 fw-bold mb-0">WIKI DEV</span>
-                  </div>
+    <section class="vh-100 section">
+      <div class="row d-flex justify-content-center h-100">
+        <div class="col col-xl-9">
+          <div class="card" style="border-radius: 1rem">
+            <div class="row g-0">
+              <div class="col-md-6 col-lg-5 d-none d-md-block image">
+                <img
+                  src="assets/login.jpg"
+                  alt="login form"
+                  class="img-fluid"
+                  style="border-radius: 1rem 0 0 1rem"
+                />
+              </div>
+              <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+                  <form [formGroup]="loginForm" (ngSubmit)="OnSubmit()">
+                    <div class="d-flex align-items-center mb-3 pb-1">
+                      <span class="h1 fw-bold mb-0">WIKI DEV</span>
+                    </div>
 
-                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
-                    Sign into your account
-                  </h5>
+                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
+                      Sign into your account
+                    </h5>
 
-
-                  <div class="form-outline mb-4">
-                    <input
-                      type="email"
-                      id="email"
-                      class="form-control form-control-lg"
-                      formControlName="emailAddress"
-                    />
-                    <label class="form-label" for="email">Email address</label>
-                  </div>
-
-
-                  <div class="form-outline mb-4">
-                    <input
-                      type="password"
-                      id="password"
-                      class="form-control form-control-lg"
-                      formControlName="password"
-                    />
-                    <div
-                      *ngIf="
-                        loginForm.get('password')?.invalid &&
-                        loginForm.get('password')?.touched
-                      "
-                      class="position-absolute mt-1 error"
-
-                    >
-                      <button
-                        class="btn btn-danger"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseError"
-                        aria-expanded="false"
-                        aria-controls="collapseError"
+                    <div class="form-outline mb-4">
+                      <input
+                        type="email"
+                        id="email"
+                        class="form-control form-control-lg"
+                        formControlName="emailAddress"
+                      />
+                      <label class="form-label" for="email"
+                        >Email address</label
                       >
-                        must contain at least :
-                      </button>
+                    </div>
 
-                      <div class="collapse" id="collapseError">
-                        <div class="card card-body">
-                          <ul class="text-danger">
-                            <li>eight character</li>
-                            <li>one uppercase</li>
-                            <li>one lowercase</li>
-                            <li>one number</li>
-                            <li>one other character</li>
-                          </ul>
+                    <div class="form-outline mb-4">
+                      <div class="row">
+                      <div class="col-10" >
+                      <input
+                        [type]="password"
+                        id="password"
+                        class="form-control form-control-lg "
+                        formControlName="password"
+                      />
+                      </div>
+                      <div class="col-1 p-0">
+                      <button class="btn btn-light btn-lg" type="button" (click)="onClick()">
+                      <i
+                        class="bi bi-eye"
+                        aria-hidden="true"
+                        *ngIf="!show"
+                      ></i>
+                      <i
+                        class="bi bi-eye-slash"
+                        aria-hidden="true"
+                        *ngIf="show"
+                      ></i>
+                      </button>
+                    </div>
+                  </div>
+                      <div
+                        *ngIf="
+                          loginForm.get('password')?.invalid &&
+                          loginForm.get('password')?.touched
+                        "
+                        class="position-absolute mt-1 error"
+                      >
+                        <button
+                          class="btn btn-danger"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseError"
+                          aria-expanded="false"
+                          aria-controls="collapseError"
+                        >
+                          must contain at least :
+                        </button>
+
+                        <div class="collapse" id="collapseError">
+                          <div class="card card-body">
+                            <ul class="text-danger">
+                              <li>eight character</li>
+                              <li>one uppercase</li>
+                              <li>one lowercase</li>
+                              <li>one number</li>
+                              <li>one other character</li>
+                            </ul>
+                          </div>
                         </div>
                       </div>
+                      <label class="form-label" for="password">Password</label>
                     </div>
-                    <label class="form-label" for="password">Password</label>
-                  </div>
 
+                    <div class="pt-1 mb-4">
+                      <button
+                        type="submit"
+                        class="btn btn-dark btn-lg btn-block"
+                        [disabled]="!loginForm.valid"
+                      >
+                        Login
+                      </button>
+                    </div>
 
-                  <div class="pt-1 mb-4">
-                    <button
-                      type="submit"
-                      class="btn btn-dark btn-lg btn-block"
-                      [disabled]="!loginForm.valid"
-                    >
-                      Login
-                    </button>
-                  </div>
-
-                  <p class="mb-5 pb-lg-2" style="color: #393f81">
-                    Don't have an account?
-                    <a href="register" style="color: #393f81">Register here</a>
-                  </p>
-                  <a href="#!" class="small text-muted">Terms of use.</a>
-                  <a href="#!" class="small text-muted">Privacy policy</a>
-                </form>
+                    <p class="mb-5 pb-lg-2" style="color: #393f81">
+                      Don't have an account?
+                      <a href="register" style="color: #393f81"
+                        >Register here</a
+                      >
+                    </p>
+                    <a href="#!" class="small text-muted">Terms of use.</a>
+                    <a href="#!" class="small text-muted">Privacy policy</a>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
   </div>
 </div>

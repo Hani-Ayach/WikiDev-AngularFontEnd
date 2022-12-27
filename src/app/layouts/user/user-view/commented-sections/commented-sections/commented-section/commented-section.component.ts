@@ -31,7 +31,7 @@ export class CommentedSectionComponent implements OnInit {
   OnDeleteComments() {
     let comments = this.section.comments;
 
-    comments.forEach((comment:any) => {
+    comments.forEach((comment: any) => {
       this.store.dispatch(
         new UserActions.RemoveComment({
           commentId: comment.id,

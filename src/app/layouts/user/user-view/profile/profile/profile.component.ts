@@ -14,7 +14,7 @@ import * as UserActions from '../../../user-store/user.action';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   constructor(private store: Store<fromApp.AppState>) {}
-  userID = '54d12ab5-35e6-44ac-bcd3-b09ea3600829';
+  userID: any = localStorage.getItem('userId');
   user: User = {} as any;
   userSubscribtion?: Subscription;
   passwordIsConfirmed: boolean = false;
@@ -53,7 +53,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   });
 
   ngOnInit(): void {
-    this.store.dispatch(new UserActions.FetchUser(this.userID));
+    if (!!this.userID)
+      this.store.dispatch(new UserActions.FetchUser(this.userID));
     this.userSubscribtion = this.store.select('user').subscribe((user) => {
       console.log('hani' + user.isLoading);
       this.user = user.user;
@@ -113,7 +114,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     );
     this.store.dispatch(new UserActions.ChangePassword(changePasswordModel));
   }
-  
+
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.

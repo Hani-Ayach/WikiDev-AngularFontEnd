@@ -15,9 +15,9 @@ import * as UserActions from '../../../user-store/user.action';
 export class CommentedSectionsComponent implements OnInit {
   sections: Section[] = [];
   commentSubscribtion?: Subscription;
-  userID = '54d12ab5-35e6-44ac-bcd3-b09ea3600829';
+  userID:any = localStorage.getItem("userId");
   displayNotify = false;
-  
+
   constructor(
     private store: Store<fromApp.AppState>,
     private router: Router,

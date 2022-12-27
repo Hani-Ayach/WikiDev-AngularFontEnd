@@ -29,7 +29,7 @@ export class UserEffect {
       return new UserActions.SetUser(user);
     }),
     catchError(async (err, caught) => {
-      return await new UserActions.StopLoading(err.error);
+      return await new UserActions.StopLoading(err.name);
     })
   );
 
@@ -45,7 +45,7 @@ export class UserEffect {
       return new UserActions.SetSections(sections);
     }),
     catchError(async (err, caught) => {
-      return await new UserActions.StopLoading(err.error);
+      return await new UserActions.StopLoading(err.name);
     })
   );
 
@@ -61,7 +61,7 @@ export class UserEffect {
       return new UserActions.SetSectionsByUserId(sections);
     }),
     catchError(async (err, caught) => {
-      return await new UserActions.StopLoading(err.error);
+      return await new UserActions.StopLoading(err.name);
     })
   );
 
@@ -77,7 +77,7 @@ export class UserEffect {
       return new UserActions.SetLikedSections(sections);
     }),
     catchError(async (err, caught) => {
-      return await new UserActions.StopLoading(err.error);
+      return await new UserActions.StopLoading(err.name);
     })
   );
 
@@ -93,7 +93,7 @@ export class UserEffect {
       return new UserActions.SetSavedSections(sections);
     }),
     catchError(async (err, caught) => {
-      return await new UserActions.StopLoading(err.error);
+      return await new UserActions.StopLoading(err.name);
     })
   );
 
@@ -109,7 +109,7 @@ export class UserEffect {
       return new UserActions.SetCommentedSections(sections);
     }),
     catchError(async (err, caught) => {
-      return await new UserActions.StopLoading(err.error);
+      return await new UserActions.StopLoading(err.name);
     })
   );
 
@@ -120,10 +120,10 @@ export class UserEffect {
       return this.http.post(this.apiPath + '/Like/addLike', userData.payload);
     }),
     map(() => {
-      return new UserActions.StopLoading('done');
+      return new UserActions.StopLoading('');
     }),
     catchError(async (err, caught) => {
-      return await new UserActions.StopLoading(err.error);
+      return await new UserActions.StopLoading(err.name);
     })
   );
 
@@ -136,11 +136,11 @@ export class UserEffect {
       });
     }),
     map(() => {
-      return new UserActions.StopLoading('done');
+      return new UserActions.StopLoading('');
     }),
     catchError(async (err, caught) => {
       console.log(err);
-      return await new UserActions.StopLoading(err.error);
+      return await new UserActions.StopLoading(err.name);
     })
   );
 
@@ -151,10 +151,10 @@ export class UserEffect {
       return this.http.post(this.apiPath + '/Save/addSave', userData.payload);
     }),
     map(() => {
-      return new UserActions.StopLoading('done');
+      return new UserActions.StopLoading('');
     }),
     catchError(async (err, caught) => {
-      return await new UserActions.StopLoading(err.error);
+      return await new UserActions.StopLoading(err.name);
     })
   );
 
@@ -167,11 +167,11 @@ export class UserEffect {
       });
     }),
     map(() => {
-      return new UserActions.StopLoading('done');
+      return new UserActions.StopLoading('');
     }),
     catchError(async (err, caught) => {
       console.log(err);
-      return await new UserActions.StopLoading(err.error);
+      return await new UserActions.StopLoading(err.name);
     })
   );
 
@@ -185,11 +185,11 @@ export class UserEffect {
       );
     }),
     map(() => {
-      return new UserActions.StopLoading('done');
+      return new UserActions.StopLoading('');
     }),
     catchError(async (err, caught) => {
       console.log(err);
-      return await new UserActions.StopLoading(err.error);
+      return await new UserActions.StopLoading(err.name);
     })
   );
   @Effect()
@@ -201,11 +201,11 @@ export class UserEffect {
       );
     }),
     map(() => {
-      return new UserActions.StopLoading('done');
+      return new UserActions.StopLoading('');
     }),
     catchError(async (err, caught) => {
       console.log(err);
-      return await new UserActions.StopLoading(err.error);
+      return await new UserActions.StopLoading(err.name);
     })
   );
 
@@ -226,11 +226,11 @@ export class UserEffect {
       return this.http.post(this.apiPath + '/Section/addSection', data);
     }),
     map(() => {
-      return new UserActions.StopLoading('done');
+      return new UserActions.StopLoading('');
     }),
     catchError(async (err, caught) => {
       console.log(err);
-      return await new UserActions.StopLoading(err.error);
+      return await new UserActions.StopLoading(err.name);
     })
   );
 
@@ -258,13 +258,13 @@ export class UserEffect {
     }),
     map((res) => {
       console.log(res);
-      return new UserActions.StopLoading('done');
+      return new UserActions.StopLoading('');
     }),
     catchError(async (err, caught) => {
       console.log(caught);
 
       console.log(err);
-      return await new UserActions.StopLoading(err.error);
+      return await new UserActions.StopLoading(err.name);
     })
   );
 
@@ -277,11 +277,11 @@ export class UserEffect {
       );
     }),
     map(() => {
-      return new UserActions.StopLoading('done');
+      return new UserActions.StopLoading('');
     }),
     catchError(async (err, caught) => {
       console.log(err);
-      return await new UserActions.StopLoading(err.error);
+      return await new UserActions.StopLoading(err.name);
     })
   );
 
@@ -307,13 +307,13 @@ export class UserEffect {
     }),
     map((res) => {
       console.log(res);
-      return new UserActions.StopLoading('done');
+      return new UserActions.StopLoading('');
     }),
     catchError(async (err, caught) => {
       console.log(caught);
 
       console.log(err);
-      return await new UserActions.StopLoading(err.error);
+      return await new UserActions.StopLoading(err.name);
     })
   );
 
@@ -327,11 +327,11 @@ export class UserEffect {
       );
     }),
     map(() => {
-      return new UserActions.StopLoading('done');
+      return new UserActions.StopLoading('');
     }),
     catchError(async (err, caught) => {
       console.log(err);
-      return await new UserActions.StopLoading(err.error);
+      return await new UserActions.StopLoading(err.name);
     })
   );
 }

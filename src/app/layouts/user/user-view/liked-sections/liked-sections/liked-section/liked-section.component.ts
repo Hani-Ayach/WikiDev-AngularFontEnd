@@ -12,7 +12,7 @@ import *as UserActions from '../../../../user-store/user.action';
 })
 export class LikedSectionComponent implements OnInit {
   @Input() section: Section = {} as any;
-  userID = '54d12ab5-35e6-44ac-bcd3-b09ea3600829';
+  userID:any = localStorage.getItem("userId");
 
   constructor(private router: Router, private route: ActivatedRoute,private store:Store<fromApp.AppState>) {}
 

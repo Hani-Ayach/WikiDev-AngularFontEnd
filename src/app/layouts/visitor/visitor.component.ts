@@ -11,14 +11,21 @@ import * as VisitorAction from './visitor-store/visitor.action';
 export class VisitorComponent implements OnInit {
 
   isLoading=false;
-
+  errorMessage='';
+  thereIsAnError=false;
   constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
     this.store.select('visitor').subscribe(data=>{
+      console.log(data.isLoading)
       this.isLoading=data.isLoading;
+
+      if(!!data.error)
+      this.thereIsAnError=true;
+
+      this.errorMessage=data.error;
     })
-    
+
     this.store.dispatch(new VisitorAction.FetchSections());
     this.store.dispatch(new VisitorAction.FetchCategories());
   }

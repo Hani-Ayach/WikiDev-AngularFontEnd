@@ -20,7 +20,7 @@ export class MySectionEditComponent implements OnInit, OnDestroy {
   sup2?: Subscription;
   sup3?: Subscription;
 
-  userID = '54d12ab5-35e6-44ac-bcd3-b09ea3600829';
+  userID:any = localStorage.getItem("userId");
   isEdit = false;
   sectionId: number = 0;
   section?: Section;

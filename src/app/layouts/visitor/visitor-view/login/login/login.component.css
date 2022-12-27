@@ -1,8 +1,8 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
 .login{
   background-color: #87aae3c0;
-  background-position: center;
 }
-
 .image img
 {
   height: 100%;

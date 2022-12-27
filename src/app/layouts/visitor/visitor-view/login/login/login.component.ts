@@ -12,13 +12,26 @@ import * as VisitorActions from '../../../visitor-store/visitor.action';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  password: any = 'password';
+
+  show = false;
+  adminRole = 'Admin';
+  userRole = 'User';
+
   constructor(
     private store: Store<fromApp.AppState>,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
-  adminRole = 'Admin';
-  userRole = 'User';
+    ) {}
+
+    ngOnInit(): void {
+      this.store.select('visitor').subscribe((state) => {
+        if (state.user.roles[0] == this.adminRole)
+          this.router.navigate(['../admin'], { relativeTo: this.route });
+        else if (state.user.roles[0] == this.userRole)
+          this.router.navigate(['../user'], { relativeTo: this.route });
+      });
+    }
 
   loginForm = new FormGroup({
     emailAddress: new FormControl('', {
@@ -37,14 +50,6 @@ export class LoginComponent implements OnInit {
     ),
   });
 
-  ngOnInit(): void {
-    this.store.select('visitor').subscribe((state) => {
-      if (state.user.roles[0] == this.adminRole)
-        this.router.navigate(['../admin'], { relativeTo: this.route });
-      else if (state.user.roles[0] == this.userRole)
-        this.router.navigate(['../user'], { relativeTo: this.route });
-    });
-  }
 
   OnSubmit() {
     console.log(this.loginForm.value);
@@ -52,7 +57,16 @@ export class LoginComponent implements OnInit {
       this.loginForm.value.emailAddress!.toString(),
       this.loginForm.value.password!.toString()
     );
-
+console.log('hello')
     this.store.dispatch(new VisitorActions.LoginStart(login));
+  }
+  onClick() {
+    if (this.password === 'password') {
+      this.password = 'text';
+      this.show = true;
+    } else {
+      this.password = 'password';
+      this.show = false;
+    }
   }
 }

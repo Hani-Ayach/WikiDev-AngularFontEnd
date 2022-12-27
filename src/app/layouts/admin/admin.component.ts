@@ -13,9 +13,9 @@ import * as AdminActions from './admin-store/admin.action';
 export class AdminComponent implements OnInit {
   admin: User = {} as any;
   sub?: Subscription;
-  userID = '54d12ab5-35e6-44ac-bcd3-b09ea3600829';
+  userID: any = localStorage.getItem('userId');
 
-  constructor(private store: Store<fromApp.AppState>,private router:Router) {}
+  constructor(private store: Store<fromApp.AppState>, private router: Router) {}
 
   ngOnInit(): void {
     this.store.dispatch(new AdminActions.FetchUserAdmin(this.userID));
@@ -42,7 +42,7 @@ export class AdminComponent implements OnInit {
       mainSection.paddingLeft = '0%';
     }
   }
-  OnLogout(){
+  OnLogout() {
     localStorage.clear();
     this.router.navigate(['']);
   }

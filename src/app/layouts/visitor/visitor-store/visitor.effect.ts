@@ -46,26 +46,29 @@ export class VisitorEffects {
       console.log('hani');
       console.log(categories);
       return new VisitorActions.SetCategories(categories);
+    }),
+    catchError(async (err, caught) => {
+      return await new VisitorActions.StopLoading();
     })
   );
 
   @Effect()
   sendApply = this.actions$.pipe(
     ofType(VisitorActions.SEND_APPLY),
-    switchMap((registerApply:VisitorActions.SendApply) => {
+    switchMap((registerApply: VisitorActions.SendApply) => {
       return this.http.post<number>(
         this.apiPath + '/Registration/addRegistrationApply',
-     JSON.stringify({
+        JSON.stringify({
           id: registerApply.payload.id,
           firstName: registerApply.payload.firstName,
           lastName: registerApply.payload.lastName,
           email: registerApply.payload.email,
           career: registerApply.payload.career,
           age: registerApply.payload.age,
-          sex: registerApply.payload.sex
-        })
-        ,{
-          headers: new HttpHeaders({'Content-Type': 'application/json'})
+          sex: registerApply.payload.sex,
+        }),
+        {
+          headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
         }
       );
     }),
@@ -78,29 +81,31 @@ export class VisitorEffects {
       });
     }),
     catchError(async (err, caught) => {
-      console.log(err)
-            console.log(caught)
       return new VisitorActions.ApplySent({
         isSent: false,
-        message:
-          err.error,
+        message: err.name,
       });
     })
   );
 
   @Effect()
-  loginStart=this.actions$.pipe(
+  loginStart = this.actions$.pipe(
     ofType(VisitorActions.LOGIN_START),
-    switchMap((visitorData:VisitorActions.LoginStart)=>{
-      return this.http.post<UserAuthenticationResponse>(this.apiPath+'/Authentication/login',visitorData.payload)
+    switchMap((visitorData: VisitorActions.LoginStart) => {
+      return this.http.post<UserAuthenticationResponse>(
+        this.apiPath + '/Authentication/login',
+        visitorData.payload
+      );
     }),
-    map((data)=>{
-      console.log(data)
-      return new VisitorActions.AuthenticationSuccess(data)
+    map((data) => {
+      if (!data.isAuthenticated)
+        return new VisitorActions.AuthenticationFail(data.message);
+
+      return new VisitorActions.AuthenticationSuccess(data);
     }),
-    catchError(async(err,caught)=>{
-      console.log(err)
-      return new VisitorActions.AuthenticationFail(err.error)
+    catchError(async (err, caught) => {
+      console.log(err);
+      return new VisitorActions.AuthenticationFail(err.name);
     })
-  )
+  );
 }

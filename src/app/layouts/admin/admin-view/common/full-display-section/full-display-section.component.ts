@@ -27,14 +27,14 @@ export class FullDisplaySectionComponent implements OnInit {
     });
     this.store.select('admin').subscribe((state) => {
       if (state.sections.length == 0)
-      this.router.navigate(['../../'], { relativeTo: this.route });
+        this.router.navigate(['../../'], { relativeTo: this.route });
       this.section = state.sections.find((section: Section) => {
         return section.id == this.id;
       });
     });
   }
-  OnDeleteComment(id:number){
-   this.store.dispatch( new AdminActions.RemoveComment(id));
+  OnDeleteComment(id: number) {
+    this.store.dispatch(new AdminActions.RemoveComment(id));
   }
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.

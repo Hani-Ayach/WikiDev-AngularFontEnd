@@ -52,7 +52,10 @@ export class UserFullViewComponent implements OnInit {
 
     if (!this.isAdmin) {
       if (this.sureValidate == true) {
-        let assignToAdminRoleModel = new AssignRole(this.userId,this.adminRole);
+        let assignToAdminRoleModel = new AssignRole(
+          this.userId,
+          this.adminRole
+        );
         this.store.dispatch(
           new AdminActions.AssignToRole(assignToAdminRoleModel)
         );

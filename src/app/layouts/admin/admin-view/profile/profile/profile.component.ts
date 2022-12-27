@@ -16,7 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   constructor(private store: Store<fromApp.AppState>,private router:Router,private route:ActivatedRoute) {}
-  userID = '54d12ab5-35e6-44ac-bcd3-b09ea3600829';
+  userID:any = localStorage.getItem("userId");
   user: User = {} as any;
   userSubscribtion?: Subscription;
   passwordIsConfirmed: boolean = false;

@@ -16,7 +16,7 @@ export class SavedSectionsComponent implements OnInit {
   sections: Section[] = [];
   userSubscribtion?: Subscription;
   displayNotify = false;
-  userID='54d12ab5-35e6-44ac-bcd3-b09ea3600829';
+  userID: any = localStorage.getItem('userId');
   constructor(
     private store: Store<fromApp.AppState>,
     private router: Router,
@@ -24,9 +24,7 @@ export class SavedSectionsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(
-      new UserActions.FetchSavedSections(this.userID)
-    );
+      this.store.dispatch(new UserActions.FetchSavedSections(this.userID));
 
     this.userSubscribtion = this.store.select('user').subscribe((state) => {
       this.sections = state.savedSections;

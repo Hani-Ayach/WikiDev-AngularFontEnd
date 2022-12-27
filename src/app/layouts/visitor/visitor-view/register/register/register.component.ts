@@ -27,7 +27,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   async onSubmit() {
-    console.log(this.registerForm.value);
     this.store.dispatch(
       new VisitorAction.SendApply(
         new Register(
@@ -46,7 +45,6 @@ export class RegisterComponent implements OnInit {
       if (!data.isApplySent && data.messageIfSent != '') {
         alert('There is an error occure');
       }
-      //else alert(data.message)
     });
     this.registerForm.reset();
     this.router.navigate(['../'], { relativeTo: this.route });

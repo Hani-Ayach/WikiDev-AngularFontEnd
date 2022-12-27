@@ -13,7 +13,7 @@ import * as UserActions from '../../../user-store/user.action';
 export class MySectionsComponent implements OnInit, OnDestroy {
   sections: Section[] = [];
   userSubscribtion?: Subscription;
-  userID = '54d12ab5-35e6-44ac-bcd3-b09ea3600829';
+  userID:any = localStorage.getItem("userId");
   displayNotify = false;
 
   constructor(

@@ -1,62 +1,101 @@
 <div class="register">
-<section class="h-100">
-  <div class="container py-5  ">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-8 col-xl-6">
-        <div class="card rounded-4">
+  <section class="h-100">
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center  h-100">
+        <div class="col-lg-8 col-xl-6">
+          <div class="card rounded-4">
+            <div class="card-body p-4 p-md-4 card">
+              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">
+                Registration Info
+              </h3>
 
-          <div class="card-body p-4 p-md-4 card ">
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration Info</h3>
-
-            <form class="px-md-2" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-
-              <div class="form-outline mb-3">
-                <input type="text" id="formOne" class="form-control" formControlName="firstName" />
-                <label for="formOne">First Name</label>
-              </div>
-
-              <div class="form-outline mb-3">
-                <input type="text" id="formTwo" class="form-control" formControlName="lastName"/>
-                <label class="form-label" for="formTwo">Last Name</label>
-              </div>
-
-              <div class="form-outline mb-3">
-                <input type="number" id="formThree" class="form-control" formControlName="age" />
-                <p *ngIf="registerForm.get('age')?.invalid && registerForm.get('age')?.touched" class="text-danger">Reqiured and must be greater than zero</p>
-                <label class="form-label" for="formThree">Age</label>
-              </div>
-
-
-              <div class="form-outline mb-3">
-                <input type="text" id="formFour" class="form-control" formControlName="career"/>
-                <label class="form-label" for="formFour">Career</label>
-              </div>
-
-              <div class="form-outline mb-3">
-                <input type="text" id="formFive" class="form-control" formControlName="email"/>
-                <label class="form-label" for="formFive">Email</label>
-              </div>
-
-
-                <div class="form-outline mb-3">
-                  <select class="select" formControlName="gender">
-                    <option value="1" disabled>Gender</option>
-                    <option value="female">Female</option>
-                    <option value="male">Male</option>
-                  </select>
-                  <br/>
-                  <label>Gender</label>
-
+              <form
+                class="px-md-2"
+                [formGroup]="registerForm"
+                (ngSubmit)="onSubmit()"
+              >
+                <div class="row">
+                  <div class="form-outline mb-3 col-sm-6">
+                    <input
+                      type="text"
+                      id="formOne"
+                      class="form-control"
+                      formControlName="firstName"
+                    />
+                    <label for="formOne">First Name</label>
+                  </div>
+                  <div class="form-outline mb-3 col-sm-6">
+                    <input
+                      type="text"
+                      id="formTwo"
+                      class="form-control"
+                      formControlName="lastName"
+                    />
+                    <label class="form-label" for="formTwo">Last Name</label>
+                  </div>
                 </div>
+                <div class="row">
+                  <div class="form-outline mb-3 col-sm-6">
+                    <input
+                      type="number"
+                      id="formThree"
+                      class="form-control"
+                      formControlName="age"
+                    />
+                    <p
+                      *ngIf="
+                        registerForm.get('age')?.invalid &&
+                        registerForm.get('age')?.touched
+                      "
+                      class="text-danger"
+                    >
+                      Reqiured and must be greater than zero
+                    </p>
+                    <label class="form-label" for="formThree">Age</label>
+                  </div>
 
-              <button type="submit" class="btn btn-primary btn-lg mb-1" [disabled]="!registerForm.valid" >Send</button>
+                  <div class="form-outline mb-3 col-sm-6">
+                    <input
+                      type="text"
+                      id="formFour"
+                      class="form-control"
+                      formControlName="career"
+                    />
+                    <label class="form-label" for="formFour">Career</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-outline mb-3 col-sm-6">
+                    <input
+                      type="text"
+                      id="formFive"
+                      class="form-control"
+                      formControlName="email"
+                    />
+                    <label class="form-label" for="formFive">Email</label>
+                  </div>
 
-            </form>
-
+                  <div class="form-outline mb-3 col-sm-6">
+                    <select class="form-select select" formControlName="gender">
+                      <option value="1" disabled>Gender</option>
+                      <option value="female">Female</option>
+                      <option value="male">Male</option>
+                    </select>
+                    <label>Gender</label>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg mb-1"
+                  [disabled]="!registerForm.valid"
+                >
+                  Send
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 </div>
