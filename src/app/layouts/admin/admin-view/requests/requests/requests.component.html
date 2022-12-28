@@ -5,13 +5,13 @@
 
       <div class="row g-3 mb-4 align-items-center justify-content-between">
         <div class="col-auto">
-              <h2 class="app-page-title mb-0">Registration Requests</h2>
+              <h2 class="app-page-title mb-0 title">Registration Requests</h2>
         </div>
         <div class="col-auto">
            <div class="page-utilities">
             <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
               <div class="col-auto">
-                <button class="btn btn-danger" (click)="OnRejectAllRequest()">Reject All Request</button>
+                <button class="btn btn-danger" style="opacity: 0.9;" (click)="OnRejectAllRequest()">Reject All Request</button>
               </div>
               <div class="col-auto">
                 <form (ngSubmit)="OnSearch()" [formGroup]="searchRequest" class="table-search-form row gx-1 align-items-center">
@@ -19,7 +19,7 @@
                               <input type="text" id="search-orders" name="searchorders" class="form-control search-orders" placeholder="career name" formControlName="careerName">
                           </div>
                           <div class="col-auto">
-                              <button type="submit" class="btn app-btn-secondary">Search</button>
+                              <button type="submit" class="btn btn-success btnSearch">Search</button>
                           </div>
                       </form>
 

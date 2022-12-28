@@ -6,7 +6,7 @@
           <div class="m-b-25">
             <img
               *ngIf="user?.profilePhotoBase64; else icon"
-              [src]="'data:image/jpeg;base64,' + user?.profilePhotoBase64"
+              [src]="'data:image/jpeg;base64,' + user.profilePhotoBase64"
               class="avatar"
               alt="User-Profile-Image"
             />

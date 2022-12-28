@@ -31,6 +31,7 @@ constructor(private store:Store<fromApp.AppState>,private router :Router,private
     this.store.dispatch(new AdminActions.FetchCountOfComments());
     this.store.dispatch(new AdminActions.FetchCountOfSaves());
     this.store.dispatch(new AdminActions.FetchCountOfUsers());
+    this.store.dispatch(new AdminActions.FetchUsers());
 
     this.sup=this.store.select('admin').subscribe(state=>{
       console.log(state)
@@ -49,5 +50,7 @@ constructor(private store:Store<fromApp.AppState>,private router :Router,private
   OnDisplaySection(){
     this.router.navigate(['section', this.mostLikedSection.id],{relativeTo:this.route});
   }
-  OnDisplayOwner(){}
+  OnDisplayOwner(){
+    this.router.navigate(['user', this.mostLikedSection.userId],{relativeTo:this.route});
+  }
 }

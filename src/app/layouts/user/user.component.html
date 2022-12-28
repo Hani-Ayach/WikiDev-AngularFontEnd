@@ -2,7 +2,6 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
   <div class="d-flex align-items-center justify-content-between">
     <a href="index.html" class="logo d-flex align-items-center">
-      <img src="assets/img/logo.png" alt="" />
       <span class="d-none d-lg-block">WikiDev</span>
     </a>
     <div class="navbar-toggler" type="button" (click)="OnOpen()">
@@ -23,10 +22,15 @@
           data-bs-toggle="dropdown"
         >
           <img
-          [src]="'data:image/jpeg;base64,'+user?.profilePhotoBase64"
+          *ngIf="user?.profilePhotoBase64; else icon"
+          [src]="'data:image/jpeg;base64,'+user.profilePhotoBase64"
           alt="Profile"
             class="rounded-circle"
           />
+          <ng-template #icon>
+            <i class="bi bi-person-circle avatar" style="font-size: 50px"></i>
+          </ng-template>
+
           <span class="d-none d-md-block dropdown-toggle ps-2"
             >{{user.userName}}</span
           > </a
@@ -88,7 +92,7 @@
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
       <a class="nav-link" routerLinkActive="active" [routerLink]="['sections']">
-        <i class="bi bi-grid"></i>
+        <i class="bi bi-file-text"></i>
         <span>Sections</span>
       </a>
     </li>
@@ -98,8 +102,8 @@
         routerLinkActive="active"
         [routerLink]="['mySections']"
       >
-        <i class="bi bi-grid"></i>
-        <span>MySections</span>
+      <i class="bi bi-file-earmark-person"></i>
+      <span>MySections</span>
       </a>
     </li>
     <li class="nav-item">
@@ -108,8 +112,8 @@
         routerLinkActive="active"
         [routerLink]="['commentedSections']"
       >
-        <i class="bi bi-grid"></i>
-        <span>Commented Sections</span>
+      <i class="bi bi-file-earmark-text"></i>
+      <span>Commented Sections</span>
       </a>
     </li>
     <li class="nav-item">
@@ -118,8 +122,8 @@
         routerLinkActive="active"
         [routerLink]="['likedSections']"
       >
-        <i class="bi bi-grid"></i>
-        <span>Liked Sections</span>
+      <i class="bi bi-file-earmark-check"></i>
+      <span>Liked Sections</span>
       </a>
     </li>
     <li class="nav-item">
@@ -128,13 +132,13 @@
         routerLinkActive="active"
         [routerLink]="['savedSections']"
       >
-        <i class="bi bi-grid"></i>
-        <span>Saved Sections</span>
+      <i class="bi bi-file-earmark-arrow-down"></i>
+      <span>Saved Sections</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" routerLinkActive="active" [routerLink]="['profile']">
-        <i class="bi bi-grid"></i>
+        <i class="bi bi-person-lines-fill"></i>
         <span>Profile</span>
       </a>
     </li>

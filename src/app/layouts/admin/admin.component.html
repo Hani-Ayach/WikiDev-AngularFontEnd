@@ -3,7 +3,6 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
   <div class="d-flex align-items-center justify-content-between">
     <a href="index.html" class="logo d-flex align-items-center">
-      <img src="assets/img/logo.png" alt="" />
       <span class="d-none d-lg-block">WikiDev Admin</span>
     </a>
     <div class="navbar-toggler" type="button" (click)="OnOpen()">
@@ -24,10 +23,15 @@
           data-bs-toggle="dropdown"
         >
           <img
-          [src]="'data:image/jpeg;base64,'+admin?.profilePhotoBase64"
+          *ngIf="admin?.profilePhotoBase64; else icon"
+          [src]="'data:image/jpeg;base64,'+admin.profilePhotoBase64"
           alt="Profile"
             class="rounded-circle"
           />
+          <ng-template #icon>
+            <i class="bi bi-person-circle avatar" style="font-size: 50px"></i>
+          </ng-template>
+
           <span class="d-none d-md-block dropdown-toggle ps-2"
             >{{admin.userName}}</span
           > </a
@@ -154,7 +158,7 @@
   <!-- End Footer -->
 </aside>
 
-<!-- <div *ngIf="isLoading" class="load">
+<div *ngIf="isLoading" class="load">
   <div class="one">W</div>
   <div class="two">i</div>
   <div class="three">k</div>
@@ -162,7 +166,7 @@
   <div class="five">D</div>
   <div class="six">e</div>
   <div class="seven">v</div>
-</div> -->
+</div>
 
 <div class="mainSection" id="mainSection">
 

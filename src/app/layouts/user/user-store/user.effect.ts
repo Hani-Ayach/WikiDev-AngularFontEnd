@@ -40,8 +40,6 @@ export class UserEffect {
       return this.http.get<Section[]>(this.apiPath + '/Section/getSections');
     }),
     map((sections) => {
-      console.log('hani');
-      console.log(sections);
       return new UserActions.SetSections(sections);
     }),
     catchError(async (err, caught) => {
@@ -74,9 +72,11 @@ export class UserEffect {
       );
     }),
     map((sections) => {
+      console.log(sections)
       return new UserActions.SetLikedSections(sections);
     }),
     catchError(async (err, caught) => {
+      console.log(err)
       return await new UserActions.StopLoading(err.name);
     })
   );
@@ -90,9 +90,11 @@ export class UserEffect {
       );
     }),
     map((sections) => {
+      console.log(sections)
       return new UserActions.SetSavedSections(sections);
     }),
     catchError(async (err, caught) => {
+      console.log(err)
       return await new UserActions.StopLoading(err.name);
     })
   );
@@ -109,6 +111,7 @@ export class UserEffect {
       return new UserActions.SetCommentedSections(sections);
     }),
     catchError(async (err, caught) => {
+      console.log(err)
       return await new UserActions.StopLoading(err.name);
     })
   );

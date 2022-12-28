@@ -24,6 +24,7 @@ export class SectionComponent implements OnInit,OnDestroy {
   sup!: Subscription;
   isLike=false;
   isSave=false;
+  userId:any=localStorage.getItem('userId');
 
   opinionForm=new FormGroup({
     opinion:new FormControl('',[Validators.required])
@@ -37,29 +38,29 @@ export class SectionComponent implements OnInit,OnDestroy {
       (state)=>{
         console.log(state.sections)
        let section= state.sections.find((section:Section)=>section.id==this.section.id);
-       this.isLike=!!section?.idOfUsersLikeThisSection.find((id:string)=>id=='54d12ab5-35e6-44ac-bcd3-b09ea3600829');
-       this.isSave=!!section?.idOfUsersSaveThisSection.find((id:string)=>id=='54d12ab5-35e6-44ac-bcd3-b09ea3600829');
+       this.isLike=!!section?.idOfUsersLikeThisSection.find((id:string)=>id==this.userId);
+       this.isSave=!!section?.idOfUsersSaveThisSection.find((id:string)=>id==this.userId);
       }
     );
   }
 
 OnLike(){
   if(this.isLike)
-  this.store.dispatch(new UserActions.RemoveLike(new Like(0,'54d12ab5-35e6-44ac-bcd3-b09ea3600829',this.section.id)))
+  this.store.dispatch(new UserActions.RemoveLike(new Like(0,this.userId,this.section.id)))
   else
-  this.store.dispatch(new UserActions.AddLike(new Like(0,'54d12ab5-35e6-44ac-bcd3-b09ea3600829',this.section.id)))
+  this.store.dispatch(new UserActions.AddLike(new Like(0,this.userId,this.section.id)))
 }
 OnSave(){
   if(this.isSave)
-  this.store.dispatch(new UserActions.RemoveFromSave(new Save(0,'54d12ab5-35e6-44ac-bcd3-b09ea3600829',this.section.id)))
+  this.store.dispatch(new UserActions.RemoveFromSave(new Save(0,this.userId,this.section.id)))
   else
-  this.store.dispatch(new UserActions.AddToSave(new Save(0,'54d12ab5-35e6-44ac-bcd3-b09ea3600829',this.section.id)))
+  this.store.dispatch(new UserActions.AddToSave(new Save(0,this.userId,this.section.id)))
 
 }
 
 OnSubmit(){
   console.log(this.opinionForm.value);
-  this.store.dispatch(new UserActions.AddComment(new Comment('54d12ab5-35e6-44ac-bcd3-b09ea3600829',this.section.id,this.opinionForm.get("opinion")?.value)))
+  this.store.dispatch(new UserActions.AddComment(new Comment(this.userId,this.section.id,this.opinionForm.get("opinion")?.value)))
   this.opinionForm.reset();
 
 }

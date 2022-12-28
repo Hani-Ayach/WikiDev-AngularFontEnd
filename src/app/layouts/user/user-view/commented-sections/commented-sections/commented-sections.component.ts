@@ -15,14 +15,10 @@ import * as UserActions from '../../../user-store/user.action';
 export class CommentedSectionsComponent implements OnInit {
   sections: Section[] = [];
   commentSubscribtion?: Subscription;
-  userID:any = localStorage.getItem("userId");
+  userID: any = localStorage.getItem('userId');
   displayNotify = false;
 
-  constructor(
-    private store: Store<fromApp.AppState>,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
     this.store.dispatch(new UserActions.FetchCommentedSections(this.userID));

@@ -11,6 +11,7 @@ import * as AdminActions from './admin-store/admin.action';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
+  isLoading = false;
   admin: User = {} as any;
   sub?: Subscription;
   userID: any = localStorage.getItem('userId');
@@ -20,6 +21,7 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(new AdminActions.FetchUserAdmin(this.userID));
     this.sub = this.store.select('admin').subscribe((state) => {
+      this.isLoading = state.isLoading;
       this.admin = state.adminUser;
     });
     this.OnOpen();

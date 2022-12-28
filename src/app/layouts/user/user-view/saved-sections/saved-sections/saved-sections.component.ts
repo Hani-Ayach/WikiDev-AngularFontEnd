@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Section } from 'src/app/layouts/Model/Section';
@@ -17,14 +16,11 @@ export class SavedSectionsComponent implements OnInit {
   userSubscribtion?: Subscription;
   displayNotify = false;
   userID: any = localStorage.getItem('userId');
-  constructor(
-    private store: Store<fromApp.AppState>,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
-      this.store.dispatch(new UserActions.FetchSavedSections(this.userID));
+    this.store.dispatch(new UserActions.FetchSavedSections(this.userID));
 
     this.userSubscribtion = this.store.select('user').subscribe((state) => {
       this.sections = state.savedSections;

@@ -19,7 +19,7 @@ export class SavedSectionComponent implements OnInit {
     private route: ActivatedRoute,
     private store: Store<fromApp.AppState>
   ) {}
-  userID:any = localStorage.getItem("userId");
+  userID: any = localStorage.getItem('userId');
 
   ngOnInit(): void {}
 
@@ -30,9 +30,7 @@ export class SavedSectionComponent implements OnInit {
   }
   OnDeleteFromSave() {
     this.store.dispatch(
-      new UserActions.RemoveFromSave(
-        new Save(0, this.userID, this.section.id)
-      )
+      new UserActions.RemoveFromSave(new Save(0, this.userID, this.section.id))
     );
   }
 }

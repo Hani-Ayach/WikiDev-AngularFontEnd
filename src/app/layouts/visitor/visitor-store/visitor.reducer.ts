@@ -14,6 +14,7 @@ export interface State {
 
   isApplySent: boolean;
   messageIfSent: string;
+
 }
 
 const initialState: State = {
