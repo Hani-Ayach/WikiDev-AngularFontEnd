@@ -5,3 +5,17 @@
   background-color: #88b04b;
   border: #88b04b;
 }
+.btn-danger {
+  background-color: #DE3163;
+  border: none;
+}
+.btn-danger:hover {
+  background-color: #707b7c;
+}
+.btn-success {
+  background-color: #88b04b;
+  border: none;
+}
+.btn-success:hover {
+  background-color: #707b7c;
+}

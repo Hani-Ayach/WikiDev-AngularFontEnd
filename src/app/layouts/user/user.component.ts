@@ -10,6 +10,7 @@ import * as UserActions from './user-store/user.action';
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
+  currentYear:any=new Date();
   isLoading = false;
   user: User = {} as any;
   userID:any = localStorage.getItem("userId");
@@ -18,7 +19,7 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     if(!!this.userID)
     this.store.dispatch(new UserActions.FetchUser(this.userID));
-    
+
     this.store.select('user').subscribe((data) => {
       this.isLoading = data.isLoading;
       this.user = data.user;
@@ -42,6 +43,15 @@ export class UserComponent implements OnInit {
       mainSection.width = '80%';
 
       mainSection.paddingLeft = '0%';
+    }
+  }
+  OnSelect(){
+    let sidebar = document.getElementById('sidebar')!.style;
+    let mainSection = document.getElementById('mainSection')!.style;
+    if ( sidebar.marginLeft == '0px') {
+      sidebar.marginLeft = '-100%';
+      mainSection.marginLeft = 'auto';
+      mainSection.width = '100%';
     }
   }
   OnLogout(){

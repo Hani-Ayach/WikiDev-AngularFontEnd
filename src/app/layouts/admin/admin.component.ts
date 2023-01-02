@@ -11,7 +11,8 @@ import * as AdminActions from './admin-store/admin.action';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
-  isLoading = false;
+  currentYear:any=new Date();
+  isLoading:boolean = false;
   admin: User = {} as any;
   sub?: Subscription;
   userID: any = localStorage.getItem('userId');
@@ -42,6 +43,15 @@ export class AdminComponent implements OnInit {
       mainSection.width = '80%';
 
       mainSection.paddingLeft = '0%';
+    }
+  }
+  OnSelect(){
+    let sidebar = document.getElementById('sidebar')!.style;
+    let mainSection = document.getElementById('mainSection')!.style;
+    if ( sidebar.marginLeft == '0px') {
+      sidebar.marginLeft = '-100%';
+      mainSection.marginLeft = 'auto';
+      mainSection.width = '100%';
     }
   }
   OnLogout() {

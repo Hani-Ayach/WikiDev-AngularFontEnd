@@ -91,7 +91,7 @@
 <aside id="sidebar" class="sidebar">
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['sections']">
+      <a class="nav-link" (click)="OnSelect()" routerLinkActive="active" [routerLink]="['sections']">
         <i class="bi bi-file-text"></i>
         <span>Sections</span>
       </a>
@@ -99,6 +99,7 @@
     <li class="nav-item">
       <a
         class="nav-link"
+        (click)="OnSelect()"
         routerLinkActive="active"
         [routerLink]="['mySections']"
       >
@@ -109,6 +110,7 @@
     <li class="nav-item">
       <a
         class="nav-link"
+        (click)="OnSelect()"
         routerLinkActive="active"
         [routerLink]="['commentedSections']"
       >
@@ -119,6 +121,7 @@
     <li class="nav-item">
       <a
         class="nav-link"
+        (click)="OnSelect()"
         routerLinkActive="active"
         [routerLink]="['likedSections']"
       >
@@ -129,6 +132,7 @@
     <li class="nav-item">
       <a
         class="nav-link"
+        (click)="OnSelect()"
         routerLinkActive="active"
         [routerLink]="['savedSections']"
       >
@@ -137,7 +141,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['profile']">
+      <a class="nav-link" (click)="OnSelect()" routerLinkActive="active" [routerLink]="['profile']">
         <i class="bi bi-person-lines-fill"></i>
         <span>Profile</span>
       </a>
@@ -148,7 +152,7 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>HaniAyach</span></strong
+      &copy; 2022-{{currentYear|date:'yyyy'}} Copyright <strong><span>HaniAyach</span></strong
       >. All Rights Reserved
     </div>
     <div class="credits">

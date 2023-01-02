@@ -111,16 +111,16 @@ export function userReducer(
       );
 
       var sectionsEdited = state.sections.map((section: Section) => {
-        if (section.id == sectionForEdit?.id) {
-          console.log('sectionForEdit1');
+        if (section.id == action.payload.sectionId)
           return {
             ...section,
+            countOfLikes: section.countOfLikes+1,
             idOfUsersLikeThisSection: [
               ...section.idOfUsersLikeThisSection,
               action.payload.userId,
             ],
           };
-        }
+
         return section;
       });
       console.log('sectionForEdit2');
@@ -130,19 +130,18 @@ export function userReducer(
       };
 
     case UserAction.REMOVE_LIKE:
-      var sectionForEdit = state.sections.find(
-        (section: Section) => section.id == action.payload.sectionId
-      );
-
       var sectionsEdited = state.sections.map((section: Section) => {
-        return {
-          ...section,
-          idOfUsersLikeThisSection: [
-            section.idOfUsersLikeThisSection.filter(
-              (id) => id != action.payload.userId
-            ),
-          ],
-        };
+        if (section.id == action.payload.sectionId)
+          return {
+            ...section,
+            countOfLikes: section.countOfLikes-1,
+            idOfUsersLikeThisSection: [
+              section.idOfUsersLikeThisSection.filter(
+                (id) => id != action.payload.userId
+              ),
+            ],
+          };
+        return section;
       });
 
       var likedSectionEdited = state.LikedSections.filter((section) => {
@@ -155,14 +154,11 @@ export function userReducer(
         LikedSections: likedSectionEdited,
       };
     case UserAction.ADD_TO_SAVE:
-      var sectionForEdit = state.sections.find(
-        (section: Section) => section.id == action.payload.sectionId
-      );
-
       var sectionsEdited = state.sections.map((section: Section) => {
-        if (section.id == sectionForEdit?.id) {
+        if (section.id == action.payload.sectionId) {
           return {
             ...section,
+            countOfSave: section.countOfSave+1,
             idOfUsersSaveThisSection: [
               ...section.idOfUsersSaveThisSection,
               action.payload.userId,
@@ -178,14 +174,11 @@ export function userReducer(
       };
 
     case UserAction.REMOVE_FROM_SAVE:
-      var sectionForEdit = state.sections.find(
-        (section: Section) => section.id == action.payload.sectionId
-      );
-
       var sectionsEdited = state.sections.map((section: Section) => {
-        if (section.id == sectionForEdit?.id) {
+        if (section.id == action.payload.sectionId) {
           return {
             ...section,
+            countOfSave: section.countOfSave-1,
             idOfUsersSaveThisSection: [
               section.idOfUsersSaveThisSection.filter(
                 (id) => id != action.payload.userId
@@ -243,7 +236,7 @@ export function userReducer(
               ...section,
               comments: [
                 ...section.comments.filter(
-                  (c:any) => c.id != action.payload.commentId
+                  (c: any) => c.id != action.payload.commentId
                 ),
               ],
             };
@@ -292,7 +285,7 @@ export function userReducer(
           email: action.payload.editeUser.Email,
           career: action.payload.editeUser.Career,
           age: action.payload.editeUser.Age,
-          sex: action.payload.editeUser.Sex
+          sex: action.payload.editeUser.Sex,
         },
       };
     case UserAction.STOP_LOADING:

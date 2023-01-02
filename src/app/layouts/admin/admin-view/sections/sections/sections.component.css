@@ -10,3 +10,17 @@
   background-color: #88b04b;
   border: #88b04b;
 }
+.btn-success {
+  background-color: #88b04b;
+  border: none;
+}
+.btn-success:hover {
+  background-color: #707b7c;
+}
+.btn-warning {
+  background-color: #FFBF00;
+  border: none;
+}
+.btn-warning:hover {
+  background-color: #707b7c;
+}

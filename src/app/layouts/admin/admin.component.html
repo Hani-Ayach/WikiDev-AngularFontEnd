@@ -1,4 +1,3 @@
-
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
   <div class="d-flex align-items-center justify-content-between">
@@ -11,11 +10,8 @@
   </div>
   <!-- End Logo -->
 
-
   <nav class="header-nav ms-auto">
     <ul class="d-flex align-items-center">
-
-
       <li class="nav-item dropdown pe-3">
         <a
           class="nav-link nav-profile d-flex align-items-center pe-0"
@@ -23,24 +19,24 @@
           data-bs-toggle="dropdown"
         >
           <img
-          *ngIf="admin?.profilePhotoBase64; else icon"
-          [src]="'data:image/jpeg;base64,'+admin.profilePhotoBase64"
-          alt="Profile"
+            *ngIf="admin?.profilePhotoBase64; else icon"
+            [src]="'data:image/jpeg;base64,' + admin.profilePhotoBase64"
+            alt="Profile"
             class="rounded-circle"
           />
           <ng-template #icon>
             <i class="bi bi-person-circle avatar" style="font-size: 50px"></i>
           </ng-template>
 
-          <span class="d-none d-md-block dropdown-toggle ps-2"
-            >{{admin.userName}}</span
-          > </a
+          <span class="d-none d-md-block dropdown-toggle ps-2">{{
+            admin.userName
+          }}</span> </a
         ><!-- End Profile Iamge Icon -->
 
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
           <li class="dropdown-header">
-            <h6>{{admin.userName}}</h6>
-            <span>{{admin.career}}</span>
+            <h6>{{ admin.userName }}</h6>
+            <span>{{ admin.career }}</span>
           </li>
           <li>
             <hr class="dropdown-divider" />
@@ -49,7 +45,8 @@
           <li>
             <a
               class="dropdown-item d-flex align-items-center"
-              [routerLink]="['profile']" routerLinkActive="router-link-active"
+              [routerLink]="['profile']"
+              routerLinkActive="router-link-active"
             >
               <i class="bi bi-person"></i>
               <span>My Profile</span>
@@ -62,8 +59,9 @@
           <li>
             <a
               class="dropdown-item d-flex align-items-center"
-              [routerLink]="['profile']" routerLinkActive="router-link-active"
-              >
+              [routerLink]="['profile']"
+              routerLinkActive="router-link-active"
+            >
               <i class="bi bi-gear"></i>
               <span>Account Settings</span>
             </a>
@@ -73,7 +71,10 @@
           </li>
 
           <li>
-            <a class="dropdown-item d-flex align-items-center btn" (click)="OnLogout()">
+            <a
+              class="dropdown-item d-flex align-items-center btn"
+              (click)="OnLogout()"
+            >
               <i class="bi bi-box-arrow-right"></i>
               <span>Sign Out</span>
             </a>
@@ -89,10 +90,15 @@
 <!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar" >
+<aside id="sidebar" class="sidebar">
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['dashboard']">
+      <a
+        class="nav-link"
+        (click)="OnSelect()"
+        routerLinkActive="active"
+        [routerLink]="['dashboard']"
+      >
         <i class="bi bi-clipboard2-data"></i>
         <span>Dashboard</span>
       </a>
@@ -100,45 +106,54 @@
     <li class="nav-item">
       <a
         class="nav-link"
+        (click)="OnSelect()"
         routerLinkActive="active"
         [routerLink]="['sections']"
       >
-      <i class="bi bi-file-text"></i>
-      <span>Sections</span>
+        <i class="bi bi-file-text"></i>
+        <span>Sections</span>
       </a>
     </li>
     <li class="nav-item">
       <a
         class="nav-link"
+        (click)="OnSelect()"
         routerLinkActive="active"
         [routerLink]="['requests']"
       >
-      <i class="bi bi-send"></i>
-      <span>Requests</span>
+        <i class="bi bi-send"></i>
+        <span>Requests</span>
       </a>
     </li>
     <li class="nav-item">
       <a
         class="nav-link"
+        (click)="OnSelect()"
         routerLinkActive="active"
         [routerLink]="['users']"
       >
-      <i class="bi bi-people"></i>
-      <span>users</span>
+        <i class="bi bi-people"></i>
+        <span>users</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        (click)="OnSelect()"
+        routerLinkActive="active"
+        [routerLink]="['admins']"
+      >
+        <i class="bi bi-person-square"></i>
+        <span>admins</span>
       </a>
     </li>
     <li class="nav-item">
       <a
         class="nav-link"
         routerLinkActive="active"
-        [routerLink]="['admins']"
+        (click)="OnSelect()"
+        [routerLink]="['profile']"
       >
-      <i class="bi bi-person-square"></i>
-      <span>admins</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['profile']">
         <i class="bi bi-person-lines-fill"></i>
         <span>Profile</span>
       </a>
@@ -149,11 +164,10 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>HaniAyach</span></strong
+      &copy;2022-{{currentYear|date:'yyyy'}} Copyright <strong><span>HaniAyach</span></strong
       >. All Rights Reserved
     </div>
-    <div class="credits">
-    </div>
+    <div class="credits"></div>
   </footer>
   <!-- End Footer -->
 </aside>
@@ -169,7 +183,5 @@
 </div>
 
 <div class="mainSection" id="mainSection">
-
-    <router-outlet> </router-outlet>
+  <router-outlet> </router-outlet>
 </div>
-

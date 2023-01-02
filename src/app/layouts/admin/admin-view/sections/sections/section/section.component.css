@@ -1,8 +1,19 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
-.action{
+.action
+{
   font-size: small;
 }
-.date{
+.date
+{
   font-size: large;
 }
+.card-header
+{
+  background-color: #D0D3D4 ;
+}
+.card-body
+{
+  background-color: #CCCCFF ;
+}
+

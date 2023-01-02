@@ -1,28 +1,51 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
-.app-page-title
-{
-color:black;
+.app-page-title {
+  color: #6b5b95;
 }
-
-
-.state-card
-{
-  background-color:#88b04b;
+.state-card {
+  background-color: #88b04b;
 }
-.state-card.shadow-sm
-{
-  box-shadow: 0 .125rem .25rem #88b04b!important;
+.state-card.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem #88b04b !important;
 }
-.titleState
-{
+.title-state {
   color: white;
-  text-shadow: 1px 1px 10px #6b5b95;}
-.action{
+  text-shadow: 1px 1px 10px #6b5b95;
+}
+/* bar */
+.app-card-progress-list
+{
+  background-color: #ccccff;
+
+}
+.progress-bar {
+  background-color: #88b04b;
+}
+
+/* more liked section */
+.action {
   font-size: small;
 }
-.date{
+.date {
   font-size: large;
 }
-.title{
-  color: #6b5b95;
+.card-header {
+  background-color: #d0d3d4;
+}
+.card-body {
+  background-color: #ccccff;
+}
+.btn-warning {
+  background-color: #FFBF00;
+  border: none;
+}
+.btn-warning:hover {
+  background-color: #707b7c;
+}
+.btn-info {
+  background-color: #88b04b;
+  border: none;
+}
+.btn-info:hover {
+  background-color: #707b7c;
 }
