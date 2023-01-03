@@ -5,8 +5,13 @@
   </h2>
 </div>
 
-
 <app-all-sections></app-all-sections>
 
-<button (click)="TopFunction()" id="myBtn" title="Go to top">Top</button>
-
+<button
+  (click)="TopFunction()"
+  *ngIf="showTopButton"
+  id="myBtn"
+  title="Go to top"
+>
+  Top
+</button>

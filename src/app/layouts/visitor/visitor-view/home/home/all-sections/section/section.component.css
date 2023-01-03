@@ -7,33 +7,37 @@
     border-right-color: transparent;
     padding-bottom: 100px;
 }
-.userInfo{
+.userInfo
+{
   color: #000000ab;
   margin-left: 15px;
   margin-top: 5px;
 }
-.userPhotoAndName{
+.userPhotoAndName
+{
   display: inline-flex;
 }
-.bi-person-circle{
+.bi-person-circle
+{
   font-size: 1.5em;
 }
-.userAvatar{
+.userAvatar
+{
 height: 40px;
 width: 40px;
 border-radius: 50%;
 }
-
 .title
 {
   background-color: #87aae3cc;
   color: #fcf7f4;
 }
-
-.image img {
+.image img
+{
   width:360px;
   height: 300px;
 }
-.footer{
+.footer
+{
   background-color: #87aae3cc; color: #fcf7f4
 }

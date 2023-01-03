@@ -38,29 +38,33 @@
 
                     <div class="form-outline mb-4">
                       <div class="row">
-                      <div class="col-10" >
-                      <input
-                        [type]="password"
-                        id="password"
-                        class="form-control form-control-lg "
-                        formControlName="password"
-                      />
+                        <div class="col-10">
+                          <input
+                            [type]="password"
+                            id="password"
+                            class="form-control form-control-lg"
+                            formControlName="password"
+                          />
+                        </div>
+                        <div class="col-1 p-0">
+                          <button
+                            class="btn btn-light btn-lg"
+                            type="button"
+                            (click)="onClick()"
+                          >
+                            <i
+                              class="bi bi-eye"
+                              aria-hidden="true"
+                              *ngIf="!show"
+                            ></i>
+                            <i
+                              class="bi bi-eye-slash"
+                              aria-hidden="true"
+                              *ngIf="show"
+                            ></i>
+                          </button>
+                        </div>
                       </div>
-                      <div class="col-1 p-0">
-                      <button class="btn btn-light btn-lg" type="button" (click)="onClick()">
-                      <i
-                        class="bi bi-eye"
-                        aria-hidden="true"
-                        *ngIf="!show"
-                      ></i>
-                      <i
-                        class="bi bi-eye-slash"
-                        aria-hidden="true"
-                        *ngIf="show"
-                      ></i>
-                      </button>
-                    </div>
-                  </div>
                       <div
                         *ngIf="
                           loginForm.get('password')?.invalid &&

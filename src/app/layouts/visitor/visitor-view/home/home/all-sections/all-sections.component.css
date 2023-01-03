@@ -1,56 +1,57 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
-
-:root{
-  --main-color1:#87aae3;
-  --main-color2: #FCF7F4;
+:root
+{
+  --main-color1: #87aae3;
+  --main-color2: #fcf7f4;
 }
-
-.search{
+.search
+{
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
-.col{
+.col
+{
   padding: 0;
 }
-
-.one select{
+.one select
+{
   text-align: center;
 }
-
-.form-control{
+.form-control
+{
   height: 50px;
-  border-radius:0;
+  border-radius: 0;
 }
-
-.two .form-control{
+.two .form-control
+{
   border-left: transparent;
   border-right: transparent;
 }
-
-.three{
+.three
+{
   text-align: center;
   text-justify: center;
   border: transparent;
 }
-
-.three .form-control{
+.three .form-control
+{
   background-color: #63c76a;
   border-left: transparent;
 }
-.three .form-control:hover{
+.three .form-control:hover
+{
   background-color: #50c058;
 }
-.three i{
+.three i
+{
   font-size: 1.3em;
 }
-
-.noResult{
+.noResult
+{
   color: #87aae3;
   text-align: center;
   margin-top: 100px;
   padding-bottom: 150px;
 }
-

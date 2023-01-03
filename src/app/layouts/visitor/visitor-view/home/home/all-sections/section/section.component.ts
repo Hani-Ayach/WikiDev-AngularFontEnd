@@ -6,21 +6,18 @@ import { SectionComment } from 'src/app/layouts/Model/SectionComment';
 @Component({
   selector: 'app-section',
   templateUrl: './section.component.html',
-  styleUrls: ['./section.component.css']
+  styleUrls: ['./section.component.css'],
 })
 export class SectionComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-@Input() section:Section ={} as any;
-comments:SectionComment[]=[];
-category:Category={} as any;
+  @Input() section: Section = {} as any;
+  comments: SectionComment[] = [];
+  category: Category = {} as any;
 
   ngOnInit(): void {
-    this.comments=this.section.comments;
-    this.category=this.section.category;
+    this.comments = this.section.comments;
+    this.category = this.section.category;
     console.log(this.category);
   }
-
-
 }

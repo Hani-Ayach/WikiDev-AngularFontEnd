@@ -19,18 +19,17 @@ export class AllSectionsComponent implements OnInit {
   search: any;
 
   displayNotify = false;
-  searchNotify=false;
+  searchNotify = false;
   ngOnInit(): void {
     this.store.select('visitor').subscribe((data) => {
       console.log(data.isLoading);
       this.categories = data.categories;
       this.sections = data.sections;
       console.log(data.isLoading);
-      if (data.sections.length==0 && !data.isLoading) {
-        console.log("null")
+      if (data.sections.length == 0 && !data.isLoading) {
+        console.log('null');
         this.displayNotify = true;
-      }
-      else{
+      } else {
         this.displayNotify = false;
       }
     });
@@ -54,8 +53,7 @@ export class AllSectionsComponent implements OnInit {
       ).length != 0
     ) {
       this.searchNotify = false;
-    }
-    else if (!this.search && !this.searchCategory) this.searchNotify=false;
+    } else if (!this.search && !this.searchCategory) this.searchNotify = false;
     else this.searchNotify = true;
   }
 }

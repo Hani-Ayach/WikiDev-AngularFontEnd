@@ -22,16 +22,16 @@ export class LoginComponent implements OnInit {
     private store: Store<fromApp.AppState>,
     private router: Router,
     private route: ActivatedRoute
-    ) {}
+  ) {}
 
-    ngOnInit(): void {
-      this.store.select('visitor').subscribe((state) => {
-        if (state.user.roles[0] == this.adminRole)
-          this.router.navigate(['../admin'], { relativeTo: this.route });
-        else if (state.user.roles[0] == this.userRole)
-          this.router.navigate(['../user'], { relativeTo: this.route });
-      });
-    }
+  ngOnInit(): void {
+    this.store.select('visitor').subscribe((state) => {
+      if (state.user.roles[0] == this.adminRole)
+        this.router.navigate(['../admin'], { relativeTo: this.route });
+      else if (state.user.roles[0] == this.userRole)
+        this.router.navigate(['../user'], { relativeTo: this.route });
+    });
+  }
 
   loginForm = new FormGroup({
     emailAddress: new FormControl('', {
@@ -50,14 +50,13 @@ export class LoginComponent implements OnInit {
     ),
   });
 
-
   OnSubmit() {
     console.log(this.loginForm.value);
     let login = new Login(
       this.loginForm.value.emailAddress!.toString(),
       this.loginForm.value.password!.toString()
     );
-console.log('hello')
+    console.log('hello');
     this.store.dispatch(new VisitorActions.LoginStart(login));
   }
   onClick() {
