@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { fadeFromLeft } from 'src/app/layouts/animation';
 import { Comment } from 'src/app/layouts/Model/Comment';
 import { Like } from 'src/app/layouts/Model/Like';
 import { Section } from 'src/app/layouts/Model/Section';
@@ -12,6 +13,7 @@ import * as UserActions from '../../../../user-store/user.action';
   selector: 'app-commented-section',
   templateUrl: './commented-section.component.html',
   styleUrls: ['./commented-section.component.css'],
+  animations:[fadeFromLeft]
 })
 export class CommentedSectionComponent implements OnInit {
   @Input() section: Section = {} as any;

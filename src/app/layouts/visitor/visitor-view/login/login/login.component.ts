@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { shake } from 'src/app/layouts/animation';
 import { Login } from 'src/app/layouts/Model/Login';
 import * as fromApp from '../../../../store/app.reducer';
 import * as VisitorActions from '../../../visitor-store/visitor.action';
@@ -10,6 +11,7 @@ import * as VisitorActions from '../../../visitor-store/visitor.action';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  animations: [shake],
 })
 export class LoginComponent implements OnInit {
   password: any = 'password';

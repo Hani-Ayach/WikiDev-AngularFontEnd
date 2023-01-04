@@ -1,15 +1,19 @@
-.title{
+.title
+{
   color: #6b5b95;
 }
-.btnSearch{
+.btnSearch
+{
   background-color: #88b04b;
   border: #88b04b;
 }
-.btn-danger {
+.btn-danger
+{
   background-color: #DE3163;
   border: none;
 }
-.btn-danger:hover {
+.btn-danger:hover
+{
   background-color: #707b7c;
 }
 

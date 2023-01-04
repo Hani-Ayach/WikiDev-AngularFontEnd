@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { AdminComponent } from './admin/admin.component';
 import { UsersModule } from './admin/admin-view/users/users.module';
 import { RequestsModule } from './admin/admin-view/requests/requests.module';
@@ -52,6 +52,7 @@ import { UserFullViewComponent } from './admin/admin-view/common/user-full-view/
     MySectionsModule,
     ProfileModule,
 
+    BrowserAnimationsModule,
     HttpClientModule,
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([VisitorEffects,UserEffect,AdminEffect])

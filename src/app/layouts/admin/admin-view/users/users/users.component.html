@@ -11,7 +11,11 @@
               class="row g-2 justify-content-start justify-content-md-end align-items-center"
             >
               <div class="col-auto">
-                <form (ngSubmit)="OnSearch()" [formGroup]="searchUser" class="table-search-form row gx-1 align-items-center">
+                <form
+                  (ngSubmit)="OnSearch()"
+                  [formGroup]="searchUser"
+                  class="table-search-form row gx-1 align-items-center"
+                >
                   <div class="col-auto">
                     <input
                       type="text"
@@ -61,16 +65,20 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let user of users|myFilter4:userName">
-                      <td class="cell">{{user.userName}}</td>
-                      <td class="cell">{{user.email}}</td>
-                      <td class="cell">{{user.career}}</td>
-                      <td class="cell">{{user.dateOfRegister|date}}</td>
+                    <tr *ngFor="let user of users | myFilter4 : userName">
+                      <td class="cell">{{ user.userName }}</td>
+                      <td class="cell">{{ user.email }}</td>
+                      <td class="cell">{{ user.career }}</td>
+                      <td class="cell">{{ user.dateOfRegister | date }}</td>
                       <td class="cell">
-                        <a class="btn btn-secondary" (click)="OnView(user.id)">View</a>
+                        <a class="btn btn-secondary" (click)="OnView(user.id)"
+                          >View</a
+                        >
                       </td>
                       <td class="cell">
-                        <a class="btn btn-danger" (click)="OnDelete(user.id)">Delete</a>
+                        <a class="btn btn-danger" (click)="OnDelete(user.id)"
+                          >Delete</a
+                        >
                       </td>
                     </tr>
                   </tbody>

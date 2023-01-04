@@ -5,10 +5,12 @@ import { Store } from '@ngrx/store';
 import * as fromApp from '../../../../store/app.reducer';
 import { Register } from '../../../../Model/Register';
 import * as VisitorAction from '../../../visitor-store/visitor.action';
+import { shake } from 'src/app/layouts/animation';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
+  animations:[shake]
 })
 export class RegisterComponent implements OnInit {
   constructor(

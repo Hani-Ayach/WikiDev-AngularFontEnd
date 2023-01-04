@@ -1,4 +1,4 @@
-<div class="card d-flex shadow-sm">
+<div class="card d-flex shadow-sm" @fadeFromLeft>
   <h5 class="card-header title">
     {{ section.category.name }}
   </h5>
@@ -13,7 +13,7 @@
 
       <i *ngIf="!section.userProfileBase64" class="bi bi-person-circle mb-1">
       </i>
-      <h5 class="card-title userInfo">
+      <h5 class="card-title user-name">
         {{ section.userName }}
       </h5>
     </div>

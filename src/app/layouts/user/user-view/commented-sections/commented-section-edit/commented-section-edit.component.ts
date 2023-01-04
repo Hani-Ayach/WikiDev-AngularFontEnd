@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription, take } from 'rxjs';
+import { fadeFromLeft } from 'src/app/layouts/animation';
 import { Section } from 'src/app/layouts/Model/Section';
 import * as fromApp from '../../../../store/app.reducer';
 import * as UserActions from '../../../user-store/user.action';
@@ -10,6 +11,7 @@ import * as UserActions from '../../../user-store/user.action';
   selector: 'app-commented-section-edit',
   templateUrl: './commented-section-edit.component.html',
   styleUrls: ['./commented-section-edit.component.css'],
+  animations:[fadeFromLeft]
 })
 export class CommentedSectionEditComponent implements OnInit {
   constructor(

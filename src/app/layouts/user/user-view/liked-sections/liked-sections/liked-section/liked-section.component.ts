@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { fadeFromLeft } from 'src/app/layouts/animation';
 import { Like } from 'src/app/layouts/Model/Like';
 import { Section } from 'src/app/layouts/Model/Section';
 import * as fromApp from '../../../../../store/app.reducer';
@@ -9,6 +10,7 @@ import * as UserActions from '../../../../user-store/user.action';
   selector: 'app-liked-section',
   templateUrl: './liked-section.component.html',
   styleUrls: ['./liked-section.component.css'],
+  animations:[fadeFromLeft]
 })
 export class LikedSectionComponent implements OnInit {
   @Input() section: Section = {} as any;

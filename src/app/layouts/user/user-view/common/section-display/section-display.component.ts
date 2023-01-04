@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription, take } from 'rxjs';
+import { fadeFromLeft } from 'src/app/layouts/animation';
 import { Section } from 'src/app/layouts/Model/Section';
 import * as fromApp from '../../../../store/app.reducer';
 import * as UserActions from '../../../user-store/user.action';
@@ -9,6 +10,7 @@ import * as UserActions from '../../../user-store/user.action';
   selector: 'app-section-display',
   templateUrl: './section-display.component.html',
   styleUrls: ['./section-display.component.css'],
+  animations:[fadeFromLeft]
 })
 export class SectionDisplayComponent implements OnInit {
   id: number = 0;

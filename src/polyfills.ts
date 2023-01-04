@@ -42,6 +42,7 @@
  *
  */
 
+// import 'web-animation-js';
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */

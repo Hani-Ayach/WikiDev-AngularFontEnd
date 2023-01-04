@@ -1,5 +1,5 @@
 <!-- ======= Header ======= -->
-<header id="header" class="header fixed-top d-flex align-items-center">
+<header id="header" class="header fixed-top d-flex align-items-center shadow-sm">
   <div class="d-flex align-items-center justify-content-between">
     <a href="index.html" class="logo d-flex align-items-center">
       <span class="d-none d-lg-block">WikiDev</span>
@@ -33,8 +33,8 @@
 
           <span class="d-none d-md-block dropdown-toggle ps-2"
             >{{user.userName}}</span
-          > </a
-        ><!-- End Profile Iamge Icon -->
+          > </a>
+          <!-- End Profile Iamge Icon -->
 
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
           <li class="dropdown-header">
@@ -88,12 +88,12 @@
 <!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar">
+<aside id="sidebar" class="sidebar shadow-sm">
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
       <a class="nav-link" (click)="OnSelect()" routerLinkActive="active" [routerLink]="['sections']">
         <i class="bi bi-file-text"></i>
-        <span>Sections</span>
+        <span class="side-span">Sections</span>
       </a>
     </li>
     <li class="nav-item">
@@ -104,7 +104,7 @@
         [routerLink]="['mySections']"
       >
       <i class="bi bi-file-earmark-person"></i>
-      <span>MySections</span>
+      <span class="side-span">MySections</span>
       </a>
     </li>
     <li class="nav-item">
@@ -115,7 +115,7 @@
         [routerLink]="['commentedSections']"
       >
       <i class="bi bi-file-earmark-text"></i>
-      <span>Commented Sections</span>
+      <span class="side-span">Commented Sections</span>
       </a>
     </li>
     <li class="nav-item">
@@ -126,7 +126,7 @@
         [routerLink]="['likedSections']"
       >
       <i class="bi bi-file-earmark-check"></i>
-      <span>Liked Sections</span>
+      <span class="side-span">Liked Sections</span>
       </a>
     </li>
     <li class="nav-item">
@@ -137,13 +137,13 @@
         [routerLink]="['savedSections']"
       >
       <i class="bi bi-file-earmark-arrow-down"></i>
-      <span>Saved Sections</span>
+      <span class="side-span">Saved Sections</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" (click)="OnSelect()" routerLinkActive="active" [routerLink]="['profile']">
         <i class="bi bi-person-lines-fill"></i>
-        <span>Profile</span>
+        <span class="side-span">Profile</span>
       </a>
     </li>
     <!-- End Dashboard Nav -->

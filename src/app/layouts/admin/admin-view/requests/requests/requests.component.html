@@ -1,100 +1,118 @@
 <div class="app-wrapper">
-
   <div class="app-content pt-3 p-md-3 p-lg-4">
     <div class="container-xl">
-
       <div class="row g-3 mb-4 align-items-center justify-content-between">
         <div class="col-auto">
-              <h2 class="app-page-title mb-0 title">Registration Requests</h2>
+          <h2 class="app-page-title mb-0 title">Registration Requests</h2>
         </div>
         <div class="col-auto">
-           <div class="page-utilities">
-            <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
+          <div class="page-utilities">
+            <div
+              class="row g-2 justify-content-start justify-content-md-end align-items-center"
+            >
               <div class="col-auto">
-                <button class="btn btn-danger" style="opacity: 0.9;" (click)="OnRejectAllRequest()">Reject All Request</button>
+                <button
+                  class="btn btn-danger"
+                  style="opacity: 0.9"
+                  (click)="OnRejectAllRequest()"
+                >
+                  Reject All Request
+                </button>
               </div>
               <div class="col-auto">
-                <form (ngSubmit)="OnSearch()" [formGroup]="searchRequest" class="table-search-form row gx-1 align-items-center">
-                          <div class="col-auto">
-                              <input type="text" id="search-orders" name="searchorders" class="form-control search-orders" placeholder="career name" formControlName="careerName">
-                          </div>
-                          <div class="col-auto">
-                              <button type="submit" class="btn btn-success btnSearch">Search</button>
-                          </div>
-                      </form>
+                <form
+                  (ngSubmit)="OnSearch()"
+                  [formGroup]="searchRequest"
+                  class="table-search-form row gx-1 align-items-center"
+                >
+                  <div class="col-auto">
+                    <input
+                      type="text"
+                      id="search-orders"
+                      name="searchorders"
+                      class="form-control search-orders"
+                      placeholder="career name"
+                      formControlName="careerName"
+                    />
+                  </div>
+                  <div class="col-auto">
+                    <button type="submit" class="btn btn-success btnSearch">
+                      Search
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <!--//col-->
+            </div>
+            <!--//row-->
+          </div>
+          <!--//table-utilities-->
+        </div>
+        <!--//col-auto-->
+      </div>
+      <!--//row-->
 
-              </div><!--//col-->
-
-
-            </div><!--//row-->
-          </div><!--//table-utilities-->
-        </div><!--//col-auto-->
-      </div><!--//row-->
-
-
-
-    <div class="tab-content" id="orders-table-tab-content">
-          <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
+      <div class="tab-content" id="orders-table-tab-content">
+        <div
+          class="tab-pane fade show active"
+          id="orders-all"
+          role="tabpanel"
+          aria-labelledby="orders-all-tab"
+        >
           <div class="app-card app-card-orders-table shadow-sm mb-5">
             <div class="app-card-body">
               <div class="table-responsive">
-                  <table class="table app-table-hover mb-0 text-left">
-                <thead>
-                  <tr>
-                    <th class="cell">FirstName</th>
-                    <th class="cell">LastName</th>
-                    <th class="cell">Email</th>
-                    <th class="cell">Career</th>
-                    <th class="cell">Age</th>
-                    <th class="cell">Sex</th>
-                    <th class="cell"></th>
-                    <th class="cell"></th>
-
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let request of requests|myFilter3:careerName">
-                    <td class="cell">{{request.firstName}}</td>
-                    <td class="cell">{{request.lastName}}</td>
-                    <td class="cell">{{request.email}}</td>
-                    <td class="cell">{{request.career}}</td>
-                    <td class="cell">{{request.age}}</td>
-                    <td class="cell">{{request.sex}}</td>
-                    <td class="cell"><a class="btn btn-success" (click)="OnAccept(request.id)">Accept</a></td>
-                    <td class="cell"><a class="btn btn-danger" (click)="OnReject(request.id)">Reject</a></td>
-
-                  </tr>
-
-                </tbody>
-              </table>
-                </div><!--//table-responsive-->
-
-            </div><!--//app-card-body-->
-        </div><!--//app-card-->
-        <!-- <nav class="app-pagination">
-          <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-              </li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
-          </ul>
-        </nav>//app-pagination -->
-
-          </div><!--//tab-pane-->
-
-
-    </div><!--//tab-content-->
-
-
-
-    </div><!--//container-fluid-->
-  </div><!--//app-content-->
-
-
-
-</div><!--//app-wrapper-->
+                <table class="table app-table-hover mb-0 text-left">
+                  <thead>
+                    <tr>
+                      <th class="cell">FirstName</th>
+                      <th class="cell">LastName</th>
+                      <th class="cell">Email</th>
+                      <th class="cell">Career</th>
+                      <th class="cell">Age</th>
+                      <th class="cell">Sex</th>
+                      <th class="cell"></th>
+                      <th class="cell"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      *ngFor="let request of requests | myFilter3 : careerName"
+                    >
+                      <td class="cell">{{ request.firstName }}</td>
+                      <td class="cell">{{ request.lastName }}</td>
+                      <td class="cell">{{ request.email }}</td>
+                      <td class="cell">{{ request.career }}</td>
+                      <td class="cell">{{ request.age }}</td>
+                      <td class="cell">{{ request.sex }}</td>
+                      <td class="cell">
+                        <a
+                          class="btn btn-success"
+                          (click)="OnAccept(request.id)"
+                          >Accept</a
+                        >
+                      </td>
+                      <td class="cell">
+                        <a class="btn btn-danger" (click)="OnReject(request.id)"
+                          >Reject</a
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!--//table-responsive-->
+            </div>
+            <!--//app-card-body-->
+          </div>
+          <!--//app-card-->
+        </div>
+        <!--//tab-pane-->
+      </div>
+      <!--//tab-content-->
+    </div>
+    <!--//container-fluid-->
+  </div>
+  <!--//app-content-->
+</div>
+<!--//app-wrapper-->

@@ -17,7 +17,6 @@ export class VisitorComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select('visitor').subscribe(data=>{
-      console.log(data.isLoading)
       this.isLoading=data.isLoading;
 
       if(!!data.error)

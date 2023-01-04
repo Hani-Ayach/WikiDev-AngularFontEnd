@@ -1,13 +1,13 @@
-<div class="container pb-4">
-  <div class="card d-flex card">
+<div class="container pb-5">
+  <div class="card d-flex shadow-sm">
     <h5 class="card-header title">
       {{ section?.category?.name }}
     </h5>
     <div class="card-body">
       <!-- Writer Name , photo And Date of Post -->
-      <div class="userPhotoAndName">
+      <div class="user-info">
         <img
-          class="userAvatar"
+          class="user-avatar"
           [src]="'data:image/jpeg;base64,' + section?.userProfileBase64"
           alt="User Photo"
         />

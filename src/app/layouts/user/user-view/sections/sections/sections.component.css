@@ -1,7 +1,9 @@
-.row>*{
+.row>*
+{
   width:fit-content;
 }
-.noResult{
+.noResult
+{
   display: flex;
   justify-content: center;
   transform: translateY(200%);

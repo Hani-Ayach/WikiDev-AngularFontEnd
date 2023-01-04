@@ -1,26 +1,31 @@
-@import "~bootstrap-icons/font/bootstrap-icons.css";
-
-.app-displayer.row>*{
+.app-displayer.row>*
+{
   width:fit-content;
 }
-.title{
+.title
+{
   color: #6b5b95;
 }
-.btnSearch{
+.btnSearch
+{
   background-color: #88b04b;
   border: #88b04b;
 }
-.btn-success {
+.btn-success
+{
   background-color: #88b04b;
   border: none;
 }
-.btn-success:hover {
+.btn-success:hover
+{
   background-color: #707b7c;
 }
-.btn-warning {
+.btn-warning
+{
   background-color: #FFBF00;
   border: none;
 }
-.btn-warning:hover {
+.btn-warning:hover
+{
   background-color: #707b7c;
 }

@@ -1,40 +1,44 @@
-.card
-{
+.card {
   background-color: transparent;
-    border-radius: 0;
-    border-left-color: transparent;
-    border-top-color: transparent;
-    border-right-color: transparent;
-    padding-bottom: 100px;
+  border-radius: 15px;
+  border: transparent;
 }
-.userInfo{
+.user-name {
   color: #000000ab;
   margin-left: 15px;
   margin-top: 5px;
 }
-.userPhotoAndName{
+.user-info {
   display: inline-flex;
 }
-.bi-person-circle{
+.bi-person-circle {
   font-size: 1.5em;
 }
-.userAvatar{
-height: 40px;
-width: 40px;
-border-radius: 50%;
+.user-avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
 }
-
-
-.title
-{
-  background-color: #87aae3cc;
+.title {
+  background-color: #5bb4a2;
   color: #fcf7f4;
 }
 
 .image img {
-  width:360px;
+  width: 360px;
   height: 300px;
 }
-.footer{
-  background-color: #87aae3cc; color: #fcf7f4
+.footer {
+  background-color: #5bb4a2;
+  color: #fcf7f4;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.btn-primary {
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: transparent;
+}
+.row {
+  margin-left: 0;
+  margin-right: 0;
 }

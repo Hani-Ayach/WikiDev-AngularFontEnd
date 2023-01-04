@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { fadeFromLeft } from 'src/app/layouts/animation';
 import { ChangePassword } from 'src/app/layouts/Model/ChangePassword';
 import { EditeUser } from 'src/app/layouts/Model/EditeUser';
 import { User } from 'src/app/layouts/Model/User';
@@ -11,6 +12,7 @@ import * as UserActions from '../../../user-store/user.action';
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
+  animations:[fadeFromLeft]
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   constructor(private store: Store<fromApp.AppState>) {}

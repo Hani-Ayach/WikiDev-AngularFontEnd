@@ -1,10 +1,19 @@
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { fadeFromTop } from 'src/app/layouts/animation';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+  animations: [fadeFromTop],
 })
 export class HomeComponent implements OnInit {
   searchCategory: any;

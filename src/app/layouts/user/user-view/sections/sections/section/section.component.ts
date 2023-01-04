@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { fadeFromLeft } from 'src/app/layouts/animation';
 import { Category } from 'src/app/layouts/Model/Category';
 import { Comment } from 'src/app/layouts/Model/Comment';
 import { Like } from 'src/app/layouts/Model/Like';
@@ -14,6 +15,7 @@ import * as UserActions from '../../../../user-store/user.action';
   selector: 'app-section',
   templateUrl: './section.component.html',
   styleUrls: ['./section.component.css'],
+  animations:[fadeFromLeft]
 })
 export class SectionComponent implements OnInit, OnDestroy {
   constructor(private store: Store<fromApp.AppState>) {}
@@ -59,7 +61,7 @@ export class SectionComponent implements OnInit, OnDestroy {
       this.store.dispatch(
         new UserActions.RemoveLike(new Like(0, this.userId, this.section.id))
       );
-    else 
+    else
     this.store.dispatch(
       new UserActions.AddLike(new Like(0, this.userId, this.section.id))
     );

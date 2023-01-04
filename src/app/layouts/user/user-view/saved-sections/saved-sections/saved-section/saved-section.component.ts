@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { fadeFromLeft } from 'src/app/layouts/animation';
 import { Save } from 'src/app/layouts/Model/Save';
 import { Section } from 'src/app/layouts/Model/Section';
 
@@ -11,6 +12,7 @@ import * as UserActions from '../../../../user-store/user.action';
   selector: 'app-saved-section',
   templateUrl: './saved-section.component.html',
   styleUrls: ['./saved-section.component.css'],
+  animations:[fadeFromLeft]
 })
 export class SavedSectionComponent implements OnInit {
   @Input() section: Section = {} as any;

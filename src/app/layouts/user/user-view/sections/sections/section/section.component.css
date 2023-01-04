@@ -1,45 +1,49 @@
-@import "~bootstrap-icons/font/bootstrap-icons.css";
-
-.card {
+.card
+{
   background-color: transparent;
   border-radius: 15px;
   border: transparent;
   margin-bottom: 100px;
 }
-.userInfo {
+.user-name
+{
   color: #000000ab;
   margin-left: 15px;
   margin-top: 5px;
 }
-.user-info {
+.user-info
+{
   display: inline-flex;
 }
-.bi-person-circle {
+.bi-person-circle
+{
   font-size: 1.5em;
 }
-.user-avatar {
+.user-avatar
+{
   height: 40px;
   width: 40px;
   border-radius: 50%;
 }
-
-.title {
-  background-color: #87aae3cc;
+.title
+{
+  background-color: #5bb4a2;
   color: #fcf7f4;
 }
-
-.image img {
+.image img
+{
   width: 360px;
   height: 300px;
 }
-.footer {
-  background-color: #87aae3cc;
+.footer
+{
+  background-color: #5bb4a2;
   color: #fcf7f4;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
 }
-
-.btn-primary {
+.btn-primary
+{
   --bs-btn-bg: transparent;
   --bs-btn-border-color: transparent;
 }
