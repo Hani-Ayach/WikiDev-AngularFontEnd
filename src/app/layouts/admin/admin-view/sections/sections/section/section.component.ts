@@ -1,12 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { fadeFromLeft } from 'src/app/layouts/animation';
 import *as fromApp from '../../../../../store/app.reducer';
 import *as AdminActions from '../../../../admin-store/admin.action';
 @Component({
   selector: 'app-section',
   templateUrl: './section.component.html',
-  styleUrls: ['./section.component.css']
+  styleUrls: ['./section.component.css'],
+  animations:[fadeFromLeft]
 })
 export class SectionComponent implements OnInit {
 @Input() section={} as any;

@@ -9,10 +9,12 @@ import * as fromApp from '../../../../store/app.reducer';
 import * as AdminActions from '../../../admin-store/admin.action';
 import * as UserActions from '../../../../user/user-store/user.action';
 import { ActivatedRoute, Router } from '@angular/router';
+import { fadeFromLeft } from 'src/app/layouts/animation';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
+  animations:[fadeFromLeft]
 })
 export class ProfileComponent implements OnInit {
   constructor(private store: Store<fromApp.AppState>,private router:Router,private route:ActivatedRoute) {}

@@ -12,7 +12,7 @@ export const FETCH_SECTIONS = '[admin] Fetch Sections';
 export const SET_SECTIONS = '[admin] Set Sections';
 export const ADD_SECTION = '[admin] Add Section';
 export const REMOVE_SECTION = '[admin] Remove Section';
-export const EDIT_SECTION = '[admin] Edit Section';
+export const EDITE_SECTION = '[admin] Edit Section';
 
 //Comment
 export const REMOVE_COMMENT = '[admin] Remove Comment';
@@ -21,7 +21,7 @@ export const REMOVE_COMMENT = '[admin] Remove Comment';
 export const FETCH_CATEGORIES = '[admin] Fetch Categories';
 export const SET_CATEGORIES = '[admin] Set Categories';
 export const ADD_CATEGORY = '[admin] Add Category';
-export const REMOVE_CATEGORY = '[admin] Remove Category';
+export const EDITE_CATEGORY = '[admin] Edite Category';
 
 //User Action Type
 export const FETCH_USERS = '[admin] Fetch Users';
@@ -77,8 +77,8 @@ export class RemoveSection implements Action {
   constructor(public payload: number) {}
 }
 
-export class EditSection implements Action {
-  readonly type = EDIT_SECTION;
+export class EditeSection implements Action {
+  readonly type = EDITE_SECTION;
   constructor(public payload: { id: number; section: SectionRequest }) {}
 }
 //comment
@@ -140,9 +140,9 @@ export class AddCategory implements Action {
   readonly type = ADD_CATEGORY;
   constructor(public payload: Category) {}
 }
-export class RemoveCategory implements Action {
-  readonly type = REMOVE_CATEGORY;
-  constructor(public payload: number) {}
+export class EditeCategory implements Action {
+  readonly type = EDITE_CATEGORY ;
+  constructor(public payload: Category) {}
 }
 //Dashboard Action
 export class FetchCountOfLikes implements Action {
@@ -190,7 +190,7 @@ export type AdminActions =
   | SetSections
   | AddSection
   | RemoveSection
-  | EditSection
+  | EditeSection
   | RemoveComment
   | FetchUsers
   | SetUsers
@@ -205,7 +205,7 @@ export type AdminActions =
   | FetchCategories
   | SetCategories
   | AddCategory
-  | RemoveCategory
+  | EditeCategory
   | FetchCountOfLikes
   | SetCountOfLikes
   | FetchCountOfComments

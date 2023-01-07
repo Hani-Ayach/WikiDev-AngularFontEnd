@@ -54,8 +54,8 @@ export class AdminEffect {
   );
   @Effect()
   editeSection = this.action$.pipe(
-    ofType(AdminActions.EDIT_SECTION),
-    switchMap((adminData: AdminActions.EditSection) => {
+    ofType(AdminActions.EDITE_SECTION),
+    switchMap((adminData: AdminActions.EditeSection) => {
       let data = new FormData();
       data.append('Title', adminData.payload.section.Title);
       data.append('Description', adminData.payload.section.Description);
@@ -189,11 +189,12 @@ export class AdminEffect {
   );
 
   @Effect()
-  removeCategory = this.action$.pipe(
-    ofType(AdminActions.REMOVE_CATEGORY),
-    switchMap((adminData: AdminActions.RemoveCategory) => {
-      return this.http.delete(
-        this.apiPath + '/Section/removeCategory/' + adminData.payload
+  updateCategory = this.action$.pipe(
+    ofType(AdminActions.EDITE_CATEGORY),
+    switchMap((adminData: AdminActions.EditeCategory) => {
+      return this.http.put(
+        this.apiPath + '/Section/updateCategory',
+        adminData.payload
       );
     }),
     map(() => {
@@ -324,11 +325,14 @@ export class AdminEffect {
 
   //assign to role
   @Effect()
-  assignToRole=this.action$.pipe(
+  assignToRole = this.action$.pipe(
     ofType(AdminActions.ASSIGN_TO_ROLE),
-    switchMap((adminData:AdminActions.AssignToRole)=>{
-      console.log('here 2')
-      return this.http.post(this.apiPath+'/Authentication/assignRole',adminData.payload)
+    switchMap((adminData: AdminActions.AssignToRole) => {
+      console.log('here 2');
+      return this.http.post(
+        this.apiPath + '/Authentication/assignRole',
+        adminData.payload
+      );
     }),
     map(() => {
       return new AdminActions.StopLoading('done');
@@ -336,5 +340,5 @@ export class AdminEffect {
     catchError(async (err, caught) => {
       return new AdminActions.StopLoading(err.error);
     })
-  )
+  );
 }

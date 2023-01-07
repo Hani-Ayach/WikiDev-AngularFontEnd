@@ -83,7 +83,7 @@ export class SectionEditComponent implements OnInit {
   }
   OnEdit() {
     this.store.dispatch(
-      new AdminActions.EditSection({
+      new AdminActions.EditeSection({
         id: this.sectionId,
         section: new SectionRequest(
           0,

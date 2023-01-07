@@ -41,7 +41,9 @@
               </div>
 
               <div class="col-12 col-sm-4">
-                <button type="submit" class="btn btn-success btnSearch">Search</button>
+                <button type="submit" class="btn btn-success btnSearch">
+                  Search
+                </button>
               </div>
             </form>
           </div>
@@ -114,18 +116,27 @@
                 <tr *ngFor="let category of categories; let i = index">
                   <th scope="row">{{ i + 1 }}</th>
                   <td>{{ category.name }}</td>
-                  <td><button class="btn btn-danger" (click)="OnDeleteCategory(category.id)">Delete</button></td>
+                  <td>
+                    <button
+                      class="btn btn-warning"
+                      (click)="OnMakeForEdite(category)"
+                    >
+                      Edite
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="col m-3">
-            <h3 class="text-secondary">Add Category</h3>
+            <h3 class="text-secondary" *ngIf="isForAddCategory">Add Category</h3>
+            <h3 class="text-secondary" *ngIf="!isForAddCategory">Edite Category</h3>
+            <h6 class="text-warning" >(Please be Accurate Here)</h6>
+
             <h5 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h5>
             <form
               class="px-md-2"
-              [formGroup]="addCategoryForm"
-              (ngSubmit)="OnAddCategory()"
+              [formGroup]="categoryForm"
             >
               <div class="row">
                 <div class="form-outline mb-3">
@@ -142,18 +153,25 @@
               </div>
 
               <button
-                type="submit"
+              *ngIf="isForAddCategory"
                 class="btn btn-success btn-md btn-lg mb-1"
-                [disabled]="!addCategoryForm.valid"
+                (click)="OnAddCategory()"
+                [disabled]="!categoryForm.valid"
               >
                 Add
+              </button>
+              <button
+              *ngIf="!isForAddCategory"
+                class="btn btn-success btn-md btn-lg mb-1"
+                (click)="OnUpdateCategory()"
+                [disabled]="!categoryForm.valid"
+              >
+                Edite
               </button>
             </form>
           </div>
         </div>
       </div>
-
-
     </div>
   </div>
 </div>

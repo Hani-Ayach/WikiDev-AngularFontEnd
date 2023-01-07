@@ -117,7 +117,7 @@ export function AdminReducer(
         ...state,
         sections: sections,
       };
-    case AdminAction.EDIT_SECTION:
+    case AdminAction.EDITE_SECTION:
       return {
         ...state,
       };
@@ -161,10 +161,16 @@ export function AdminReducer(
         ...state,
         categories: [...state.categories, action.payload],
       };
-    case AdminAction.REMOVE_CATEGORY:
+    case AdminAction.EDITE_CATEGORY:
       return {
         ...state,
-        categories: [...state.categories.filter((c) => c.id != action.payload)],
+        categories: [
+          ...state.categories.map((c) => {
+            return c.id == action.payload.id
+              ? new Category(c.id, action.payload.name)
+              : c;
+          }),
+        ],
       };
     //
     case AdminAction.FETCH_USERS:
@@ -182,7 +188,7 @@ export function AdminReducer(
     case AdminAction.REMOVE_USER:
       return {
         ...state,
-        users:[...state.users.filter(user=>user.id!=action.payload)]
+        users: [...state.users.filter((user) => user.id != action.payload)],
       };
     //
     case AdminAction.FETCH_USER_ADMIN:

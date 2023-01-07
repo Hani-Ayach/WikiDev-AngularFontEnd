@@ -3,13 +3,14 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { fadeFromTop } from 'src/app/layouts/animation';
 import { User } from 'src/app/layouts/Model/User';
 import * as fromApp from '../../../../store/app.reducer';
 import * as AdminActions from '../../../admin-store/admin.action';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css'],
+  styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
   sub?: Subscription;

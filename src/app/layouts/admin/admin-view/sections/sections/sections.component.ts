@@ -21,6 +21,9 @@ export class SectionsComponent implements OnInit {
   searchNotify = false;
   sup?: Subscription;
 
+  isForAddCategory = true;
+  categoryId: number=0;
+
   constructor(
     private store: Store<fromApp.AppState>,
     private route: ActivatedRoute,
@@ -60,19 +63,32 @@ export class SectionsComponent implements OnInit {
   }
 
   //for category
-  addCategoryForm = new FormGroup({
+  categoryForm = new FormGroup({
     category: new FormControl('', [Validators.required]),
   });
+
+  OnMakeForEdite(category: Category) {
+    this.isForAddCategory = false;
+    this.categoryForm = new FormGroup({
+      category: new FormControl(category.name, [Validators.required]),
+    });
+    this.categoryId = category.id;
+  }
+
   OnAddCategory() {
     // !--> the value cannot be null of undefined
-    let categoryName:string=this.addCategoryForm.value.category!.toString();
+    let categoryName: string = this.categoryForm.value.category!.toString();
     this.store.dispatch(
-      new AdminActions.AddCategory(
-        new Category(0,categoryName )
-      )
+      new AdminActions.AddCategory(new Category(0, categoryName))
     );
   }
-  OnDeleteCategory(id:number) {
-    this.store.dispatch(new AdminActions.RemoveCategory(id));
+
+  OnUpdateCategory() {
+    let categoryName: string = this.categoryForm.value.category!.toString();
+    let categoryId = this.categoryId;
+    if (categoryName && categoryId)
+      this.store.dispatch(
+        new AdminActions.EditeCategory(new Category(categoryId, categoryName))
+      );
   }
 }

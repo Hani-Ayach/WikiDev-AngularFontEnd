@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { fadeFromLeft } from 'src/app/layouts/animation';
 import { AssignRole } from 'src/app/layouts/Model/AssignRole';
-import { User } from 'src/app/layouts/Model/User';
 import * as fromApp from '../../../../store/app.reducer';
 import * as AdminActions from '../../../admin-store/admin.action';
 @Component({
   selector: 'app-user-full-view',
   templateUrl: './user-full-view.component.html',
   styleUrls: ['./user-full-view.component.css'],
+  animations:[fadeFromLeft]
 })
 export class UserFullViewComponent implements OnInit {
   constructor(

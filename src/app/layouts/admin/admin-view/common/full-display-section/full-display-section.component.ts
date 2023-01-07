@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { fadeFromLeft } from 'src/app/layouts/animation';
 import { Section } from 'src/app/layouts/Model/Section';
 import * as fromApp from '../../../../store/app.reducer';
 import * as AdminActions from '../../../admin-store/admin.action';
@@ -10,6 +11,7 @@ import * as AdminActions from '../../../admin-store/admin.action';
   selector: 'app-full-display-section',
   templateUrl: './full-display-section.component.html',
   styleUrls: ['./full-display-section.component.css'],
+  animations:[fadeFromLeft]
 })
 export class FullDisplaySectionComponent implements OnInit {
   constructor(

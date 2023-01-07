@@ -28,6 +28,7 @@ import { CountUpDirective } from './directive/count-up.directive';
 import { AdminEffect } from './admin/admin-store/admin.effect';
 import { FullDisplaySectionComponent } from './admin/admin-view/common/full-display-section/full-display-section.component';
 import { UserFullViewComponent } from './admin/admin-view/common/user-full-view/user-full-view.component';
+import { ProgressBarUpDirective } from './directive/progress-bar-up.directive';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { UserFullViewComponent } from './admin/admin-view/common/user-full-view/
     VisitorComponent,
     SectionDisplayComponent,
     FullDisplaySectionComponent,
-    UserFullViewComponent
+    UserFullViewComponent,
     ],
   imports: [
     CommonModule,

@@ -167,11 +167,11 @@
                     <div class="progress">
                       <div
                         class="progress-bar"
+                        name="hani"
                         role="progressbar"
-                        [style]="'width:'+(item.count*100)/countSection+'%'"
-                        aria-valuenow="25"
-                        aria-valuemin="0"
-                        aria-valuemax="100"
+                        [progressBarUp]="((item.count*100)/countSection)"
+                        [duration]="1000"
+                        [style]="'width:'+((item.count*100)/countSection)+'%'"
                       ></div>
                     </div>
                   </div>
